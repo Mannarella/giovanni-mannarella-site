@@ -10,8 +10,8 @@ import Europrogettazione from "./pages/Europrogettazione";
 import QualificheRegolamentate from "./pages/QualificheRegolamentate";
 import FinanzaAgevolata from "./pages/FinanzaAgevolata";
 
-
 function Router() {
+  // make sure to consider if you need authentication for certain routes
   return (
     <Switch>
       <Route path={"/"} component={Home} />

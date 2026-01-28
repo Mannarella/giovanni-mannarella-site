@@ -1,3 +1,4 @@
+import { useAuth } from "@/_core/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Mail, Linkedin, ArrowRight, BookOpen, Briefcase, Users, Zap } from "lucide-react";
@@ -10,6 +11,10 @@ import { useState } from "react";
  */
 
 export default function Home() {
+  // The userAuth hooks provides authentication state
+  // To implement login/logout functionality, simply call logout() or redirect to getLoginUrl()
+  let { user, loading, error, isAuthenticated, logout } = useAuth();
+
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [contactEmail, setContactEmail] = useState("");
