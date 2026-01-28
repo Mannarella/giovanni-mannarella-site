@@ -289,7 +289,7 @@ export default function Home() {
 
             <div className="flex gap-6 justify-center">
               <a
-                href="mailto:contact@example.com"
+                href="mailto:info@mannarella.com"
                 className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors"
               >
                 <Mail className="w-5 h-5" />
@@ -331,7 +331,7 @@ export default function Home() {
               <div>
                 <h4 className="font-semibold text-foreground mb-4">Contatti</h4>
                 <ul className="space-y-2 text-foreground/70">
-                  <li><a href="mailto:contact@example.com" className="hover:text-primary transition-colors">Email</a></li>
+                  <li><a href="mailto:info@mannarella.com" className="hover:text-primary transition-colors">Email</a></li>
                   <li><a href="https://linkedin.com" className="hover:text-primary transition-colors">LinkedIn</a></li>
                 </ul>
               </div>
