@@ -4,6 +4,7 @@ import { Card } from "@/components/ui/card";
 import { Mail, Linkedin, ArrowRight, BookOpen, Briefcase, Users, Zap } from "lucide-react";
 import { useState, useEffect } from "react";
 import { trpc } from "@/lib/trpc";
+import ShareButton from "@/components/ShareButton";
 
 /**
  * Modern Minimalist Design with Warm Accents
@@ -70,6 +71,7 @@ export default function Home() {
     "Docenza specializzata",
   ];
 
+  // Fetch news from database
   const { data: newsData, isLoading: newsLoading } = trpc.news.latest.useQuery();
 
   return (
@@ -239,23 +241,27 @@ export default function Home() {
               <p className="text-foreground/70">Caricamento opportunità...</p>
             ) : newsData && newsData.length > 0 ? (
               newsData.map((news: any, idx: number) => (
-                <a
-                  key={idx}
-                  href={news.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block"
-                >
-                  <div className="border-l-4 border-primary pl-6 py-4 hover:bg-muted/50 transition-colors rounded-r-lg cursor-pointer">
-                    <p className="text-sm font-semibold text-primary mb-2">{news.entity}</p>
-                    <h3 className="text-2xl font-bold text-foreground mb-2">{news.title}</h3>
-                    <p className="text-foreground/70">{news.description}</p>
-                    <div className="mt-3 flex items-center gap-2 text-primary text-sm font-semibold">
-                      <span>Leggi su {news.entity}</span>
-                      <ArrowRight className="w-4 h-4" />
+                <div key={idx} className="relative">
+                  <a
+                    href={news.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block"
+                  >
+                    <div className="border-l-4 border-primary pl-6 py-4 hover:bg-muted/50 transition-colors rounded-r-lg cursor-pointer">
+                      <p className="text-sm font-semibold text-primary mb-2">{news.entity}</p>
+                      <h3 className="text-2xl font-bold text-foreground mb-2">{news.title}</h3>
+                      <p className="text-foreground/70">{news.description}</p>
+                      <div className="mt-3 flex items-center gap-2 text-primary text-sm font-semibold">
+                        <span>Leggi su {news.entity}</span>
+                        <ArrowRight className="w-4 h-4" />
+                      </div>
                     </div>
+                  </a>
+                  <div className="absolute top-4 right-4">
+                    <ShareButton news={news} />
                   </div>
-                </a>
+                </div>
               ))
             ) : (
               <p className="text-foreground/70">Nessuna opportunità disponibile al momento.</p>
