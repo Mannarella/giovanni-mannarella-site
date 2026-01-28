@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Share2, Linkedin, Twitter, Facebook, Mail } from "lucide-react";
+import { Share2, Linkedin, Twitter, Facebook, Mail, Check } from "lucide-react";
 
 interface ShareButtonProps {
   news: {
@@ -12,27 +12,37 @@ interface ShareButtonProps {
 
 export default function ShareButton({ news }: ShareButtonProps) {
   const [showShareMenu, setShowShareMenu] = useState(false);
+  const [shareConfirmation, setShareConfirmation] = useState<string | null>(null);
+
+  const showConfirmation = (platform: string) => {
+    setShareConfirmation(platform);
+    setTimeout(() => setShareConfirmation(null), 2000);
+  };
 
   const shareOnLinkedIn = () => {
     const url = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(news.link)}`;
     window.open(url, "_blank", "width=600,height=400");
+    showConfirmation("LinkedIn");
   };
 
   const shareOnTwitter = () => {
     const text = `${news.title} - ${news.entity}`;
     const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(news.link)}`;
     window.open(url, "_blank", "width=600,height=400");
+    showConfirmation("Twitter");
   };
 
   const shareOnFacebook = () => {
     const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(news.link)}`;
     window.open(url, "_blank", "width=600,height=400");
+    showConfirmation("Facebook");
   };
 
   const shareViaEmail = () => {
     const subject = `Opportunità: ${news.title}`;
     const body = `Ti segnalo questa opportunità: ${news.title}\n\n${news.description}\n\nLeggi di più: ${news.link}`;
     window.location.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    showConfirmation("Email");
   };
 
   return (
@@ -99,6 +109,12 @@ export default function ShareButton({ news }: ShareButtonProps) {
             <Mail className="w-4 h-4" />
             <span>Email</span>
           </button>
+        </div>
+      )}
+      {shareConfirmation && (
+        <div className="absolute top-12 right-0 bg-primary text-primary-foreground px-4 py-2 rounded-lg shadow-lg text-sm flex items-center gap-2 animate-in fade-in duration-200 z-20">
+          <Check className="w-4 h-4" />
+          <span>Condiviso su {shareConfirmation}</span>
         </div>
       )}
     </div>
