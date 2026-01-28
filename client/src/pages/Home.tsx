@@ -2,7 +2,8 @@ import { useAuth } from "@/_core/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Mail, Linkedin, ArrowRight, BookOpen, Briefcase, Users, Zap } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { trpc } from "@/lib/trpc";
 
 /**
  * Modern Minimalist Design with Warm Accents
@@ -69,23 +70,7 @@ export default function Home() {
     "Docenza specializzata",
   ];
 
-  const opportunities = [
-    {
-      date: "Gennaio 2026",
-      title: "Nuovo Avviso FonARCom",
-      description: "Apertura del nuovo ciclo di finanziamenti per la formazione continua con scadenza estesa.",
-    },
-    {
-      date: "Febbraio 2026",
-      title: "Bando Finanza Agevolata Regionale",
-      description: "Opportunità di finanziamento per startup e PMI con focus su innovazione e sostenibilità.",
-    },
-    {
-      date: "Marzo 2026",
-      title: "Programma FSE+ 2026-2027",
-      description: "Apertura della nuova programmazione europea con nuove priorità strategiche.",
-    },
-  ];
+  const { data: newsData, isLoading: newsLoading } = trpc.news.latest.useQuery();
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -250,16 +235,31 @@ export default function Home() {
           </p>
 
           <div className="space-y-6">
-            {opportunities.map((opp, idx) => (
-              <div
-                key={idx}
-                className="border-l-4 border-primary pl-6 py-4 hover:bg-muted/50 transition-colors rounded-r-lg"
-              >
-                <p className="text-sm font-semibold text-primary mb-2">{opp.date}</p>
-                <h3 className="text-2xl font-bold text-foreground mb-2">{opp.title}</h3>
-                <p className="text-foreground/70">{opp.description}</p>
-              </div>
-            ))}
+            {newsLoading ? (
+              <p className="text-foreground/70">Caricamento opportunità...</p>
+            ) : newsData && newsData.length > 0 ? (
+              newsData.map((news: any, idx: number) => (
+                <a
+                  key={idx}
+                  href={news.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block"
+                >
+                  <div className="border-l-4 border-primary pl-6 py-4 hover:bg-muted/50 transition-colors rounded-r-lg cursor-pointer">
+                    <p className="text-sm font-semibold text-primary mb-2">{news.entity}</p>
+                    <h3 className="text-2xl font-bold text-foreground mb-2">{news.title}</h3>
+                    <p className="text-foreground/70">{news.description}</p>
+                    <div className="mt-3 flex items-center gap-2 text-primary text-sm font-semibold">
+                      <span>Leggi su {news.entity}</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </div>
+                  </div>
+                </a>
+              ))
+            ) : (
+              <p className="text-foreground/70">Nessuna opportunità disponibile al momento.</p>
+            )}
           </div>
 
           <div className="mt-12 p-8 bg-primary/5 rounded-lg border border-primary/20">

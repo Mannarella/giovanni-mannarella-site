@@ -20,7 +20,7 @@ export const appRouter = router({
 
   news: router({
     latest: publicProcedure.query(async () => {
-      return await getLatestNews(3);
+      return await getLatestNews(5);
     }),
   }),
 });
