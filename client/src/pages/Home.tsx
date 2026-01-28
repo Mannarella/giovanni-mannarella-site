@@ -12,6 +12,8 @@ import { useState } from "react";
 export default function Home() {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [contactEmail, setContactEmail] = useState("");
+  const [contactSubmitted, setContactSubmitted] = useState(false);
 
   const handleContactSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -20,6 +22,10 @@ export default function Home() {
       setEmail("");
       setTimeout(() => setSubmitted(false), 3000);
     }
+  };
+
+  const handleOpportunityClick = (url: string) => {
+    window.open(url, '_blank');
   };
 
   const services = [
@@ -170,17 +176,29 @@ export default function Home() {
           <div className="grid md:grid-cols-2 gap-8">
             {services.map((service, idx) => {
               const Icon = service.icon;
+              const serviceLinks = [
+                { title: "Progettazione Fondi Interprofessionali", path: "/servizi/fondi-interprofessionali" },
+                { title: "Europrogettazione", path: "/servizi/europrogettazione" },
+                { title: "Qualifiche Regolamentate", path: "/servizi/qualifiche-regolamentate" },
+                { title: "Finanza Agevolata", path: "/servizi/finanza-agevolata" },
+              ];
+              const link = serviceLinks[idx]?.path || "#";
               return (
-                <Card
-                  key={idx}
-                  className="p-8 hover:shadow-warm transition-all duration-300 hover:-translate-y-1 bg-card border-border"
-                >
-                  <div className={`${service.color} w-12 h-12 rounded-lg flex items-center justify-center mb-6`}>
-                    <Icon className="w-6 h-6 text-white" />
-                  </div>
-                  <h3 className="text-2xl font-bold mb-4 text-foreground">{service.title}</h3>
-                  <p className="text-foreground/70 leading-relaxed">{service.description}</p>
-                </Card>
+                <a href={link} key={idx}>
+                  <Card
+                    className="p-8 hover:shadow-warm transition-all duration-300 hover:-translate-y-1 bg-card border-border cursor-pointer h-full"
+                  >
+                    <div className={`${service.color} w-12 h-12 rounded-lg flex items-center justify-center mb-6`}>
+                      <Icon className="w-6 h-6 text-white" />
+                    </div>
+                    <h3 className="text-2xl font-bold mb-4 text-foreground">{service.title}</h3>
+                    <p className="text-foreground/70 leading-relaxed">{service.description}</p>
+                    <div className="mt-6 flex items-center gap-2 text-primary font-semibold">
+                      <span>Scopri di più</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </div>
+                  </Card>
+                </a>
               );
             })}
           </div>
@@ -296,7 +314,7 @@ export default function Home() {
                 <span>Email</span>
               </a>
               <a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/in/mannarella"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors"
@@ -332,7 +350,7 @@ export default function Home() {
                 <h4 className="font-semibold text-foreground mb-4">Contatti</h4>
                 <ul className="space-y-2 text-foreground/70">
                   <li><a href="mailto:info@mannarella.com" className="hover:text-primary transition-colors">Email</a></li>
-                  <li><a href="https://linkedin.com" className="hover:text-primary transition-colors">LinkedIn</a></li>
+                  <li><a href="https://www.linkedin.com/in/mannarella" className="hover:text-primary transition-colors">LinkedIn</a></li>
                 </ul>
               </div>
             </div>

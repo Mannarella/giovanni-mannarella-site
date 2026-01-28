@@ -5,12 +5,20 @@ import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
+import FondiInterprofessionali from "./pages/FondiInterprofessionali";
+import Europrogettazione from "./pages/Europrogettazione";
+import QualificheRegolamentate from "./pages/QualificheRegolamentate";
+import FinanzaAgevolata from "./pages/FinanzaAgevolata";
 
 
 function Router() {
   return (
     <Switch>
       <Route path={"/"} component={Home} />
+      <Route path={"/servizi/fondi-interprofessionali"} component={FondiInterprofessionali} />
+      <Route path={"/servizi/europrogettazione"} component={Europrogettazione} />
+      <Route path={"/servizi/qualifiche-regolamentate"} component={QualificheRegolamentate} />
+      <Route path={"/servizi/finanza-agevolata"} component={FinanzaAgevolata} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />
