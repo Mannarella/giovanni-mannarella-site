@@ -80,8 +80,10 @@ export default function Home() {
     <div className="min-h-screen bg-background text-foreground">
       {/* Navigation */}
       <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <div className="text-2xl font-bold text-primary">GM</div>
+        <div className="container mx-auto px-4 py-3 flex justify-between items-center">
+          <div className="h-12 flex items-center">
+            <img src="/images/logo.png" alt="Giovanni Mannarella Logo" className="h-full object-contain" />
+          </div>
           <div className="hidden md:flex gap-8">
             <a href="#servizi" className="text-foreground hover:text-primary transition-colors">
               Servizi
@@ -313,7 +315,9 @@ export default function Home() {
           <div className="max-w-4xl mx-auto">
             <div className="grid md:grid-cols-3 gap-8 mb-8">
               <div>
-                <h3 className="font-bold text-foreground mb-4">Giovanni Mannarella</h3>
+                <div className="h-10 mb-4">
+                  <img src="/images/logo.png" alt="Giovanni Mannarella Logo" className="h-full object-contain" />
+                </div>
                 <p className="text-foreground/70">Esperto in progettazione e consulenza strategica</p>
               </div>
               <div>
