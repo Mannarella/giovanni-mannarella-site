@@ -1,0 +1,37 @@
+name: Monitoraggio News Giornaliero
+
+on:
+  schedule:
+    - cron: '0 9 * * *'  # Gira ogni giorno alle 09:00 UTC
+  workflow_dispatch:  # Permette di avviarlo anche manualmente
+
+jobs:
+  scrape-news:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout del codice
+        uses: actions/checkout@v4
+      
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      
+      - name: Installa dipendenze
+        run: pip install -r requirements.txt
+      
+      - name: Esegui Scraper
+        run: python scraper.py
+      
+      - name: Commit e Push delle news
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add public/news.json
+          git commit -m "Update news $(date +'%Y-%m-%d %H:%M:%S')" || echo "No changes to commit"
+          git push
+      
+      - name: Notifica completamento
+        if: always()
+        run: echo "News scraper job completed at $(date)"

@@ -2,15 +2,13 @@
 """
 News Scraper Script
 Scrapes news from various Italian funding and institutional websites
-and stores them in the database.
+and saves them to a JSON file.
 """
 
-import os
-import sys
-from datetime import datetime, timedelta
+import json
+from datetime import datetime
 import requests
 from bs4 import BeautifulSoup
-import mysql.connector
 from urllib.parse import urljoin
 import logging
 
@@ -47,21 +45,6 @@ NEWS_SOURCES = [
     {"category": "Regioni", "entity": "Regione Emilia-Romagna", "url": "https://formazionelavoro.regione.emilia-romagna.it/notizie", "selector": ".news"},
 ]
 
-def get_db_connection():
-    """Create and return a database connection."""
-    try:
-        connection = mysql.connector.connect(
-            host=os.getenv('DB_HOST', 'localhost'),
-            user=os.getenv('DB_USER', 'root'),
-            password=os.getenv('DB_PASSWORD', ''),
-            database=os.getenv('DB_NAME', 'mannarella'),
-            port=int(os.getenv('DB_PORT', 3306))
-        )
-        return connection
-    except mysql.connector.Error as err:
-        logger.error(f"Database connection error: {err}")
-        return None
-
 def scrape_news_from_source(source):
     """Scrape news from a single source."""
     try:
@@ -91,16 +74,12 @@ def scrape_news_from_source(source):
                 desc_elem = item.find(['p', '.description', '.excerpt'])
                 description = desc_elem.get_text(strip=True) if desc_elem else None
                 
-                # Try to extract date
-                date_elem = item.find(['time', '.date', '.published'])
-                published_at = datetime.now()  # Default to now
-                
                 if title and link:
                     scraped_news.append({
                         'title': title[:500],
-                        'description': description[:1000] if description else None,
+                        'description': description[:1000] if description else 'Nessuna descrizione disponibile',
                         'link': link[:512],
-                        'published_at': published_at,
+                        'published_at': datetime.now().isoformat(),
                         'category': source['category'],
                         'entity': source['entity'],
                         'source_url': source['url']
@@ -114,62 +93,20 @@ def scrape_news_from_source(source):
         logger.error(f"Error scraping {source['entity']} from {source['url']}: {e}")
         return []
 
-def save_news_to_db(news_list, connection):
-    """Save scraped news to the database."""
-    if not connection:
-        logger.error("No database connection available")
-        return 0
-    
-    cursor = connection.cursor()
-    saved_count = 0
-    
+def save_news_to_json(news_list, filename='public/news.json'):
+    """Save scraped news to a JSON file."""
     try:
-        for news in news_list:
-            # Check if news already exists
-            check_query = """
-                SELECT id FROM news 
-                WHERE link = %s AND entity = %s
-                LIMIT 1
-            """
-            cursor.execute(check_query, (news['link'], news['entity']))
-            
-            if cursor.fetchone() is None:
-                # Insert new news
-                insert_query = """
-                    INSERT INTO news 
-                    (category, entity, title, description, link, sourceUrl, publishedAt, scrapedAt)
-                    VALUES (%s, %s, %s, %s, %s, %s, %s, NOW())
-                """
-                cursor.execute(insert_query, (
-                    news['category'],
-                    news['entity'],
-                    news['title'],
-                    news['description'],
-                    news['link'],
-                    news['source_url'],
-                    news['published_at']
-                ))
-                saved_count += 1
-        
-        connection.commit()
-        logger.info(f"Saved {saved_count} new news items to database")
-        return saved_count
-    except mysql.connector.Error as err:
-        logger.error(f"Database error: {err}")
-        connection.rollback()
+        with open(filename, 'w', encoding='utf-8') as f:
+            json.dump(news_list, f, ensure_ascii=False, indent=2)
+        logger.info(f"Saved {len(news_list)} news items to {filename}")
+        return len(news_list)
+    except Exception as e:
+        logger.error(f"Error saving news to JSON: {e}")
         return 0
-    finally:
-        cursor.close()
 
 def main():
     """Main scraper function."""
     logger.info("Starting news scraper...")
-    
-    # Connect to database
-    connection = get_db_connection()
-    if not connection:
-        logger.error("Failed to connect to database")
-        sys.exit(1)
     
     all_news = []
     total_scraped = 0
@@ -182,10 +119,12 @@ def main():
         total_scraped += len(news)
         logger.info(f"Found {len(news)} news items from {source['entity']}")
     
-    # Save to database
-    saved = save_news_to_db(all_news, connection)
+    # Sort by date (newest first)
+    all_news.sort(key=lambda x: x['published_at'], reverse=True)
     
-    connection.close()
+    # Save to JSON file
+    saved = save_news_to_json(all_news)
+    
     logger.info(f"Scraper completed. Total scraped: {total_scraped}, Saved: {saved}")
 
 if __name__ == "__main__":
