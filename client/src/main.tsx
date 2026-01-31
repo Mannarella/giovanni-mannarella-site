@@ -18,7 +18,12 @@ const redirectToLoginIfUnauthorized = (error: unknown) => {
 
   if (!isUnauthorized) return;
 
-  window.location.href = getLoginUrl();
+  // Se le env var OAuth non sono configurate, getLoginUrl() restituisce "/"
+  // e non c'è nessun backend da cui ottenere un token → ignoriamo il redirect
+  const loginUrl = getLoginUrl();
+  if (loginUrl === "/") return;
+
+  window.location.href = loginUrl;
 };
 
 queryClient.getQueryCache().subscribe(event => {
@@ -42,15 +47,34 @@ const trpcClient = trpc.createClient({
     httpBatchLink({
       url: "/api/trpc",
       transformer: superjson,
-      fetch(input, init) {
-        return globalThis.fetch(input, {
-          ...(init ?? {}),
-          credentials: "include",
-        });
+      async fetch(input, init) {
+        try {
+          return await globalThis.fetch(input, {
+            ...(init ?? {}),
+            credentials: "include",
+          });
+        } catch (err) {
+          // Su Netlify (deploy statico senza backend) le chiamate a /api/trpc
+          // falliscono con un errore di rete. Restituiamo una risposta vuota
+          // per evitare crash nell'app.
+          console.warn("[tRPC] Chiamata API fallita (backend non disponibile):", err);
+          return new Response(JSON.stringify({ result: { data: null } }), {
+            status: 200,
+            headers: { "Content-Type": "application/json" },
+          });
+        }
       },
     }),
   ],
 });
+
+createRoot(document.getElementById("root")!).render(
+  <trpc.Provider client={trpcClient} queryClient={queryClient}>
+    <QueryClientProvider client={queryClient}>
+      <App />
+    </QueryClientProvider>
+  </trpc.Provider>
+);
 
 createRoot(document.getElementById("root")!).render(
   <trpc.Provider client={trpcClient} queryClient={queryClient}>
