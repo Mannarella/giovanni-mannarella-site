@@ -1,12 +1,11 @@
 {
-  "buildCommand": "pnpm install && pnpm run build:static",
+  "buildCommand": "pnpm run build:static",
   "outputDirectory": "dist/public",
-  "installCommand": "pnpm install",
   "framework": "vite",
-  "routes": [
+  "rewrites": [
     {
-      "src": "^.+$",
-      "dest": "/index.html"
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }
