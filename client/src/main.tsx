@@ -1,5 +1,5 @@
 import { trpc } from "@/lib/trpc";
-import { UNAUTHED_ERR_MSG } from '@shared/const';
+import { UNAUTHED_ERR_MSG } from "@shared/const";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { httpBatchLink, TRPCClientError } from "@trpc/client";
 import { createRoot } from "react-dom/client";
@@ -15,11 +15,8 @@ const redirectToLoginIfUnauthorized = (error: unknown) => {
   if (typeof window === "undefined") return;
 
   const isUnauthorized = error.message === UNAUTHED_ERR_MSG;
-
   if (!isUnauthorized) return;
 
-  // Se le env var OAuth non sono configurate, getLoginUrl() restituisce "/"
-  // e non c'è nessun backend da cui ottenere un token → ignoriamo il redirect
   const loginUrl = getLoginUrl();
   if (loginUrl === "/") return;
 
@@ -49,15 +46,12 @@ const trpcClient = trpc.createClient({
       transformer: superjson,
       async fetch(input, init) {
         try {
-          return await globalThis.fetch(input, {
+          return await fetch(input, {
             ...(init ?? {}),
             credentials: "include",
           });
         } catch (err) {
-          // Su Netlify (deploy statico senza backend) le chiamate a /api/trpc
-          // falliscono con un errore di rete. Restituiamo una risposta vuota
-          // per evitare crash nell'app.
-          console.warn("[tRPC] Chiamata API fallita (backend non disponibile):", err);
+          console.warn("[tRPC] Backend non disponibile:", err);
           return new Response(JSON.stringify({ result: { data: null } }), {
             status: 200,
             headers: { "Content-Type": "application/json" },
@@ -68,15 +62,7 @@ const trpcClient = trpc.createClient({
   ],
 });
 
-createRoot(document.getElementById("root")!).render(
-  <trpc.Provider client={trpcClient} queryClient={queryClient}>
-    <QueryClientProvider client={queryClient}>
-      <App />
-    </QueryClientProvider>
-  </trpc.Provider>
-);
-
-createRoot(document.getElementById("root")!).render(
+createRoot(document.getElementById("app")!).render(
   <trpc.Provider client={trpcClient} queryClient={queryClient}>
     <QueryClientProvider client={queryClient}>
       <App />
