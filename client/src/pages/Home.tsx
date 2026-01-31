@@ -72,21 +72,22 @@ export default function Home() {
   ];
 
   // Fetch news: prova prima il backend tRPC, altrimenti cade sul file statico news.json
-  const { data: newsData, isLoading: newsLoading } = trpc.news.latest.useQuery(undefined, {
+  const { data: newsData, isLoading: newsLoading, isError: newsError } = trpc.news.latest.useQuery(undefined, {
     retry: false,
   });
 
   const [staticNews, setStaticNews] = useState<any[] | null>(null);
 
   useEffect(() => {
-    // Se tRPC non ha restituito dati (backend non disponibile), carica il JSON statico
-    if (!newsLoading && (!newsData || newsData.length === 0)) {
+    // Carica il JSON statico se: tRPC ha restituito errore (404, backend non disponibile)
+    // oppure se ha restituito una lista vuota
+    if (!newsLoading && (newsError || !newsData || newsData.length === 0)) {
       fetch("/news.json")
         .then((res) => res.json())
         .then((data) => setStaticNews(data))
         .catch(() => setStaticNews([]));
     }
-  }, [newsData, newsLoading]);
+  }, [newsData, newsLoading, newsError]);
 
   const displayNews = newsData && newsData.length > 0 ? newsData : staticNews;
 
