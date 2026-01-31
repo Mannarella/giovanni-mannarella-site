@@ -71,8 +71,24 @@ export default function Home() {
     "Docenza specializzata",
   ];
 
-  // Fetch news from database
-  const { data: newsData, isLoading: newsLoading } = trpc.news.latest.useQuery();
+  // Fetch news: prova prima il backend tRPC, altrimenti cade sul file statico news.json
+  const { data: newsData, isLoading: newsLoading } = trpc.news.latest.useQuery(undefined, {
+    retry: false,
+  });
+
+  const [staticNews, setStaticNews] = useState<any[] | null>(null);
+
+  useEffect(() => {
+    // Se tRPC non ha restituito dati (backend non disponibile), carica il JSON statico
+    if (!newsLoading && (!newsData || newsData.length === 0)) {
+      fetch("/news.json")
+        .then((res) => res.json())
+        .then((data) => setStaticNews(data))
+        .catch(() => setStaticNews([]));
+    }
+  }, [newsData, newsLoading]);
+
+  const displayNews = newsData && newsData.length > 0 ? newsData : staticNews;
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -237,10 +253,10 @@ export default function Home() {
           </p>
 
           <div className="space-y-6">
-            {newsLoading ? (
+            {newsLoading && !staticNews ? (
               <p className="text-foreground/70">Caricamento opportunità...</p>
-            ) : newsData && newsData.length > 0 ? (
-              newsData.map((news: any, idx: number) => (
+            ) : displayNews && displayNews.length > 0 ? (
+              displayNews.map((news: any, idx: number) => (
                 <div key={idx} className="relative">
                   <a
                     href={news.link}
