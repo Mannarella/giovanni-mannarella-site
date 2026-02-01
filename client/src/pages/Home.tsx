@@ -37,7 +37,7 @@ export default function Home() {
     {
       icon: Users,
       title: "Qualifiche Regolamentate",
-      description: "Gestione percorsi formativi per qualifiche nazionali e regionali con caricamento su piattaforma SIFER.",
+      description: "Gestione percorsi formativi per qualifiche nazionali e regionali con caricamento su piattaforme dedicate.",
       color: "bg-[oklch(0.72_0.08_15)]",
     },
     {
