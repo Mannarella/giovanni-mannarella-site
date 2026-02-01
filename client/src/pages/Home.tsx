@@ -102,12 +102,12 @@ export default function Home() {
         </div>
       </nav>
 
-      {/* Hero Section */}
+      {/* Hero Section - Ridotto drasticamente il padding verticale (py-12 invece di py-24) */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 -z-10">
           <img src="/images/hero-background.png" alt="Hero background" className="w-full h-full object-cover" />
         </div>
-        <div className="container mx-auto px-4 py-24 md:py-32">
+        <div className="container mx-auto px-4 py-12 md:py-16">
           <div className="max-w-2xl">
             <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-6 leading-tight">Progettazione e Consulenza Strategica</h1>
             <p className="text-xl text-foreground/80 mb-8 leading-relaxed">Supporto specializzato nella progettazione di iniziative formative, europrogettazione e sviluppo aziendale. Con oltre 15 anni di esperienza, trasformo idee in progetti vincenti.</p>
@@ -120,8 +120,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Chi Sono Section */}
-      <section className="py-20 md:py-28 bg-card">
+      {/* Chi Sono Section - Ridotto il padding superiore per avvicinarlo alla Hero */}
+      <section className="py-12 md:py-16 bg-card">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-4xl font-bold mb-8 text-foreground">Chi Sono</h2>
@@ -134,22 +134,22 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Servizi Section */}
-      <section id="servizi" className="py-20 md:py-28 bg-background">
+      {/* Servizi Section - Box più bassi (p-6 invece di p-8) e margini ridotti */}
+      <section id="servizi" className="py-16 md:py-20 bg-background">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold mb-4 text-foreground">I Miei Servizi</h2>
-          <p className="text-lg text-foreground/70 mb-16 max-w-2xl">Offro una gamma completa di servizi specializzati per supportare la crescita e lo sviluppo della tua organizzazione.</p>
-          <div className="grid md:grid-cols-2 gap-8">
+          <p className="text-lg text-foreground/70 mb-10 max-w-2xl">Offro una gamma completa di servizi specializzati per supportare la crescita e lo sviluppo della tua organizzazione.</p>
+          <div className="grid md:grid-cols-2 gap-6">
             {services.map((service, idx) => {
               const Icon = service.icon;
               const serviceLinks = ["/servizi/fondi-interprofessionali", "/servizi/europrogettazione", "/servizi/qualifiche-regolamentate", "/servizi/finanza-agevolata"];
               return (
                 <a href={serviceLinks[idx]} key={idx}>
-                  <Card className="p-8 hover:shadow-warm transition-all duration-300 hover:-translate-y-1 bg-card border-border cursor-pointer h-full">
-                    <div className={`${service.color} w-12 h-12 rounded-lg flex items-center justify-center mb-6`}><Icon className="w-6 h-6 text-white" /></div>
-                    <h3 className="text-2xl font-bold mb-4 text-foreground">{service.title}</h3>
-                    <p className="text-foreground/70 leading-relaxed">{service.description}</p>
-                    <div className="mt-6 flex items-center gap-2 text-primary font-semibold"><span>Scopri di più</span><ArrowRight className="w-4 h-4" /></div>
+                  <Card className="p-6 hover:shadow-warm transition-all duration-300 hover:-translate-y-1 bg-card border-border cursor-pointer h-full">
+                    <div className={`${service.color} w-10 h-10 rounded-lg flex items-center justify-center mb-4`}><Icon className="w-5 h-5 text-white" /></div>
+                    <h3 className="text-2xl font-bold mb-2 text-foreground">{service.title}</h3>
+                    <p className="text-foreground/70 leading-relaxed text-sm">{service.description}</p>
+                    <div className="mt-4 flex items-center gap-2 text-primary font-semibold text-sm"><span>Scopri di più</span><ArrowRight className="w-4 h-4" /></div>
                   </Card>
                 </a>
               );
@@ -158,7 +158,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Opportunità Section - Tabella Bandi */}
+      {/* Opportunità Section - Mantenuta originale py-20 md:py-28 */}
       <section id="opportunita" className="py-20 md:py-28 bg-card">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold mb-4 text-foreground">Ultime Opportunità</h2>
@@ -200,7 +200,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* News Section */}
+      {/* News Section - Mantenuta originale py-20 md:py-28 */}
       <section id="news" className="py-20 md:py-28 bg-background">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold mb-4 text-foreground">Ultime News</h2>
