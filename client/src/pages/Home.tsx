@@ -122,7 +122,7 @@ export default function Home() {
 
       {/* Chi Sono Section - Ridotto il padding superiore per avvicinarlo alla Hero */}
       <section className="py-12 md:py-16 bg-card">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 pt-12 pb-4 md:pt-16 md:pb-6">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-4xl font-bold mb-8 text-foreground">Chi Sono</h2>
             <div className="space-y-6 text-lg text-foreground/80">
@@ -145,7 +145,7 @@ export default function Home() {
               const serviceLinks = ["/servizi/fondi-interprofessionali", "/servizi/europrogettazione", "/servizi/qualifiche-regolamentate", "/servizi/finanza-agevolata"];
               return (
                 <a href={serviceLinks[idx]} key={idx}>
-                  <Card className="p-6 hover:shadow-warm transition-all duration-300 hover:-translate-y-1 bg-card border-border cursor-pointer h-full">
+                  <Card className="p-4 hover:shadow-warm transition-all duration-300 hover:-translate-y-1 bg-card border-border cursor-pointer h-full">
                     <div className={`${service.color} w-10 h-10 rounded-lg flex items-center justify-center mb-4`}><Icon className="w-5 h-5 text-white" /></div>
                     <h3 className="text-2xl font-bold mb-2 text-foreground">{service.title}</h3>
                     <p className="text-foreground/70 leading-relaxed text-sm">{service.description}</p>
@@ -159,7 +159,7 @@ export default function Home() {
       </section>
 
       {/* Opportunità Section - Mantenuta originale py-20 md:py-28 */}
-      <section id="opportunita" className="py-20 md:py-28 bg-card">
+      <section id="opportunita" className="pt-0 pb-12 md:pb-16 bg-card">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold mb-4 text-foreground">Ultime Opportunità</h2>
           <p className="text-lg text-foreground/70 mb-16 max-w-2xl">Scopri gli ultimi bandi aperti per la formazione finanziata e le iniziative di sviluppo aziendale.</p>
