@@ -121,7 +121,7 @@ export default function Home() {
       </section>
 
       {/* Chi Sono Section - Ridotto il padding superiore per avvicinarlo alla Hero */}
-      <section className="py-12 md:py-16 bg-card">
+      <section className="py-4 md:py-8 bg-card">
         <div className="container mx-auto px-4 pt-12 pb-4 md:pt-16 md:pb-6">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-4xl font-bold mb-8 text-foreground">Chi Sono</h2>
