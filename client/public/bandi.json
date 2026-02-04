@@ -1,82 +1,74 @@
 [
   {
-    "apertura": "10 Mar 2026",
+    "apertura": "Aperto",
+    "fondo": "FonARCom",
+    "titolo": "Avviso 05/2025 – Forma e Ricolloca",
+    "scadenza": "esaurimento",
+    "stato": "Aperto",
+    "link": "https://www.fonarcom.it/strumenti/avvisi-tematici/avviso-05-2025-forma-e-ricolloca/"
+  },
+  {
+    "apertura": "da 23 feb 2026",
+    "fondo": "Fon.Coop.",
+    "titolo": "Avviso 68 Speciale",
+    "scadenza": "esaurimento",
+    "stato": "In apertura",
+    "link": "https://www.foncoop.coop/avvisi-speciali/avviso-68-speciale/"
+  },
+  {
+    "apertura": "dal 25 feb 2026",
     "fondo": "Fondimpresa",
-    "titolo": "Avviso 1/2025 (3ª Finestra)",
-    "scadenza": "24 Mar 2026",
-    "stato": "In arrivo",
-    "link": "https://www.fondimpresa.it/avvisi-aperti"
+    "titolo": "Avviso 4/2025 - Intelligenza Artificiale (IA )",
+    "scadenza": "28/05/2026",
+    "stato": "In apertura",
+    "link": "https://www.fondimpresa.it/i-canali-di-finanziamento/conto-di-sistema/avviso-4-2025-intelligenza-artificiale-i-a"
   },
   {
-    "apertura": "17 Feb 2026",
-    "fondo": "FAPI",
-    "titolo": "Avviso 2-2026 \"Sportello Impresa\"",
-    "scadenza": "12 Dic 2026",
-    "stato": "In arrivo",
-    "link": "https://www.fondopmi.com/avvisi/"
+    "apertura": "dal 03 mar 2026",
+    "fondo": "Fondir",
+    "titolo": "Avviso Open Voucher 5/2026 Settori Creditizio-Finanziario, Assicurativo",
+    "scadenza": "17/12/2026",
+    "stato": "In apertura",
+    "link": "https://www.fondir.it/fondo-trasparente/avvisi/avviso-open-voucher-52026-settori-creditizio-finanziario-assicurativo"
   },
   {
-    "apertura": "16 Feb 2026",
+    "apertura": "dal 04 apr 2026",
     "fondo": "Fondoprofessioni",
-    "titolo": "Avviso 04/26 (One to One )",
-    "scadenza": "20 Mar 2026",
-    "stato": "In arrivo",
-    "link": "https://www.fondoprofessioni.it/avvisi-per-la-formazione/"
+    "titolo": "Avviso 04/26 (One to One ) - II sportello",
+    "scadenza": "23/04/2026",
+    "stato": "In apertura",
+    "link": "https://www.fondoprofessioni.it/avvisi/one-to-one-e-per-piccoli-gruppi-2026/"
   },
   {
-    "apertura": "03 Feb 2026",
-    "fondo": "FAPI",
-    "titolo": "Avviso 1-2026 (Piani Quadro )",
-    "scadenza": "12 Dic 2026",
-    "stato": "In arrivo",
-    "link": "https://www.fondopmi.com/avvisi/"
-  },
-  {
-    "apertura": "02 Feb 2026",
-    "fondo": "For.Te.",
-    "titolo": "Avviso 3/25 (Catalogo Voucher )",
-    "scadenza": "10 Mar 2026",
-    "stato": "In arrivo",
-    "link": "https://www.fondoforte.it/avvisi-aperti/"
-  },
-  {
-    "apertura": "15 Gen 2026",
+    "apertura": "dal 18 mag 2026",
     "fondo": "Fondoprofessioni",
-    "titolo": "Avviso 01/26 (Monoaziendali )",
-    "scadenza": "20 Feb 2026",
-    "stato": "Aperto",
-    "link": "https://www.fondoprofessioni.it/avvisi-per-la-formazione/"
+    "titolo": "Avviso 04/26 (One to One ) - III sportello",
+    "scadenza": "04/06/2026",
+    "stato": "In apertura",
+    "link": "https://www.fondoprofessioni.it/avvisi/one-to-one-e-per-piccoli-gruppi-2026/"
   },
   {
-    "apertura": "13 Gen 2026",
+    "apertura": "dal 07 sett 2026",
     "fondo": "Fondoprofessioni",
-    "titolo": "Avviso 02/26 (Voucher Catalogo )",
-    "scadenza": "Esaurimento",
-    "stato": "Aperto",
-    "link": "https://www.fondoprofessioni.it/avvisi-per-la-formazione/"
+    "titolo": "Avviso 01/26 (Monoaziendali ) - II sportello",
+    "scadenza": "24/09/2026",
+    "stato": "In apertura",
+    "link": "https://www.fondoprofessioni.it/avvisi/piani-formativi-monoaziendali-2026/"
+  },
+  {
+    "apertura": "dal 12 ott 2026",
+    "fondo": "Fondoprofessioni",
+    "titolo": "Avviso 04/26 (One to One ) - IV sportello",
+    "scadenza": "29/10/2026",
+    "stato": "In apertura",
+    "link": "https://www.fondoprofessioni.it/avvisi/one-to-one-e-per-piccoli-gruppi-2026/"
   },
   {
     "apertura": "Aperto",
     "fondo": "FonARCom",
-    "titolo": "Avviso 09/2024 (Studi Prof. )",
-    "scadenza": "20 Apr 2026",
+    "titolo": "Avviso 04/2025 Diginnova Agile",
+    "scadenza": "esaurimento",
     "stato": "Aperto",
-    "link": "https://www.fonarcom.it/avvisi/"
-  },
-  {
-    "apertura": "Aperto",
-    "fondo": "Formazienda",
-    "titolo": "Avviso 1/2025 (Generalista )",
-    "scadenza": "27 Feb 2026",
-    "stato": "Aperto",
-    "link": "https://www.formazienda.com/avvisi-aperti/"
-  },
-  {
-    "apertura": "Aperto",
-    "fondo": "Fondimpresa",
-    "titolo": "Avviso 4/2025 (IA e Green )",
-    "scadenza": "28 Mag 2026",
-    "stato": "Aperto",
-    "link": "https://www.fondimpresa.it/avvisi-aperti"
+    "link": "https://www.fonarcom.it/strumenti/avvisi-tematici/avviso-04-2025-diginnova-agile/"
   }
 ]
