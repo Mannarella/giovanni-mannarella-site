@@ -7,14 +7,6 @@
     "stato": "Aperto",
     "link": "https://www.fonarcom.it/strumenti/avvisi-tematici/avviso-05-2025-forma-e-ricolloca/"
   },
-   {
-    "apertura": "Aperto",
-    "fondo": "FonARCom",
-    "titolo": "Avviso 04/2025 Diginnova Agile",
-    "scadenza": "fino esaurimento",
-    "stato": "Aperto",
-    "link": "https://www.fonarcom.it/strumenti/avvisi-tematici/avviso-04-2025-diginnova-agile/"
-  },
   {
     "apertura": "Aperto",
     "fondo": "Fondimpresa",
@@ -70,5 +62,13 @@
     "scadenza": "29/10/2026",
     "stato": "In apertura",
     "link": "https://www.fondoprofessioni.it/avvisi/one-to-one-e-per-piccoli-gruppi-2026/"
+  },
+  {
+    "apertura": "Aperto",
+    "fondo": "FonARCom",
+    "titolo": "Avviso 04/2025 Diginnova Agile",
+    "scadenza": "fino esaurimento",
+    "stato": "Aperto",
+    "link": "https://www.fonarcom.it/strumenti/avvisi-tematici/avviso-04-2025-diginnova-agile/"
   },
 ]
