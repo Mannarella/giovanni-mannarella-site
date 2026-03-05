@@ -5,13 +5,71 @@ import { Mail, Linkedin, ArrowRight, BookOpen, Briefcase, Users, Zap } from "luc
 import { useState, useEffect } from "react";
 import { trpc } from "@/lib/trpc";
 import ShareButton from "@/components/ShareButton";
+import ExternalLinkModal from "@/components/ExternalLinkModal";
+
+// ---------------------------------------------------------------------------
+// Helpers per il parsing delle date di apertura bandi (formato italiano)
+// Es: "da 23 feb 2026", "dal 25 feb 2026", "Aperto"
+// ---------------------------------------------------------------------------
+
+const MESI_IT: Record<string, number> = {
+  gen: 0, feb: 1, mar: 2, apr: 3, mag: 4, giu: 5,
+  lug: 6, ago: 7, set: 8, sett: 8, ott: 9, nov: 10, dic: 11,
+};
+
+/**
+ * Restituisce un oggetto Date dalla stringa apertura del bando,
+ * oppure null se non parsabile (es. "Aperto").
+ */
+function parseAperturaDate(apertura: string): Date | null {
+  // Rimuove prefissi "da ", "dal ", "dall'" e spazi extra
+  const clean = apertura.toLowerCase().replace(/^da[l]?\s+/, "").trim();
+  // Formato atteso dopo la pulizia: "23 feb 2026"
+  const parts = clean.split(/\s+/);
+  if (parts.length < 3) return null;
+  const day = parseInt(parts[0], 10);
+  const month = MESI_IT[parts[1]];
+  const year = parseInt(parts[2], 10);
+  if (isNaN(day) || month === undefined || isNaN(year)) return null;
+  return new Date(year, month, day);
+}
+
+/**
+ * Filtra i bandi da mostrare nella tabella:
+ * - Stato "Aperto"   → sempre incluso
+ * - Stato "In apertura" con data apertura entro i prossimi 3 mesi → incluso
+ * Restituisce max `limit` elementi.
+ */
+function filterBandi(data: any[], limit: number): any[] {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const tre_mesi = new Date(today);
+  tre_mesi.setMonth(tre_mesi.getMonth() + 3);
+
+  const filtered = data.filter((b: any) => {
+    if (b.stato === "Aperto") return true;
+    if (b.stato === "In apertura") {
+      const d = parseAperturaDate(b.apertura);
+      // Se non parsabile, escludi; se la data è ≤ oggi+3mesi, includi
+      return d !== null && d <= tre_mesi;
+    }
+    return false;
+  });
+
+  return filtered.slice(0, limit);
+}
+
+// ---------------------------------------------------------------------------
 
 export default function Home() {
   let { user, loading, error, isAuthenticated, logout } = useAuth();
 
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
-  
+
+  // Stato modale link esterni
+  const [modal, setModal] = useState<{ url: string; title: string } | null>(null);
+
   const handleContactSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (email) {
@@ -69,8 +127,8 @@ export default function Home() {
     fetch("/bandi.json")
       .then((res) => res.json())
       .then((data) => {
-        const activeBandi = data.filter((b: any) => b.stato === "Aperto").slice(0, 5);
-        setBandi(activeBandi);
+        // Filtra: "Aperto" sempre + "In apertura" nei prossimi 3 mesi, max 5 righe
+        setBandi(filterBandi(data, 5));
         setBandiLoading(false);
       })
       .catch(() => {
@@ -82,11 +140,16 @@ export default function Home() {
   const displayNews = newsData && newsData.length > 0 ? newsData : staticNews;
 
   const getStatoBadgeColor = (stato: string) => {
-    return stato === "Aperto" ? "bg-green-100 text-green-800" : "bg-blue-100 text-blue-800";
+    if (stato === "Aperto") return "bg-green-100 text-green-800";
+    if (stato === "In apertura") return "bg-blue-100 text-blue-800";
+    return "bg-gray-100 text-gray-800";
   };
 
   return (
     <div className="min-h-screen bg-background text-foreground">
+      {/* Modale link esterni */}
+      <ExternalLinkModal modal={modal} onClose={() => setModal(null)} />
+
       {/* Navigation */}
       <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
         <div className="container mx-auto px-4 py-3 flex justify-between items-center">
@@ -102,7 +165,7 @@ export default function Home() {
         </div>
       </nav>
 
-      {/* Hero Section - Ridotto drasticamente il padding verticale (py-12 invece di py-24) */}
+      {/* Hero Section */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 -z-10">
           <img src="/images/hero-background.png" alt="Hero background" className="w-full h-full object-cover" />
@@ -120,7 +183,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Chi Sono Section - Ridotto il padding superiore per avvicinarlo alla Hero */}
+      {/* Chi Sono Section */}
       <section className="py-4 md:py-8 bg-card">
         <div className="container mx-auto px-2 pt-6 pb-2 md:pt-4 md:pb-6">
           <div className="max-w-3xl mx-auto">
@@ -134,7 +197,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Servizi Section - Box più bassi (p-6 invece di p-8) e margini ridotti */}
+      {/* Servizi Section */}
       <section id="servizi" className="py-16 md:py-20 bg-background">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold mb-4 text-foreground">I Miei Servizi</h2>
@@ -158,17 +221,18 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Opportunità Section - Mantenuta originale py-20 md:py-28 */}
+      {/* Opportunità Section */}
       <section id="opportunita" className="pt-0 pb-12 md:pb-16 bg-card">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold mb-4 text-foreground">Ultime Opportunità</h2>
-          <p className="text-lg text-foreground/70 mb-16 max-w-2xl">Scopri gli ultimi bandi aperti per la formazione finanziata e le iniziative di sviluppo aziendale.</p>
+          <p className="text-lg text-foreground/70 mb-16 max-w-2xl">Scopri gli ultimi bandi aperti e in apertura nei prossimi 3 mesi.</p>
           <div className="overflow-x-auto">
             <table className="w-full border-collapse">
               <thead>
                 <tr className="border-b-2 border-primary">
                   <th className="text-left py-4 px-4 font-bold text-foreground">Fondo</th>
                   <th className="text-left py-4 px-4 font-bold text-foreground">Avviso / Titolo</th>
+                  <th className="text-left py-4 px-4 font-bold text-foreground">Apertura</th>
                   <th className="text-left py-4 px-4 font-bold text-foreground">Scadenza</th>
                   <th className="text-left py-4 px-4 font-bold text-foreground">Stato</th>
                   <th className="text-left py-4 px-4 font-bold text-foreground">Azione</th>
@@ -176,23 +240,38 @@ export default function Home() {
               </thead>
               <tbody>
                 {bandiLoading ? (
-                  <tr><td colSpan={5} className="text-center py-8 text-foreground/70">Caricamento opportunità...</td></tr>
+                  <tr><td colSpan={6} className="text-center py-8 text-foreground/70">Caricamento opportunità...</td></tr>
                 ) : bandi && bandi.length > 0 ? (
                   bandi.map((bando: any, idx: number) => (
                     <tr key={idx} className="border-b border-border hover:bg-muted/50 transition-colors">
                       <td className="py-4 px-4 text-foreground font-semibold">{bando.fondo}</td>
                       <td className="py-4 px-4 text-foreground">{bando.titolo}</td>
+                      <td className="py-4 px-4 text-foreground/80 text-sm whitespace-nowrap">
+                        {bando.stato === "Aperto" ? (
+                          <span className="text-green-700 dark:text-green-400 font-medium">Già aperto</span>
+                        ) : (
+                          bando.apertura
+                        )}
+                      </td>
                       <td className="py-4 px-4 text-foreground">{bando.scadenza}</td>
-                      <td className="py-4 px-4"><span className={`inline-block px-3 py-1 rounded-full text-sm font-semibold ${getStatoBadgeColor(bando.stato)}`}>{bando.stato}</span></td>
                       <td className="py-4 px-4">
-                        <a href={bando.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors font-semibold">
+                        <span className={`inline-block px-3 py-1 rounded-full text-sm font-semibold ${getStatoBadgeColor(bando.stato)}`}>
+                          {bando.stato}
+                        </span>
+                      </td>
+                      <td className="py-4 px-4">
+                        <a
+                          href={bando.link}
+                          onClick={(e) => { e.preventDefault(); setModal({ url: bando.link, title: `${bando.fondo} – ${bando.titolo}` }); }}
+                          className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors font-semibold cursor-pointer"
+                        >
                           <span>Vedi</span><ArrowRight className="w-4 h-4" />
                         </a>
                       </td>
                     </tr>
                   ))
                 ) : (
-                  <tr><td colSpan={5} className="text-center py-8 text-foreground/70">Nessuna opportunità disponibile al momento.</td></tr>
+                  <tr><td colSpan={6} className="text-center py-8 text-foreground/70">Nessuna opportunità disponibile al momento.</td></tr>
                 )}
               </tbody>
             </table>
@@ -200,7 +279,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* News Section - Mantenuta originale py-20 md:py-28 */}
+      {/* News Section */}
       <section id="news" className="py-20 md:py-28 bg-background">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold mb-4 text-foreground">Ultime News</h2>
@@ -211,14 +290,23 @@ export default function Home() {
             ) : displayNews && displayNews.length > 0 ? (
               displayNews.map((news: any, idx: number) => (
                 <div key={idx} className="relative">
-                  <a href={news.link} target="_blank" rel="noopener noreferrer" className="block">
-                    <div className="border-l-4 border-primary pl-6 py-4 hover:bg-muted/50 transition-colors rounded-r-lg cursor-pointer">
+                  {/* Click intercettato: apre il modale invece di navigare fuori */}
+                  <div
+                    className="block cursor-pointer"
+                    onClick={() => setModal({ url: news.link, title: news.entity })}
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") setModal({ url: news.link, title: news.entity }); }}
+                  >
+                    <div className="border-l-4 border-primary pl-6 py-4 hover:bg-muted/50 transition-colors rounded-r-lg">
                       <p className="text-sm font-semibold text-primary mb-2">{news.entity}</p>
                       <h3 className="text-2xl font-bold text-foreground mb-2">{news.title}</h3>
                       <p className="text-foreground/70">{news.description}</p>
-                      <div className="mt-3 flex items-center gap-2 text-primary text-sm font-semibold"><span>Leggi su {news.entity}</span><ArrowRight className="w-4 h-4" /></div>
+                      <div className="mt-3 flex items-center gap-2 text-primary text-sm font-semibold">
+                        <span>Leggi su {news.entity}</span><ArrowRight className="w-4 h-4" />
+                      </div>
                     </div>
-                  </a>
+                  </div>
                   <div className="absolute top-4 right-4"><ShareButton news={news} /></div>
                 </div>
               ))
@@ -260,5 +348,5 @@ export default function Home() {
         </div>
       </footer>
     </div>
-   );
+  );
 }
