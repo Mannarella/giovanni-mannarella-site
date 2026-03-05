@@ -7,19 +7,27 @@
     "stato": "Aperto",
     "link": "https://www.fonarcom.it/strumenti/avvisi-tematici/avviso-05-2025-forma-e-ricolloca/"
   },
+   {
+    "apertura": "Aperto",
+    "fondo": "FonARCom",
+    "titolo": "Avviso 04/2025 Diginnova Agile",
+    "scadenza": "fino esaurimento",
+    "stato": "Aperto",
+    "link": "https://www.fonarcom.it/strumenti/avvisi-tematici/avviso-04-2025-diginnova-agile/"
+  },
   {
     "apertura": "Aperto",
     "fondo": "Fondimpresa",
     "titolo": "Avviso 4/2025 - Intelligenza Artificiale (IA)",
-    "scadenza": "28 maggio 2026",
+    "scadenza": "28 mag 2026",
     "stato": "Aperto",
     "link": "https://www.fondimpresa.it/i-canali-di-finanziamento/conto-di-sistema/avviso-4-2025-intelligenza-artificiale-i-a"
   },
     {
-    "apertura": "18 marzo 2026",
+    "apertura": "18 mar 2026",
     "fondo": "FonDirigenti",
     "titolo": "Avviso 01/2026 Valore manageriale: il ruolo abilitante delle competenze come moltiplicatore di competitività",
-    "scadenza": "23 aprile 2026",
+    "scadenza": "23 apr 2026",
     "stato": "In apertura",
     "link": "https://www.fondirigenti.it/avvisi"
   },
@@ -27,7 +35,7 @@
     "apertura": "Aperto",
     "fondo": "Fondir",
     "titolo": "Avviso Open Voucher 5/2026 Settori Creditizio-Finanziario, Assicurativo",
-    "scadenza": "17 dicembre 2026",
+    "scadenza": "17 dic 2026",
     "stato": "Aperto",
     "link": "https://www.fondir.it/fondo-trasparente/avvisi/avviso-open-voucher-52026-settori-creditizio-finanziario-assicurativo"
   },
@@ -43,7 +51,7 @@
     "apertura": "dal 18 mag 2026",
     "fondo": "Fondoprofessioni",
     "titolo": "Avviso 04/26 (One to One ) - III sportello",
-    "scadenza": "04/06/2026",
+    "scadenza": "04 giu 2026",
     "stato": "In apertura",
     "link": "https://www.fondoprofessioni.it/avvisi/one-to-one-e-per-piccoli-gruppi-2026/"
   },
@@ -51,7 +59,7 @@
     "apertura": "dal 07 sett 2026",
     "fondo": "Fondoprofessioni",
     "titolo": "Avviso 01/26 (Monoaziendali ) - II sportello",
-    "scadenza": "24/09/2026",
+    "scadenza": "24 sett 2026",
     "stato": "In apertura",
     "link": "https://www.fondoprofessioni.it/avvisi/piani-formativi-monoaziendali-2026/"
   },
@@ -62,13 +70,5 @@
     "scadenza": "29/10/2026",
     "stato": "In apertura",
     "link": "https://www.fondoprofessioni.it/avvisi/one-to-one-e-per-piccoli-gruppi-2026/"
-  },
-  {
-    "apertura": "Aperto",
-    "fondo": "FonARCom",
-    "titolo": "Avviso 04/2025 Diginnova Agile",
-    "scadenza": "fino esaurimento",
-    "stato": "Aperto",
-    "link": "https://www.fonarcom.it/strumenti/avvisi-tematici/avviso-04-2025-diginnova-agile/"
   },
 ]
