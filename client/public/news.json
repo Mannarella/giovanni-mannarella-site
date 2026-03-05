@@ -1,14 +1,26 @@
 [
-{
-  "title": "Nuove Linee Guida Fondi Interprofessionali 2026",
-  "description": "Scopri tutte le novità introdotte dal Decreto Direttoriale n. 8/2026 per l'attivazione, il funzionamento e la vigilanza dei fondi paritetici interprofessionali per la formazione continua.",
-  "link": "https://www.tuosito.it/news/linee-guida-fondi-interprofessionali-2026",
-  "entity": "Ministero del Lavoro e delle Politiche Sociali"
-},
+  {
+    "title": "Nuove Linee Guida Fondi Interprofessionali 2026",
+    "description": "Scopri tutte le novità introdotte dal Decreto Direttoriale n. 8/2026 per l'attivazione, il funzionamento e la vigilanza dei fondi paritetici interprofessionali per la formazione continua.",
+    "content": "Inserisci qui il testo esteso della notizia.\n\nPuoi aggiungere più paragrafi separandoli con una riga vuota (\\n\\n nel JSON).\n\nQuesto testo verrà mostrato nel popup e sarà scaricabile in PDF.",
+    "date": "2026-02-15",
+    "entity": "Ministero del Lavoro e delle Politiche Sociali",
+    "link": "https://www.tuosito.it/news/linee-guida-fondi-interprofessionali-2026"
+  },
   {
     "title": "Newsletter Fondimpresa – NL 32",
     "description": "Ultimo numero della newsletter con dettagli sui bandi attivi e le opportunità di finanziamento per la formazione.",
-    "link": "https://www.fondimpresa.it/i-canali-di-finanziamento/conto-di-sistema/avviso-4-2025-intelligenza-artificiale-i-a",
-    "entity": "Fondimpresa"
+    "content": "Inserisci qui il testo esteso della notizia.\n\nPuoi aggiungere più paragrafi separandoli con una riga vuota (\\n\\n nel JSON).\n\nQuesto testo verrà mostrato nel popup e sarà scaricabile in PDF.",
+    "date": "2025-12-20",
+    "entity": "Fondimpresa",
+    "link": "https://www.fondimpresa.it/i-canali-di-finanziamento/conto-di-sistema/avviso-4-2025-intelligenza-artificiale-i-a"
+  },
+  {
+    "title": "Newsletter Fondimpresa – NL 33",
+    "description": "Ultimo numero della newsletter con dettagli sui bandi attivi e le opportunità di finanziamento per la formazione.",
+    "content": "Inserisci qui il testo esteso della notizia.\n\nPuoi aggiungere più paragrafi separandoli con una riga vuota (\\n\\n nel JSON).\n\nQuesto testo verrà mostrato nel popup e sarà scaricabile in PDF.",
+    "date": "2026-01-20",
+    "entity": "Fondimpresa",
+    "link": "https://www.fondimpresa.it/i-canali-di-finanziamento/conto-di-sistema/avviso-4-2025-intelligenza-artificiale-i-a"
   }
 ]

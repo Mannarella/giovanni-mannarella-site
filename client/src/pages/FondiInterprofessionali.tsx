@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Mail, ArrowLeft, ExternalLink } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 /**
  * Pagina Servizio: Fondi Interprofessionali
@@ -17,15 +17,14 @@ export default function FondiInterprofessionali() {
   });
   const [submitted, setSubmitted] = useState(false);
 
-  const fondi = [
-    { name: "Fondimpresa", url: "https://www.fondimpresa.it/" },
-    { name: "Fondirigenti", url: "https://www.fondirigenti.it/" },
-    { name: "For.Te.", url: "https://www.fondoforte.it/" },
-    { name: "FonARCom", url: "https://www.fonarcom.it/" },
-    { name: "Fonter", url: "https://www.fonter.it/" },
-    { name: "Fondoprofessioni", url: "https://www.fondoprofessioni.it/" },
-    { name: "Fon.Coop", url: "https://www.foncoop.coop/" },
-  ];
+  const [fondi, setFondi] = useState<{ name: string; url: string }[]>([]);
+
+  useEffect(() => {
+    fetch("/fondi.json")
+      .then((res) => res.json())
+      .then((data) => setFondi(data))
+      .catch(() => setFondi([]));
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import { trpc } from "@/lib/trpc";
 import ShareButton from "@/components/ShareButton";
 import ExternalLinkModal from "@/components/ExternalLinkModal";
+import NewsModal, { NewsItem } from "@/components/NewsModal";
 
 // ---------------------------------------------------------------------------
 // Helpers per il parsing delle date di apertura bandi (formato italiano)
@@ -67,8 +68,10 @@ export default function Home() {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
-  // Stato modale link esterni
+  // Stato modale link esterni (bandi)
   const [modal, setModal] = useState<{ url: string; title: string } | null>(null);
+  // Stato modale news
+  const [newsModal, setNewsModal] = useState<NewsItem | null>(null);
 
   const handleContactSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -106,6 +109,19 @@ export default function Home() {
     },
   ];
 
+  // Gestione LinkedIn posts
+  const [linkedinPosts, setLinkedinPosts] = useState<{ testo: string; data: string; url: string }[]>([]);
+  useEffect(() => {
+    fetch("/linkedin-posts.json")
+      .then((res) => res.json())
+      .then((data) =>
+        setLinkedinPosts(
+          [...data].sort((a: any, b: any) => b.data.localeCompare(a.data)).slice(0, 3)
+        )
+      )
+      .catch(() => setLinkedinPosts([]));
+  }, []);
+
   // Gestione News
   const { data: newsData, isLoading: newsLoading, isError: newsError } = trpc.news.latest.useQuery(undefined, {
     retry: false,
@@ -137,7 +153,15 @@ export default function Home() {
       });
   }, []);
 
-  const displayNews = newsData && newsData.length > 0 ? newsData : staticNews;
+  const rawNews = newsData && newsData.length > 0 ? newsData : staticNews;
+  const displayNews = rawNews
+    ? [...rawNews].sort((a: any, b: any) => {
+        if (!a.date && !b.date) return 0;
+        if (!a.date) return 1;
+        if (!b.date) return -1;
+        return b.date.localeCompare(a.date);
+      }).slice(0, 2)
+    : null;
 
   const getStatoBadgeColor = (stato: string) => {
     if (stato === "Aperto") return "bg-green-100 text-green-800";
@@ -147,8 +171,10 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      {/* Modale link esterni */}
+      {/* Modale link esterni (bandi) */}
       <ExternalLinkModal modal={modal} onClose={() => setModal(null)} />
+      {/* Modale news */}
+      <NewsModal news={newsModal} onClose={() => setNewsModal(null)} />
 
       {/* Navigation */}
       <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
@@ -184,23 +210,51 @@ export default function Home() {
       </section>
 
       {/* Chi Sono Section */}
-      <section className="py-4 md:py-8 bg-card">
-        <div className="container mx-auto px-2 pt-6 pb-2 md:pt-4 md:pb-6">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-4xl font-bold mb-8 text-foreground">Chi Sono</h2>
-            <div className="space-y-6 text-lg text-foreground/80">
+      <section id="chi-sono" className="py-16 md:py-24 bg-card">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-bold mb-3 text-foreground">Chi Sono</h2>
+          <div className="mt-8 grid md:grid-cols-2 gap-12 items-start">
+            {/* Bio */}
+            <div className="space-y-5 text-lg text-foreground/80">
               <p>Sono Giovanni Mannarella, esperto in progettazione formativa, europrogettazione e consulenza aziendale. La mia formazione multidisciplinare combina competenze in economia, diritto, risorse umane e interculturalità.</p>
               <p>Ho conseguito tre lauree quinquennali (in Lingue, Economia e Filologia moderna) ed un master in Sviluppo e Gestione Etica delle Risorse Umane. Dal 2016 sono iscritto negli elenchi della Regione Emilia-Romagna come Esperto dei Processi Valutativi (EPV) e dal 2021 come Responsabile Formalizzazione Competenze (RFC).</p>
               <p>La mia missione è supportare organizzazioni e professionisti nel navigare il complesso panorama della formazione finanziata, dell'europrogettazione e dello sviluppo strategico, trasformando opportunità in risultati concreti.</p>
             </div>
+
+            {/* LinkedIn posts */}
+            {linkedinPosts.length > 0 && (
+              <div>
+                <div className="flex items-center gap-2 mb-4">
+                  <Linkedin className="w-5 h-5 text-[#0A66C2]" />
+                  <span className="font-semibold text-foreground text-sm">Ultimi post su LinkedIn</span>
+                </div>
+                <div className="space-y-3">
+                  {linkedinPosts.map((post, idx) => (
+                    <a
+                      key={idx}
+                      href={post.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block p-4 rounded-lg border border-border bg-background hover:border-[#0A66C2]/40 hover:shadow-sm transition-all"
+                    >
+                      <p className="text-xs text-foreground/40 mb-2">{post.data}</p>
+                      <p className="text-sm text-foreground/80 leading-relaxed line-clamp-3">{post.testo}</p>
+                      <span className="inline-flex items-center gap-1 mt-2 text-xs text-[#0A66C2] font-semibold">
+                        Leggi su LinkedIn <ArrowRight className="w-3 h-3" />
+                      </span>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </section>
 
       {/* Servizi Section */}
-      <section id="servizi" className="py-16 md:py-20 bg-background">
+      <section id="servizi" className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold mb-4 text-foreground">I Miei Servizi</h2>
+          <h2 className="text-4xl font-bold mb-3 text-foreground">I Miei Servizi</h2>
           <p className="text-lg text-foreground/70 mb-10 max-w-2xl">Offro una gamma completa di servizi specializzati per supportare la crescita e lo sviluppo della tua organizzazione.</p>
           <div className="grid md:grid-cols-2 gap-6">
             {services.map((service, idx) => {
@@ -208,7 +262,7 @@ export default function Home() {
               const serviceLinks = ["/servizi/fondi-interprofessionali", "/servizi/europrogettazione", "/servizi/qualifiche-regolamentate", "/servizi/finanza-agevolata"];
               return (
                 <a href={serviceLinks[idx]} key={idx}>
-                  <Card className="p-4 hover:shadow-warm transition-all duration-300 hover:-translate-y-1 bg-card border-border cursor-pointer h-full">
+                  <Card className="p-5 hover:shadow-warm transition-all duration-300 hover:-translate-y-1 bg-card border-border cursor-pointer h-full">
                     <div className="flex items-center gap-3 mb-3">
                       <div className={`${service.color} w-10 h-10 shrink-0 rounded-lg flex items-center justify-center`}><Icon className="w-5 h-5 text-white" /></div>
                       <h3 className="text-xl font-bold text-foreground leading-snug">{service.title}</h3>
@@ -224,10 +278,10 @@ export default function Home() {
       </section>
 
       {/* Opportunità Section */}
-      <section id="opportunita" className="pt-0 pb-12 md:pb-16 bg-card">
+      <section id="opportunita" className="py-16 md:py-24 bg-card">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold mb-4 text-foreground">Ultime Opportunità</h2>
-          <p className="text-lg text-foreground/70 mb-16 max-w-2xl">Scopri gli ultimi bandi aperti e in apertura nei prossimi 3 mesi.</p>
+          <h2 className="text-4xl font-bold mb-3 text-foreground">Ultime Opportunità</h2>
+          <p className="text-lg text-foreground/70 mb-10 max-w-2xl">Scopri gli ultimi bandi aperti e in apertura nei prossimi 3 mesi.</p>
           <div className="overflow-x-auto">
             <table className="w-full border-collapse">
               <thead>
@@ -282,30 +336,32 @@ export default function Home() {
       </section>
 
       {/* News Section */}
-      <section id="news" className="py-20 md:py-28 bg-background">
+      <section id="news" className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold mb-4 text-foreground">Ultime News</h2>
-          <p className="text-lg text-foreground/70 mb-16 max-w-2xl">Rimani aggiornato sugli ultimi sviluppi nel panorama della formazione e dello sviluppo aziendale.</p>
-          <div className="space-y-6">
+          <h2 className="text-4xl font-bold mb-3 text-foreground">Ultime News</h2>
+          <p className="text-lg text-foreground/70 mb-10 max-w-2xl">Rimani aggiornato sugli ultimi sviluppi nel panorama della formazione e dello sviluppo aziendale.</p>
+          <div className="space-y-4">
             {newsLoading && !staticNews ? (
               <p className="text-foreground/70">Caricamento news...</p>
             ) : displayNews && displayNews.length > 0 ? (
               displayNews.map((news: any, idx: number) => (
                 <div key={idx} className="relative">
-                  {/* Click intercettato: apre il modale invece di navigare fuori */}
                   <div
                     className="block cursor-pointer"
-                    onClick={() => setModal({ url: news.link, title: news.entity })}
+                    onClick={() => setNewsModal(news)}
                     role="button"
                     tabIndex={0}
-                    onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") setModal({ url: news.link, title: news.entity }); }}
+                    onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") setNewsModal(news); }}
                   >
                     <div className="border-l-4 border-primary pl-6 py-4 hover:bg-muted/50 transition-colors rounded-r-lg">
-                      <p className="text-sm font-semibold text-primary mb-2">{news.entity}</p>
-                      <h3 className="text-2xl font-bold text-foreground mb-2">{news.title}</h3>
-                      <p className="text-foreground/70">{news.description}</p>
+                      <div className="flex items-center gap-3 mb-1 flex-wrap">
+                        <p className="text-sm font-semibold text-primary">{news.entity}</p>
+                        {news.date && <span className="text-xs text-foreground/40">{news.date}</span>}
+                      </div>
+                      <h3 className="text-xl font-bold text-foreground mb-1">{news.title}</h3>
+                      <p className="text-foreground/70 text-sm">{news.description}</p>
                       <div className="mt-3 flex items-center gap-2 text-primary text-sm font-semibold">
-                        <span>Leggi su {news.entity}</span><ArrowRight className="w-4 h-4" />
+                        <span>Leggi</span><ArrowRight className="w-4 h-4" />
                       </div>
                     </div>
                   </div>
@@ -316,16 +372,24 @@ export default function Home() {
               <p className="text-foreground/70">Nessuna news disponibile al momento.</p>
             )}
           </div>
+          <div className="mt-10">
+            <a
+              href="/archivio-news"
+              className="inline-flex items-center gap-2 text-primary hover:text-primary/80 font-semibold transition-colors"
+            >
+              Vai all'archivio news <ArrowRight className="w-4 h-4" />
+            </a>
+          </div>
         </div>
       </section>
 
       {/* Contatti Section */}
-      <section id="contatti" className="py-20 md:py-28 bg-card">
+      <section id="contatti" className="py-16 md:py-24 bg-card">
         <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto">
-            <h2 className="text-4xl font-bold mb-8 text-foreground">Contattami</h2>
-            <p className="text-lg text-foreground/70 mb-12">Hai una domanda o desideri discutere di un progetto? Sono disponibile per una consulenza personalizzata.</p>
-            <form onSubmit={handleContactSubmit} className="space-y-6 mb-12">
+            <h2 className="text-4xl font-bold mb-3 text-foreground">Contattami</h2>
+            <p className="text-lg text-foreground/70 mb-10">Hai una domanda o desideri discutere di un progetto? Sono disponibile per una consulenza personalizzata.</p>
+            <form onSubmit={handleContactSubmit} className="space-y-6 mb-10">
               <div>
                 <label className="block text-sm font-semibold text-foreground mb-2">La tua Email</label>
                 <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="tua.email@example.com" className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50" required />
