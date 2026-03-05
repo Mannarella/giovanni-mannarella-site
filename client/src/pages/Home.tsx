@@ -209,10 +209,12 @@ export default function Home() {
               return (
                 <a href={serviceLinks[idx]} key={idx}>
                   <Card className="p-4 hover:shadow-warm transition-all duration-300 hover:-translate-y-1 bg-card border-border cursor-pointer h-full">
-                    <div className={`${service.color} w-10 h-10 rounded-lg flex items-center justify-center mb-4`}><Icon className="w-5 h-5 text-white" /></div>
-                    <h3 className="text-2xl font-bold mb-2 text-foreground">{service.title}</h3>
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className={`${service.color} w-10 h-10 shrink-0 rounded-lg flex items-center justify-center`}><Icon className="w-5 h-5 text-white" /></div>
+                      <h3 className="text-xl font-bold text-foreground leading-snug">{service.title}</h3>
+                    </div>
                     <p className="text-foreground/70 leading-relaxed text-sm">{service.description}</p>
-                    <div className="mt-4 flex items-center gap-2 text-primary font-semibold text-sm"><span>Scopri di più</span><ArrowRight className="w-4 h-4" /></div>
+                    <div className="mt-3 flex items-center gap-2 text-primary font-semibold text-sm"><span>Scopri di più</span><ArrowRight className="w-4 h-4" /></div>
                   </Card>
                 </a>
               );
