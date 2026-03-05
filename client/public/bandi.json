@@ -3,72 +3,40 @@
     "apertura": "Aperto",
     "fondo": "FonARCom",
     "titolo": "Avviso 05/2025 – Forma e Ricolloca",
-    "scadenza": "esaurimento",
+    "scadenza": "fino esaurimento",
     "stato": "Aperto",
     "link": "https://www.fonarcom.it/strumenti/avvisi-tematici/avviso-05-2025-forma-e-ricolloca/"
   },
-  {
-    "apertura": "da 23 feb 2026",
-    "fondo": "Fon.Coop.",
-    "titolo": "Avviso 68 Speciale",
-    "scadenza": "esaurimento",
-    "stato": "In apertura",
-    "link": "https://www.foncoop.coop/avvisi-speciali/avviso-68-speciale/"
-  },
-  {
-    "apertura": "dal 25 feb 2026",
-    "fondo": "Fondimpresa",
-    "titolo": "Avviso 4/2025 - Intelligenza Artificiale (IA )",
-    "scadenza": "28/05/2026",
-    "stato": "In apertura",
-    "link": "https://www.fondimpresa.it/i-canali-di-finanziamento/conto-di-sistema/avviso-4-2025-intelligenza-artificiale-i-a"
-  },
-  {
-    "apertura": "dal 03 mar 2026",
-    "fondo": "Fondir",
-    "titolo": "Avviso Open Voucher 5/2026 Settori Creditizio-Finanziario, Assicurativo",
-    "scadenza": "17/12/2026",
-    "stato": "In apertura",
-    "link": "https://www.fondir.it/fondo-trasparente/avvisi/avviso-open-voucher-52026-settori-creditizio-finanziario-assicurativo"
-  },
-  {
-    "apertura": "dal 04 apr 2026",
-    "fondo": "Fondoprofessioni",
-    "titolo": "Avviso 04/26 (One to One ) - II sportello",
-    "scadenza": "23/04/2026",
-    "stato": "In apertura",
-    "link": "https://www.fondoprofessioni.it/avvisi/one-to-one-e-per-piccoli-gruppi-2026/"
-  },
-  {
-    "apertura": "dal 18 mag 2026",
-    "fondo": "Fondoprofessioni",
-    "titolo": "Avviso 04/26 (One to One ) - III sportello",
-    "scadenza": "04/06/2026",
-    "stato": "In apertura",
-    "link": "https://www.fondoprofessioni.it/avvisi/one-to-one-e-per-piccoli-gruppi-2026/"
-  },
-  {
-    "apertura": "dal 07 sett 2026",
-    "fondo": "Fondoprofessioni",
-    "titolo": "Avviso 01/26 (Monoaziendali ) - II sportello",
-    "scadenza": "24/09/2026",
-    "stato": "In apertura",
-    "link": "https://www.fondoprofessioni.it/avvisi/piani-formativi-monoaziendali-2026/"
-  },
-  {
-    "apertura": "dal 12 ott 2026",
-    "fondo": "Fondoprofessioni",
-    "titolo": "Avviso 04/26 (One to One ) - IV sportello",
-    "scadenza": "29/10/2026",
-    "stato": "In apertura",
-    "link": "https://www.fondoprofessioni.it/avvisi/one-to-one-e-per-piccoli-gruppi-2026/"
-  },
-  {
+   {
     "apertura": "Aperto",
     "fondo": "FonARCom",
     "titolo": "Avviso 04/2025 Diginnova Agile",
-    "scadenza": "esaurimento",
+    "scadenza": "fino esaurimento",
     "stato": "Aperto",
     "link": "https://www.fonarcom.it/strumenti/avvisi-tematici/avviso-04-2025-diginnova-agile/"
-  }
+  } 
+  {
+    "apertura": "Aperto",
+    "fondo": "Fondimpresa",
+    "titolo": "Avviso 4/2025 - Intelligenza Artificiale (IA )",
+    "scadenza": "28 maggio 2026",
+    "stato": "Aperto",
+    "link": "https://www.fondimpresa.it/i-canali-di-finanziamento/conto-di-sistema/avviso-4-2025-intelligenza-artificiale-i-a"
+  },
+    {
+    "apertura": "18 marzo 2026",
+    "fondo": "FonDirigenti",
+    "titolo": "Avviso 01/2026 Valore manageriale: il ruolo abilitante delle competenze come moltiplicatore di competitività",
+    "scadenza": "23 aprile 2026",
+    "stato": "In apertura",
+    "link": "https://www.fondirigenti.it/avvisi"
+  },
+  {
+    "apertura": "Aperto",
+    "fondo": "Fondir",
+    "titolo": "Avviso Open Voucher 5/2026 Settori Creditizio-Finanziario, Assicurativo",
+    "scadenza": "17 dicembre 2026",
+    "stato": "Aperto",
+    "link": "https://www.fondir.it/fondo-trasparente/avvisi/avviso-open-voucher-52026-settori-creditizio-finanziario-assicurativo"
+  },
 ]
