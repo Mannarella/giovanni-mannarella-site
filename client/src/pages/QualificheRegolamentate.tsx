@@ -26,6 +26,15 @@ export default function QualificheRegolamentate() {
     { name: "Veneto Formazione", url: "https://www.regione.veneto.it/web/formazione-e-istruzione" },
   ];
 
+  const openInSizedWindow = (url: string) => (event: React.MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    const width = 980;
+    const height = 720;
+    const left = Math.max(0, window.screenX + (window.outerWidth - width) / 2);
+    const top = Math.max(0, window.screenY + (window.outerHeight - height) / 2);
+    window.open(url, "_blank", `noopener,noreferrer,width=${width},height=${height},left=${Math.floor(left)},top=${Math.floor(top)}`);
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const subject = `Adesione a Opportunità - Qualifiche Regolamentate`;
@@ -66,8 +75,7 @@ export default function QualificheRegolamentate() {
                       <h3 className="text-lg font-semibold text-foreground">{regione.name}</h3>
                       <a
                         href={regione.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                        onClick={openInSizedWindow(regione.url)}
                         className="text-primary hover:text-primary/80 transition-colors"
                       >
                         <ExternalLink className="w-5 h-5" />
