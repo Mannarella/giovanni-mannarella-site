@@ -15,6 +15,7 @@ export default function QualificheRegolamentate() {
     telefono: "",
     opportunita: "",
   });
+  const [consenso, setConsenso] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
   const regioni = [
@@ -26,18 +27,9 @@ export default function QualificheRegolamentate() {
     { name: "Veneto Formazione", url: "https://www.regione.veneto.it/web/formazione-e-istruzione" },
   ];
 
-  const openInSizedWindow = (url: string) => (event: React.MouseEvent<HTMLAnchorElement>) => {
-    event.preventDefault();
-    const width = 980;
-    const height = 720;
-    const left = Math.max(0, window.screenX + (window.outerWidth - width) / 2);
-    const top = Math.max(0, window.screenY + (window.outerHeight - height) / 2);
-    window.open(url, "_blank", `noopener,noreferrer,width=${width},height=${height},left=${Math.floor(left)},top=${Math.floor(top)}`);
-  };
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const subject = `Adesione a Opportunità - Qualifiche Regolamentate`;
+    const subject = `Adesione a Opportunità - Finanziamenti Regionali, FSE+ e FESR`;
     const body = `Nome: ${formData.nome}\nEmail: ${formData.email}\nTelefono: ${formData.telefono}\nRegione selezionata: ${formData.opportunita}`;
     window.location.href = `mailto:info@mannarella.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     setSubmitted(true);
@@ -75,7 +67,8 @@ export default function QualificheRegolamentate() {
                       <h3 className="text-lg font-semibold text-foreground">{regione.name}</h3>
                       <a
                         href={regione.url}
-                        onClick={openInSizedWindow(regione.url)}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="text-primary hover:text-primary/80 transition-colors"
                       >
                         <ExternalLink className="w-5 h-5" />
@@ -160,9 +153,28 @@ export default function QualificheRegolamentate() {
                   type="submit"
                   size="lg"
                   className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
+                  disabled={!consenso}
                 >
                   Invia Richiesta
                 </Button>
+
+                <div className="flex items-start gap-3">
+                  <input
+                    type="checkbox"
+                    id="consenso-qualificheregolamentate"
+                    checked={consenso}
+                    onChange={(e) => setConsenso(e.target.checked)}
+                    className="mt-1 w-4 h-4 accent-primary cursor-pointer shrink-0"
+                    required
+                  />
+                  <label htmlFor="consenso-qualificheregolamentate" className="text-sm text-foreground/60 leading-relaxed cursor-pointer">
+                    Ho letto e accetto la{" "}
+                    <a href="/privacy-policy" className="text-primary hover:underline font-medium">
+                      Privacy Policy
+                    </a>{" "}
+                    e acconsento al trattamento dei miei dati personali per rispondere alla mia richiesta. *
+                  </label>
+                </div>
 
                 {submitted && (
                   <p className="text-center text-primary font-semibold">
@@ -179,6 +191,7 @@ export default function QualificheRegolamentate() {
       <footer className="bg-foreground/5 border-t border-border py-12 mt-20">
         <div className="container mx-auto px-4 text-center text-foreground/60 text-sm">
           <p>&copy; 2026 Giovanni Mannarella. Tutti i diritti riservati.</p>
+          <p className="text-foreground/50 text-xs mt-2"><a href="/privacy-policy" className="hover:text-primary transition-colors">Privacy Policy</a></p>
         </div>
       </footer>
     </div>
