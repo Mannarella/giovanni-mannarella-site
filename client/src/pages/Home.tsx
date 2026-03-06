@@ -65,6 +65,10 @@ export default function Home() {
   let { user, loading, error, isAuthenticated, logout } = useAuth();
 
   const [email, setEmail] = useState("");
+  const [nome, setNome] = useState("");
+  const [azienda, setAzienda] = useState("");
+  const [telefono, setTelefono] = useState("");
+  const [consenso, setConsenso] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
   // Apre link esterni in una finestra browser ridimensionata (stessa tecnica di FondiInterprofessionali)
@@ -82,9 +86,13 @@ export default function Home() {
 
   const handleContactSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (email) {
+    if (email && consenso) {
       setSubmitted(true);
+      setNome("");
+      setAzienda("");
       setEmail("");
+      setTelefono("");
+      setConsenso(false);
       setTimeout(() => setSubmitted(false), 3000);
     }
   };
@@ -398,10 +406,39 @@ export default function Home() {
             <p className="text-lg text-foreground/70 mb-10">Hai una domanda o desideri discutere di un progetto? Sono disponibile per una consulenza personalizzata.</p>
             <form onSubmit={handleContactSubmit} className="space-y-6 mb-10">
               <div>
-                <label className="block text-sm font-semibold text-foreground mb-2">La tua Email</label>
+                <label className="block text-sm font-semibold text-foreground mb-2">Nome Completo *</label>
+                <input type="text" value={nome} onChange={(e) => setNome(e.target.value)} placeholder="Il tuo nome" className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50" required />
+              </div>
+              <div>
+                <label className="block text-sm font-semibold text-foreground mb-2">Azienda / Ente</label>
+                <input type="text" value={azienda} onChange={(e) => setAzienda(e.target.value)} placeholder="Nome azienda o ente (opzionale)" className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50" />
+              </div>
+              <div>
+                <label className="block text-sm font-semibold text-foreground mb-2">Email *</label>
                 <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="tua.email@example.com" className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50" required />
               </div>
-              <Button type="submit" size="lg" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">Invia Messaggio</Button>
+              <div>
+                <label className="block text-sm font-semibold text-foreground mb-2">Telefono</label>
+                <input type="tel" value={telefono} onChange={(e) => setTelefono(e.target.value)} placeholder="+39 XXX XXX XXXX" className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50" />
+              </div>
+              <Button type="submit" size="lg" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground" disabled={!consenso}>Invia Messaggio</Button>
+              <div className="flex items-start gap-3">
+                <input
+                  type="checkbox"
+                  id="consenso-home"
+                  checked={consenso}
+                  onChange={(e) => setConsenso(e.target.checked)}
+                  className="mt-1 w-4 h-4 accent-primary cursor-pointer shrink-0"
+                  required
+                />
+                <label htmlFor="consenso-home" className="text-sm text-foreground/60 leading-relaxed cursor-pointer">
+                  Ho letto e accetto la{" "}
+                  <a href="/privacy-policy" className="text-primary hover:underline font-medium">
+                    Privacy Policy
+                  </a>{" "}
+                  e acconsento al trattamento dei miei dati personali per rispondere alla mia richiesta. *
+                </label>
+              </div>
               {submitted && <p className="text-center text-primary font-semibold">Grazie! Ti contatterò al più presto.</p>}
             </form>
             <div className="flex gap-6 justify-center">
@@ -418,6 +455,9 @@ export default function Home() {
           <div className="h-10 mb-4 flex justify-center"><img src="/images/logo.png" alt="Logo" className="h-full object-contain" /></div>
           <p className="text-foreground/70 mb-4">Esperto in progettazione e consulenza strategica</p>
           <p className="text-foreground/60 text-sm">&copy; 2026 Giovanni Mannarella. Tutti i diritti riservati.</p>
+          <p className="text-foreground/50 text-xs mt-2">
+            <a href="/privacy-policy" className="hover:text-primary transition-colors">Privacy Policy</a>
+          </p>
         </div>
       </footer>
     </div>
