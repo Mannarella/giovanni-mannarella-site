@@ -70,6 +70,7 @@ export default function Home() {
   const [telefono, setTelefono] = useState("");
   const [consenso, setConsenso] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState(false);
 
   // Stato popup ricontatto bando
   const [contactModal, setContactModal] = useState<any | null>(null);
@@ -80,6 +81,11 @@ export default function Home() {
   const [popupTelefono, setPopupTelefono] = useState("");
   const [popupConsenso, setPopupConsenso] = useState(false);
   const [popupSubmitted, setPopupSubmitted] = useState(false);
+  const [popupError, setPopupError] = useState(false);
+
+  // tRPC mutations per l'invio email
+  const contactMutation = trpc.contact.send.useMutation();
+  const bandoMutation = trpc.contact.sendBando.useMutation();
 
   // Apre link esterni in una finestra browser ridimensionata (stessa tecnica di FondiInterprofessionali)
   const openInSizedWindow = (url: string) => (event: React.MouseEvent<HTMLAnchorElement>) => {
@@ -94,9 +100,20 @@ export default function Home() {
   // Stato modale news
   const [newsModal, setNewsModal] = useState<NewsItem | null>(null);
 
-  const handlePopupSubmit = (e: React.FormEvent) => {
+  const handlePopupSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (popupEmail && popupConsenso) {
+    if (!popupEmail || !popupConsenso || !popupNome || !popupCognome) return;
+    setPopupError(false);
+    try {
+      await bandoMutation.mutateAsync({
+        nome: popupNome,
+        cognome: popupCognome,
+        azienda: popupAzienda,
+        email: popupEmail,
+        telefono: popupTelefono,
+        fondo: contactModal?.fondo,
+        titoloBando: contactModal?.titolo,
+      });
       setPopupSubmitted(true);
       setPopupNome("");
       setPopupCognome("");
@@ -108,19 +125,26 @@ export default function Home() {
         setPopupSubmitted(false);
         setContactModal(null);
       }, 3000);
+    } catch {
+      setPopupError(true);
     }
   };
 
-  const handleContactSubmit = (e: React.FormEvent) => {
+  const handleContactSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (email && consenso) {
+    if (!email || !consenso) return;
+    setSubmitError(false);
+    try {
+      await contactMutation.mutateAsync({ nome, azienda, email, telefono });
       setSubmitted(true);
       setNome("");
       setAzienda("");
       setEmail("");
       setTelefono("");
       setConsenso(false);
-      setTimeout(() => setSubmitted(false), 3000);
+      setTimeout(() => setSubmitted(false), 4000);
+    } catch {
+      setSubmitError(true);
     }
   };
 
@@ -280,8 +304,18 @@ export default function Home() {
                       e acconsento al trattamento dei miei dati personali. *
                     </label>
                   </div>
-                  <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground" disabled={!popupConsenso || !popupEmail || !popupNome || !popupCognome}>
-                    Invia richiesta di contatto
+                  {popupError && (
+                    <p className="text-sm text-red-600 text-center">
+                      Si è verificato un errore. Riprova o scrivici direttamente a{" "}
+                      <a href="mailto:info@mannarella.com" className="underline">info@mannarella.com</a>.
+                    </p>
+                  )}
+                  <Button
+                    type="submit"
+                    className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
+                    disabled={!popupConsenso || !popupEmail || !popupNome || !popupCognome || bandoMutation.isPending}
+                  >
+                    {bandoMutation.isPending ? "Invio in corso..." : "Invia richiesta di contatto"}
                   </Button>
                 </form>
               )}
@@ -532,7 +566,6 @@ export default function Home() {
                 <label className="block text-sm font-semibold text-foreground mb-2">Telefono</label>
                 <input type="tel" value={telefono} onChange={(e) => setTelefono(e.target.value)} placeholder="+39 XXX XXX XXXX" className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50" />
               </div>
-              <Button type="submit" size="lg" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground" disabled={!consenso}>Invia Messaggio</Button>
               <div className="flex items-start gap-3">
                 <input
                   type="checkbox"
@@ -550,7 +583,25 @@ export default function Home() {
                   e acconsento al trattamento dei miei dati personali per rispondere alla mia richiesta. *
                 </label>
               </div>
-              {submitted && <p className="text-center text-primary font-semibold">Grazie! Ti contatterò al più presto.</p>}
+              <Button
+                type="submit"
+                size="lg"
+                className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
+                disabled={!consenso || contactMutation.isPending}
+              >
+                {contactMutation.isPending ? "Invio in corso..." : "Invia Messaggio"}
+              </Button>
+              {submitted && (
+                <p className="text-center text-primary font-semibold">
+                  Grazie! Ti contatterò al più presto.
+                </p>
+              )}
+              {submitError && (
+                <p className="text-center text-red-600 text-sm">
+                  Si è verificato un errore. Riprova o scrivici a{" "}
+                  <a href="mailto:info@mannarella.com" className="underline">info@mannarella.com</a>.
+                </p>
+              )}
             </form>
             <div className="flex gap-6 justify-center">
               <a href="mailto:info@mannarella.com" className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors"><Mail className="w-5 h-5" /><span>Email</span></a>
