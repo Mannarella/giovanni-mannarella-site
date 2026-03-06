@@ -1,6 +1,6 @@
 import { Resend } from "resend";
 
-const FROM_ADDRESS = "noreply@send.mannarella.com";
+const FROM_ADDRESS = "info@mannarella.com";
 const TO_ADDRESS = "info@mannarella.com";
 
 export default async function handler(req, res) {
