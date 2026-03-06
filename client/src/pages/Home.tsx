@@ -1,7 +1,7 @@
 import { useAuth } from "@/_core/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Mail, Linkedin, ArrowRight, BookOpen, Briefcase, Users, Zap } from "lucide-react";
+import { Mail, Linkedin, ArrowRight, BookOpen, Briefcase, Users, Zap, MessageCircle, X } from "lucide-react";
 import { useState, useEffect } from "react";
 import { trpc } from "@/lib/trpc";
 import ShareButton from "@/components/ShareButton";
@@ -71,6 +71,16 @@ export default function Home() {
   const [consenso, setConsenso] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
+  // Stato popup ricontatto bando
+  const [contactModal, setContactModal] = useState<any | null>(null);
+  const [popupNome, setPopupNome] = useState("");
+  const [popupCognome, setPopupCognome] = useState("");
+  const [popupAzienda, setPopupAzienda] = useState("");
+  const [popupEmail, setPopupEmail] = useState("");
+  const [popupTelefono, setPopupTelefono] = useState("");
+  const [popupConsenso, setPopupConsenso] = useState(false);
+  const [popupSubmitted, setPopupSubmitted] = useState(false);
+
   // Apre link esterni in una finestra browser ridimensionata (stessa tecnica di FondiInterprofessionali)
   const openInSizedWindow = (url: string) => (event: React.MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
@@ -83,6 +93,23 @@ export default function Home() {
 
   // Stato modale news
   const [newsModal, setNewsModal] = useState<NewsItem | null>(null);
+
+  const handlePopupSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (popupEmail && popupConsenso) {
+      setPopupSubmitted(true);
+      setPopupNome("");
+      setPopupCognome("");
+      setPopupAzienda("");
+      setPopupEmail("");
+      setPopupTelefono("");
+      setPopupConsenso(false);
+      setTimeout(() => {
+        setPopupSubmitted(false);
+        setContactModal(null);
+      }, 3000);
+    }
+  };
 
   const handleContactSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -188,6 +215,80 @@ export default function Home() {
     <div className="min-h-screen bg-background text-foreground">
       {/* Modale news */}
       <NewsModal news={newsModal} onClose={() => setNewsModal(null)} />
+
+      {/* Popup ricontatto bando */}
+      {contactModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm" onClick={(e) => { if (e.target === e.currentTarget) setContactModal(null); }}>
+          <div className="bg-background border border-border rounded-2xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
+            <div className="sticky top-0 bg-background border-b border-border px-6 py-4 flex items-start justify-between gap-4 rounded-t-2xl">
+              <div>
+                <p className="text-xs text-foreground/50 uppercase tracking-wide font-semibold mb-1">Richiesta di contatto</p>
+                <h3 className="text-lg font-bold text-foreground leading-snug">
+                  Vorrei essere ricontattato per approfondire il{" "}
+                  <span className="text-primary">{contactModal.fondo} — {contactModal.titolo}</span>
+                </h3>
+              </div>
+              <button onClick={() => setContactModal(null)} className="shrink-0 mt-1 p-1.5 rounded-lg hover:bg-muted transition-colors text-foreground/60 hover:text-foreground">
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            <div className="px-6 py-6">
+              {popupSubmitted ? (
+                <div className="text-center py-8">
+                  <div className="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <MessageCircle className="w-7 h-7 text-green-600" />
+                  </div>
+                  <p className="text-xl font-bold text-foreground mb-2">Richiesta inviata!</p>
+                  <p className="text-foreground/60">Ti contatteremo al più presto per approfondire il bando.</p>
+                </div>
+              ) : (
+                <form onSubmit={handlePopupSubmit} className="space-y-4">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-semibold text-foreground mb-1.5">Nome *</label>
+                      <input type="text" value={popupNome} onChange={(e) => setPopupNome(e.target.value)} placeholder="Il tuo nome" className="w-full px-3 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/50" required />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-semibold text-foreground mb-1.5">Cognome *</label>
+                      <input type="text" value={popupCognome} onChange={(e) => setPopupCognome(e.target.value)} placeholder="Il tuo cognome" className="w-full px-3 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/50" required />
+                    </div>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-foreground mb-1.5">Azienda / Ente</label>
+                    <input type="text" value={popupAzienda} onChange={(e) => setPopupAzienda(e.target.value)} placeholder="Nome azienda o ente (opzionale)" className="w-full px-3 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/50" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-foreground mb-1.5">Email *</label>
+                    <input type="email" value={popupEmail} onChange={(e) => setPopupEmail(e.target.value)} placeholder="tua.email@example.com" className="w-full px-3 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/50" required />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-foreground mb-1.5">Telefono</label>
+                    <input type="tel" value={popupTelefono} onChange={(e) => setPopupTelefono(e.target.value)} placeholder="+39 XXX XXX XXXX" className="w-full px-3 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/50" />
+                  </div>
+                  <div className="flex items-start gap-3 pt-1">
+                    <input
+                      type="checkbox"
+                      id="popup-consenso"
+                      checked={popupConsenso}
+                      onChange={(e) => setPopupConsenso(e.target.checked)}
+                      className="mt-0.5 w-4 h-4 accent-primary cursor-pointer shrink-0"
+                      required
+                    />
+                    <label htmlFor="popup-consenso" className="text-xs text-foreground/60 leading-relaxed cursor-pointer">
+                      Ho letto e accetto la{" "}
+                      <a href="/privacy-policy" className="text-primary hover:underline font-medium">Privacy Policy</a>{" "}
+                      e acconsento al trattamento dei miei dati personali. *
+                    </label>
+                  </div>
+                  <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground" disabled={!popupConsenso || !popupEmail || !popupNome || !popupCognome}>
+                    Invia richiesta di contatto
+                  </Button>
+                </form>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Navigation */}
       <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
@@ -307,11 +408,12 @@ export default function Home() {
                   <th className="text-left py-4 px-4 font-bold text-foreground">Scadenza</th>
                   <th className="text-left py-4 px-4 font-bold text-foreground">Stato</th>
                   <th className="text-left py-4 px-4 font-bold text-foreground">Azione</th>
+                  <th className="text-center py-4 px-4 font-bold text-foreground">Contatto</th>
                 </tr>
               </thead>
               <tbody>
                 {bandiLoading ? (
-                  <tr><td colSpan={6} className="text-center py-8 text-foreground/70">Caricamento opportunità...</td></tr>
+                  <tr><td colSpan={7} className="text-center py-8 text-foreground/70">Caricamento opportunità...</td></tr>
                 ) : bandi && bandi.length > 0 ? (
                   bandi.map((bando: any, idx: number) => (
                     <tr key={idx} className="border-b border-border hover:bg-muted/50 transition-colors">
@@ -339,10 +441,19 @@ export default function Home() {
                           <span>Vedi</span><ArrowRight className="w-4 h-4" />
                         </a>
                       </td>
+                      <td className="py-4 px-4 text-center">
+                        <button
+                          onClick={() => setContactModal(bando)}
+                          title="Richiedi informazioni su questo bando"
+                          className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-primary/10 hover:bg-primary/20 text-primary transition-colors"
+                        >
+                          <MessageCircle className="w-4 h-4" />
+                        </button>
+                      </td>
                     </tr>
                   ))
                 ) : (
-                  <tr><td colSpan={6} className="text-center py-8 text-foreground/70">Nessuna opportunità disponibile al momento.</td></tr>
+                  <tr><td colSpan={7} className="text-center py-8 text-foreground/70">Nessuna opportunità disponibile al momento.</td></tr>
                 )}
               </tbody>
             </table>
