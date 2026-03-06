@@ -15,6 +15,7 @@ export default function FondiInterprofessionali() {
     telefono: "",
     opportunita: "",
   });
+  const [consenso, setConsenso] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
   const [fondi, setFondi] = useState<{ name: string; url: string }[]>([]);
@@ -164,9 +165,28 @@ export default function FondiInterprofessionali() {
                       type="submit"
                       size="lg"
                       className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
+                      disabled={!consenso}
                   >
                     Invia Richiesta
                   </Button>
+
+                  <div className="flex items-start gap-3">
+                    <input
+                      type="checkbox"
+                      id="consenso-fondi"
+                      checked={consenso}
+                      onChange={(e) => setConsenso(e.target.checked)}
+                      className="mt-1 w-4 h-4 accent-primary cursor-pointer shrink-0"
+                      required
+                    />
+                    <label htmlFor="consenso-fondi" className="text-sm text-foreground/60 leading-relaxed cursor-pointer">
+                      Ho letto e accetto la{" "}
+                      <a href="/privacy-policy" className="text-primary hover:underline font-medium">
+                        Privacy Policy
+                      </a>{" "}
+                      e acconsento al trattamento dei miei dati personali per rispondere alla mia richiesta. *
+                    </label>
+                  </div>
 
                   {submitted && (
                       <p className="text-center text-primary font-semibold">
@@ -183,6 +203,9 @@ export default function FondiInterprofessionali() {
         <footer className="bg-foreground/5 border-t border-border py-12 mt-20">
           <div className="container mx-auto px-4 text-center text-foreground/60 text-sm">
             <p>&copy; 2026 Giovanni Mannarella. Tutti i diritti riservati.</p>
+          <p className="text-foreground/50 text-xs mt-2">
+            <a href="/privacy-policy" className="hover:text-primary transition-colors">Privacy Policy</a>
+          </p>
           </div>
         </footer>
       </div>
