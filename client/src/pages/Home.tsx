@@ -83,9 +83,9 @@ export default function Home() {
   const [popupSubmitted, setPopupSubmitted] = useState(false);
   const [popupError, setPopupError] = useState(false);
 
-  // tRPC mutations per l'invio email
-  const contactMutation = trpc.contact.send.useMutation();
-  const bandoMutation = trpc.contact.sendBando.useMutation();
+  // Stato loading per i form
+  const [contactLoading, setContactLoading] = useState(false);
+  const [popupLoading, setPopupLoading] = useState(false);
 
   // Apre link esterni in una finestra browser ridimensionata (stessa tecnica di FondiInterprofessionali)
   const openInSizedWindow = (url: string) => (event: React.MouseEvent<HTMLAnchorElement>) => {
@@ -104,16 +104,23 @@ export default function Home() {
     e.preventDefault();
     if (!popupEmail || !popupConsenso || !popupNome || !popupCognome) return;
     setPopupError(false);
+    setPopupLoading(true);
     try {
-      await bandoMutation.mutateAsync({
-        nome: popupNome,
-        cognome: popupCognome,
-        azienda: popupAzienda,
-        email: popupEmail,
-        telefono: popupTelefono,
-        fondo: contactModal?.fondo,
-        titoloBando: contactModal?.titolo,
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          type: "bando",
+          nome: popupNome,
+          cognome: popupCognome,
+          azienda: popupAzienda,
+          email: popupEmail,
+          telefono: popupTelefono,
+          fondo: contactModal?.fondo,
+          titoloBando: contactModal?.titolo,
+        }),
       });
+      if (!res.ok) throw new Error();
       setPopupSubmitted(true);
       setPopupNome("");
       setPopupCognome("");
@@ -127,6 +134,8 @@ export default function Home() {
       }, 3000);
     } catch {
       setPopupError(true);
+    } finally {
+      setPopupLoading(false);
     }
   };
 
@@ -134,8 +143,14 @@ export default function Home() {
     e.preventDefault();
     if (!email || !consenso) return;
     setSubmitError(false);
+    setContactLoading(true);
     try {
-      await contactMutation.mutateAsync({ nome, azienda, email, telefono });
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ type: "contact", nome, azienda, email, telefono }),
+      });
+      if (!res.ok) throw new Error();
       setSubmitted(true);
       setNome("");
       setAzienda("");
@@ -145,6 +160,8 @@ export default function Home() {
       setTimeout(() => setSubmitted(false), 4000);
     } catch {
       setSubmitError(true);
+    } finally {
+      setContactLoading(false);
     }
   };
 
@@ -313,9 +330,9 @@ export default function Home() {
                   <Button
                     type="submit"
                     className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
-                    disabled={!popupConsenso || !popupEmail || !popupNome || !popupCognome || bandoMutation.isPending}
+                    disabled={!popupConsenso || !popupEmail || !popupNome || !popupCognome || popupLoading}
                   >
-                    {bandoMutation.isPending ? "Invio in corso..." : "Invia richiesta di contatto"}
+                    {popupLoading ? "Invio in corso..." : "Invia richiesta di contatto"}
                   </Button>
                 </form>
               )}
@@ -587,9 +604,9 @@ export default function Home() {
                 type="submit"
                 size="lg"
                 className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
-                disabled={!consenso || contactMutation.isPending}
+                disabled={!consenso || contactLoading}
               >
-                {contactMutation.isPending ? "Invio in corso..." : "Invia Messaggio"}
+                {contactLoading ? "Invio in corso..." : "Invia Messaggio"}
               </Button>
               {submitted && (
                 <p className="text-center text-primary font-semibold">
