@@ -24,6 +24,15 @@ export default function FinanzaAgevolata() {
     { name: "MIMIT Incentivi", url: "https://www.mimit.gov.it/it/incentivi" },
   ];
 
+  const openInSizedWindow = (url: string) => (event: React.MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    const width = 980;
+    const height = 720;
+    const left = Math.max(0, window.screenX + (window.outerWidth - width) / 2);
+    const top = Math.max(0, window.screenY + (window.outerHeight - height) / 2);
+    window.open(url, "_blank", `noopener,noreferrer,width=${width},height=${height},left=${Math.floor(left)},top=${Math.floor(top)}`);
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const subject = `Adesione a Opportunità - Finanza Agevolata`;
@@ -64,8 +73,7 @@ export default function FinanzaAgevolata() {
                       <h3 className="text-lg font-semibold text-foreground">{ente.name}</h3>
                       <a
                         href={ente.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                        onClick={openInSizedWindow(ente.url)}
                         className="text-primary hover:text-primary/80 transition-colors"
                       >
                         <ExternalLink className="w-5 h-5" />
