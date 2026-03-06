@@ -60,9 +60,9 @@ export default function QualificheRegolamentate() {
       <main className="py-20 md:py-28">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <h1 className="text-5xl font-bold mb-4 text-foreground">Qualifiche Regolamentate</h1>
+            <h1 className="text-5xl font-bold mb-4 text-foreground">Finanziamenti Regionali per la Formazione</h1>
             <p className="text-xl text-foreground/70 mb-12">
-              Gestione percorsi formativi per qualifiche nazionali e regionali con caricamento su piattaforma SIFER.
+              Progettazione di percorsi formativi per qualifiche nazionali e regionali a valere sugli avvisi FSE+ e FESR.
             </p>
 
             {/* Regioni disponibili */}
