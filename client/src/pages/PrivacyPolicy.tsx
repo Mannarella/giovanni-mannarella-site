@@ -37,7 +37,7 @@ export default function PrivacyPolicy() {
               <h2 className="text-2xl font-bold text-foreground mb-4">1. Titolare del trattamento</h2>
               <p>
                 Il Titolare del trattamento dei dati personali è <strong>Giovanni Mannarella</strong>,
-                con sede operativa in Romagna, Italia.
+                con sede operativa in Via Trieste 9, Reggio Calabria, Italia.
               </p>
               <p className="mt-3">
                 Contatto e-mail del Titolare:{" "}
