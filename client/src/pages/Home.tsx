@@ -104,8 +104,8 @@ export default function Home() {
     },
     {
       icon: Users,
-      title: "Qualifiche Regolamentate",
-      description: "Gestione percorsi formativi per qualifiche nazionali e regionali con caricamento su piattaforme dedicate.",
+      title: "Finanziamenti Regionali per la Formazione",
+      description: "Gestione percorsi formativi per qualifiche nazionali e regionali a valere su FSE+ e FESR.",
       color: "bg-[oklch(0.72_0.08_15)]",
     },
     {
