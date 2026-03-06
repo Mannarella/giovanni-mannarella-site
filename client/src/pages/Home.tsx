@@ -5,7 +5,6 @@ import { Mail, Linkedin, ArrowRight, BookOpen, Briefcase, Users, Zap } from "luc
 import { useState, useEffect } from "react";
 import { trpc } from "@/lib/trpc";
 import ShareButton from "@/components/ShareButton";
-import ExternalLinkModal from "@/components/ExternalLinkModal";
 import NewsModal, { NewsItem } from "@/components/NewsModal";
 
 // ---------------------------------------------------------------------------
@@ -68,8 +67,16 @@ export default function Home() {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
-  // Stato modale link esterni (bandi)
-  const [modal, setModal] = useState<{ url: string; title: string } | null>(null);
+  // Apre link esterni in una finestra browser ridimensionata (stessa tecnica di FondiInterprofessionali)
+  const openInSizedWindow = (url: string) => (event: React.MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    const width = 980;
+    const height = 720;
+    const left = Math.max(0, window.screenX + (window.outerWidth - width) / 2);
+    const top = Math.max(0, window.screenY + (window.outerHeight - height) / 2);
+    window.open(url, "_blank", `noopener,noreferrer,width=${width},height=${height},left=${Math.floor(left)},top=${Math.floor(top)}`);
+  };
+
   // Stato modale news
   const [newsModal, setNewsModal] = useState<NewsItem | null>(null);
 
@@ -171,8 +178,6 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      {/* Modale link esterni (bandi) */}
-      <ExternalLinkModal modal={modal} onClose={() => setModal(null)} />
       {/* Modale news */}
       <NewsModal news={newsModal} onClose={() => setNewsModal(null)} />
 
@@ -318,7 +323,7 @@ export default function Home() {
                       <td className="py-4 px-4">
                         <a
                           href={bando.link}
-                          onClick={(e) => { e.preventDefault(); setModal({ url: bando.link, title: `${bando.fondo} – ${bando.titolo}` }); }}
+                          onClick={openInSizedWindow(bando.link)}
                           className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors font-semibold cursor-pointer"
                         >
                           <span>Vedi</span><ArrowRight className="w-4 h-4" />
