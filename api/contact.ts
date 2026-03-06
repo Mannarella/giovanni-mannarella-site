@@ -1,7 +1,5 @@
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 const FROM_ADDRESS = "noreply@send.mannarella.com";
 const TO_ADDRESS = "info@mannarella.com";
 
@@ -13,6 +11,17 @@ export default async function handler(req, res) {
   if (req.method === "OPTIONS") return res.status(200).end();
   if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });
 
+  // La chiave viene letta qui dentro, non fuori dalla funzione
+  const apiKey = process.env.RESEND_API_KEY;
+
+  console.log("[contact] API key presente:", !!apiKey, "| lunghezza:", apiKey?.length ?? 0);
+
+  if (!apiKey) {
+    return res.status(500).json({ error: "API key mancante sul server." });
+  }
+
+  const resend = new Resend(apiKey);
+
   const { type, nome, cognome, azienda, email, telefono, fondo, titoloBando } = req.body ?? {};
 
   if (!nome || !email) {
@@ -20,7 +29,6 @@ export default async function handler(req, res) {
   }
 
   const isBando = type === "bando";
-
   const subject = isBando
     ? `Richiesta info bando: ${fondo ?? ""} — ${titoloBando ?? ""}`
     : `Nuovo contatto da ${nome}`;
@@ -57,11 +65,10 @@ export default async function handler(req, res) {
       subject,
       html,
     });
-
-    console.log("[contact] Email sent:", result);
+    console.log("[contact] Email inviata:", JSON.stringify(result));
     return res.status(200).json({ success: true });
   } catch (err) {
-    console.error("[contact] Resend error:", err);
-    return res.status(500).json({ error: "Errore nell'invio email.", detail: String(err) });
+    console.error("[contact] Errore Resend:", String(err));
+    return res.status(500).json({ error: "Errore invio.", detail: String(err) });
   }
 }
