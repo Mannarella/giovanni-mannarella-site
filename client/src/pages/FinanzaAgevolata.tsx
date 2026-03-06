@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Mail, ArrowLeft, ExternalLink } from "lucide-react";
+import { ArrowLeft, ExternalLink } from "lucide-react";
 import { useState } from "react";
 
 /**
@@ -17,6 +17,8 @@ export default function FinanzaAgevolata() {
   });
   const [consenso, setConsenso] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [submitError, setSubmitError] = useState(false);
 
   const enti = [
     { name: "Invitalia", url: "https://www.invitalia.it/" },
@@ -25,13 +27,33 @@ export default function FinanzaAgevolata() {
     { name: "MIMIT Incentivi", url: "https://www.mimit.gov.it/it/incentivi" },
   ];
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const subject = `Adesione a Opportunità - Finanza Agevolata`;
-    const body = `Nome: ${formData.nome}\nEmail: ${formData.email}\nTelefono: ${formData.telefono}\nEnte selezionato: ${formData.opportunita}`;
-    window.location.href = `mailto:info@mannarella.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
+    setSubmitError(false);
+    setLoading(true);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          type: "servizio",
+          nome: formData.nome,
+          email: formData.email,
+          telefono: formData.telefono,
+          servizio: "Finanza Agevolata",
+          opportunita: formData.opportunita,
+        }),
+      });
+      if (!res.ok) throw new Error();
+      setSubmitted(true);
+      setFormData({ nome: "", email: "", telefono: "", opportunita: "" });
+      setConsenso(false);
+      setTimeout(() => setSubmitted(false), 4000);
+    } catch {
+      setSubmitError(true);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -63,12 +85,7 @@ export default function FinanzaAgevolata() {
                   <Card key={ente.name} className="p-6 hover:shadow-lg transition-shadow">
                     <div className="flex items-center justify-between">
                       <h3 className="text-lg font-semibold text-foreground">{ente.name}</h3>
-                      <a
-                        href={ente.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-primary hover:text-primary/80 transition-colors"
-                      >
+                      <a href={ente.url} target="_blank" rel="noopener noreferrer" className="text-primary hover:text-primary/80 transition-colors">
                         <ExternalLink className="w-5 h-5" />
                       </a>
                     </div>
@@ -87,96 +104,44 @@ export default function FinanzaAgevolata() {
 
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <label className="block text-sm font-semibold text-foreground mb-2">
-                    Nome Completo *
-                  </label>
-                  <input
-                    type="text"
-                    value={formData.nome}
-                    onChange={(e) => setFormData({ ...formData, nome: e.target.value })}
-                    placeholder="Il tuo nome"
-                    className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground placeholder-foreground/50 focus:outline-none focus:ring-2 focus:ring-primary/50"
-                    required
-                  />
+                  <label className="block text-sm font-semibold text-foreground mb-2">Nome Completo *</label>
+                  <input type="text" value={formData.nome} onChange={(e) => setFormData({ ...formData, nome: e.target.value })} placeholder="Il tuo nome" className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground placeholder-foreground/50 focus:outline-none focus:ring-2 focus:ring-primary/50" required />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-foreground mb-2">
-                    Email *
-                  </label>
-                  <input
-                    type="email"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    placeholder="tua.email@example.com"
-                    className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground placeholder-foreground/50 focus:outline-none focus:ring-2 focus:ring-primary/50"
-                    required
-                  />
+                  <label className="block text-sm font-semibold text-foreground mb-2">Email *</label>
+                  <input type="email" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} placeholder="tua.email@example.com" className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground placeholder-foreground/50 focus:outline-none focus:ring-2 focus:ring-primary/50" required />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-foreground mb-2">
-                    Telefono *
-                  </label>
-                  <input
-                    type="tel"
-                    value={formData.telefono}
-                    onChange={(e) => setFormData({ ...formData, telefono: e.target.value })}
-                    placeholder="+39 XXX XXX XXXX"
-                    className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground placeholder-foreground/50 focus:outline-none focus:ring-2 focus:ring-primary/50"
-                    required
-                  />
+                  <label className="block text-sm font-semibold text-foreground mb-2">Telefono *</label>
+                  <input type="tel" value={formData.telefono} onChange={(e) => setFormData({ ...formData, telefono: e.target.value })} placeholder="+39 XXX XXX XXXX" className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground placeholder-foreground/50 focus:outline-none focus:ring-2 focus:ring-primary/50" required />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-foreground mb-2">
-                    Ente di Interesse *
-                  </label>
-                  <select
-                    value={formData.opportunita}
-                    onChange={(e) => setFormData({ ...formData, opportunita: e.target.value })}
-                    className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
-                    required
-                  >
+                  <label className="block text-sm font-semibold text-foreground mb-2">Ente di Interesse *</label>
+                  <select value={formData.opportunita} onChange={(e) => setFormData({ ...formData, opportunita: e.target.value })} className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50" required>
                     <option value="">Seleziona un ente</option>
-                    {enti.map((ente) => (
-                      <option key={ente.name} value={ente.name}>
-                        {ente.name}
-                      </option>
-                    ))}
+                    {enti.map((ente) => (<option key={ente.name} value={ente.name}>{ente.name}</option>))}
                   </select>
                 </div>
 
-                <Button
-                  type="submit"
-                  size="lg"
-                  className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
-                  disabled={!consenso}
-                >
-                  Invia Richiesta
-                </Button>
-
                 <div className="flex items-start gap-3">
-                  <input
-                    type="checkbox"
-                    id="consenso-finanzaagevolata"
-                    checked={consenso}
-                    onChange={(e) => setConsenso(e.target.checked)}
-                    className="mt-1 w-4 h-4 accent-primary cursor-pointer shrink-0"
-                    required
-                  />
+                  <input type="checkbox" id="consenso-finanzaagevolata" checked={consenso} onChange={(e) => setConsenso(e.target.checked)} className="mt-1 w-4 h-4 accent-primary cursor-pointer shrink-0" required />
                   <label htmlFor="consenso-finanzaagevolata" className="text-sm text-foreground/60 leading-relaxed cursor-pointer">
-                    Ho letto e accetto la{" "}
-                    <a href="/privacy-policy" className="text-primary hover:underline font-medium">
-                      Privacy Policy
-                    </a>{" "}
-                    e acconsento al trattamento dei miei dati personali per rispondere alla mia richiesta. *
+                    Ho letto e accetto la{" "}<a href="/privacy-policy" className="text-primary hover:underline font-medium">Privacy Policy</a>{" "}e acconsento al trattamento dei miei dati personali per rispondere alla mia richiesta. *
                   </label>
                 </div>
 
-                {submitted && (
-                  <p className="text-center text-primary font-semibold">
-                    Grazie! Ti contatterò al più presto.
+                <Button type="submit" size="lg" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground" disabled={!consenso || loading}>
+                  {loading ? "Invio in corso..." : "Invia Richiesta"}
+                </Button>
+
+                {submitted && <p className="text-center text-primary font-semibold">Grazie! Ti contatterò al più presto.</p>}
+                {submitError && (
+                  <p className="text-center text-red-600 text-sm">
+                    Si è verificato un errore. Riprova o scrivici a{" "}
+                    <a href="mailto:info@mannarella.com" className="underline">info@mannarella.com</a>.
                   </p>
                 )}
               </form>
