@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Mail, ArrowLeft, ExternalLink } from "lucide-react";
+import { ArrowLeft, ExternalLink } from "lucide-react";
 import { useState, useEffect } from "react";
 
 /**
@@ -17,6 +17,8 @@ export default function FondiInterprofessionali() {
   });
   const [consenso, setConsenso] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [submitError, setSubmitError] = useState(false);
 
   const [fondi, setFondi] = useState<{ name: string; url: string }[]>([]);
 
@@ -27,14 +29,33 @@ export default function FondiInterprofessionali() {
       .catch(() => setFondi([]));
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Invia il form a info@mannarella.com
-    const subject = `Adesione a Opportunità - Fondi Interprofessionali`;
-    const body = `Nome: ${formData.nome}\nEmail: ${formData.email}\nTelefono: ${formData.telefono}\nOpportunità selezionata: ${formData.opportunita}`;
-    window.location.href = `mailto:info@mannarella.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
+    setSubmitError(false);
+    setLoading(true);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          type: "servizio",
+          nome: formData.nome,
+          email: formData.email,
+          telefono: formData.telefono,
+          servizio: "Fondi Interprofessionali",
+          opportunita: formData.opportunita,
+        }),
+      });
+      if (!res.ok) throw new Error();
+      setSubmitted(true);
+      setFormData({ nome: "", email: "", telefono: "", opportunita: "" });
+      setConsenso(false);
+      setTimeout(() => setSubmitted(false), 4000);
+    } catch {
+      setSubmitError(true);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const openInSizedWindow = (url: string) => (event: React.MouseEvent<HTMLAnchorElement>) => {
@@ -101,9 +122,7 @@ export default function FondiInterprofessionali() {
 
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
-                    <label className="block text-sm font-semibold text-foreground mb-2">
-                      Nome Completo *
-                    </label>
+                    <label className="block text-sm font-semibold text-foreground mb-2">Nome Completo *</label>
                     <input
                         type="text"
                         value={formData.nome}
@@ -115,9 +134,7 @@ export default function FondiInterprofessionali() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-semibold text-foreground mb-2">
-                      Email *
-                    </label>
+                    <label className="block text-sm font-semibold text-foreground mb-2">Email *</label>
                     <input
                         type="email"
                         value={formData.email}
@@ -129,9 +146,7 @@ export default function FondiInterprofessionali() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-semibold text-foreground mb-2">
-                      Telefono *
-                    </label>
+                    <label className="block text-sm font-semibold text-foreground mb-2">Telefono *</label>
                     <input
                         type="tel"
                         value={formData.telefono}
@@ -143,9 +158,7 @@ export default function FondiInterprofessionali() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-semibold text-foreground mb-2">
-                      Fondo di Interesse *
-                    </label>
+                    <label className="block text-sm font-semibold text-foreground mb-2">Fondo di Interesse *</label>
                     <select
                         value={formData.opportunita}
                         onChange={(e) => setFormData({ ...formData, opportunita: e.target.value })}
@@ -154,21 +167,10 @@ export default function FondiInterprofessionali() {
                     >
                       <option value="">Seleziona un fondo</option>
                       {fondi.map((fondo) => (
-                          <option key={fondo.name} value={fondo.name}>
-                            {fondo.name}
-                          </option>
+                          <option key={fondo.name} value={fondo.name}>{fondo.name}</option>
                       ))}
                     </select>
                   </div>
-
-                  <Button
-                      type="submit"
-                      size="lg"
-                      className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
-                      disabled={!consenso}
-                  >
-                    Invia Richiesta
-                  </Button>
 
                   <div className="flex items-start gap-3">
                     <input
@@ -181,16 +183,27 @@ export default function FondiInterprofessionali() {
                     />
                     <label htmlFor="consenso-fondi" className="text-sm text-foreground/60 leading-relaxed cursor-pointer">
                       Ho letto e accetto la{" "}
-                      <a href="/privacy-policy" className="text-primary hover:underline font-medium">
-                        Privacy Policy
-                      </a>{" "}
+                      <a href="/privacy-policy" className="text-primary hover:underline font-medium">Privacy Policy</a>{" "}
                       e acconsento al trattamento dei miei dati personali per rispondere alla mia richiesta. *
                     </label>
                   </div>
 
+                  <Button
+                      type="submit"
+                      size="lg"
+                      className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
+                      disabled={!consenso || loading}
+                  >
+                    {loading ? "Invio in corso..." : "Invia Richiesta"}
+                  </Button>
+
                   {submitted && (
-                      <p className="text-center text-primary font-semibold">
-                        Grazie! Ti contatterò al più presto.
+                      <p className="text-center text-primary font-semibold">Grazie! Ti contatterò al più presto.</p>
+                  )}
+                  {submitError && (
+                      <p className="text-center text-red-600 text-sm">
+                        Si è verificato un errore. Riprova o scrivici a{" "}
+                        <a href="mailto:info@mannarella.com" className="underline">info@mannarella.com</a>.
                       </p>
                   )}
                 </form>
@@ -203,9 +216,9 @@ export default function FondiInterprofessionali() {
         <footer className="bg-foreground/5 border-t border-border py-12 mt-20">
           <div className="container mx-auto px-4 text-center text-foreground/60 text-sm">
             <p>&copy; 2026 Giovanni Mannarella. Tutti i diritti riservati.</p>
-          <p className="text-foreground/50 text-xs mt-2">
-            <a href="/privacy-policy" className="hover:text-primary transition-colors">Privacy Policy</a>
-          </p>
+            <p className="text-foreground/50 text-xs mt-2">
+              <a href="/privacy-policy" className="hover:text-primary transition-colors">Privacy Policy</a>
+            </p>
           </div>
         </footer>
       </div>
