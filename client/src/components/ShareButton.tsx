@@ -12,7 +12,9 @@ interface ShareButtonProps {
 
 export default function ShareButton({ news }: ShareButtonProps) {
   const [showShareMenu, setShowShareMenu] = useState(false);
-  const [shareConfirmation, setShareConfirmation] = useState<string | null>(null);
+  const [shareConfirmation, setShareConfirmation] = useState<string | null>(
+    null
+  );
 
   const showConfirmation = (platform: string) => {
     setShareConfirmation(platform);
@@ -48,7 +50,7 @@ export default function ShareButton({ news }: ShareButtonProps) {
   return (
     <div className="relative">
       <button
-        onClick={(e) => {
+        onClick={e => {
           e.preventDefault();
           e.stopPropagation();
           setShowShareMenu(!showShareMenu);
@@ -61,7 +63,7 @@ export default function ShareButton({ news }: ShareButtonProps) {
       {showShareMenu && (
         <div className="absolute top-12 right-0 bg-background border border-border rounded-lg shadow-lg p-2 z-10 min-w-max">
           <button
-            onClick={(e) => {
+            onClick={e => {
               e.preventDefault();
               e.stopPropagation();
               shareOnLinkedIn();
@@ -73,7 +75,7 @@ export default function ShareButton({ news }: ShareButtonProps) {
             <span>LinkedIn</span>
           </button>
           <button
-            onClick={(e) => {
+            onClick={e => {
               e.preventDefault();
               e.stopPropagation();
               shareOnTwitter();
@@ -85,7 +87,7 @@ export default function ShareButton({ news }: ShareButtonProps) {
             <span>Twitter</span>
           </button>
           <button
-            onClick={(e) => {
+            onClick={e => {
               e.preventDefault();
               e.stopPropagation();
               shareOnFacebook();
@@ -98,7 +100,7 @@ export default function ShareButton({ news }: ShareButtonProps) {
           </button>
           <div className="border-t border-border my-1"></div>
           <button
-            onClick={(e) => {
+            onClick={e => {
               e.preventDefault();
               e.stopPropagation();
               shareViaEmail();
