@@ -10,7 +10,7 @@ export const getLoginUrl = () => {
   if (!oauthPortalUrl || !appId) {
     console.warn(
       "[Auth] VITE_OAUTH_PORTAL_URL o VITE_APP_ID non definiti. " +
-      "Il login OAuth non è disponibile in questo ambiente."
+        "Il login OAuth non è disponibile in questo ambiente."
     );
     return "/";
   }

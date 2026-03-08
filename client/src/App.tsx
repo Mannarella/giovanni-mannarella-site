@@ -18,9 +18,18 @@ function Router() {
   return (
     <Switch>
       <Route path={"/"} component={Home} />
-      <Route path={"/servizi/fondi-interprofessionali"} component={FondiInterprofessionali} />
-      <Route path={"/servizi/europrogettazione"} component={Europrogettazione} />
-      <Route path={"/servizi/qualifiche-regolamentate"} component={QualificheRegolamentate} />
+      <Route
+        path={"/servizi/fondi-interprofessionali"}
+        component={FondiInterprofessionali}
+      />
+      <Route
+        path={"/servizi/europrogettazione"}
+        component={Europrogettazione}
+      />
+      <Route
+        path={"/servizi/qualifiche-regolamentate"}
+        component={QualificheRegolamentate}
+      />
       <Route path={"/servizi/finanza-agevolata"} component={FinanzaAgevolata} />
       <Route path={"/archivio-news"} component={ArchivioNews} />
       <Route path={"/privacy-policy"} component={PrivacyPolicy} />
@@ -39,9 +48,7 @@ function Router() {
 function App() {
   return (
     <ErrorBoundary>
-      <ThemeProvider
-        defaultTheme="light"
-      >
+      <ThemeProvider defaultTheme="light">
         <TooltipProvider>
           <Toaster />
           <Router />
