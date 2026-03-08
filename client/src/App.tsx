@@ -45,6 +45,7 @@ function App() {
         <TooltipProvider>
           <Toaster />
           <Router />
+          <Analytics />
         </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>
