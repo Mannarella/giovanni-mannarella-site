@@ -449,7 +449,7 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold mb-3 text-foreground">Ultime Opportunità</h2>
           <p className="text-lg text-foreground/70 mb-10 max-w-2xl">Scopri gli ultimi bandi aperti e in apertura nei prossimi 3 mesi.</p>
-          51:          <p className="text-lg text-foreground/70 mb-6 max-w-2xl">Scopri gli ultimi bandi aperti e in apertura nei prossimi 3 mesi.</p>
+          <p className="text-lg text-foreground/70 mb-6 max-w-2xl">Scopri gli ultimi bandi aperti e in apertura nei prossimi 3 mesi.</p>
      <div className="mb-8">
       <a href="/opportunita">
         Button className="bg-primary hover:bg-primary/90 text-primary-foreground"> Vedi tutte le opportunità di finanziamento per la tua impresa</Button>
