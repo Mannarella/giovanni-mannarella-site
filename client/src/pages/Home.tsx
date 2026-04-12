@@ -344,8 +344,9 @@ export default function Home() {
       {/* Navigation */}
       <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
         <div className="container mx-auto px-4 py-3 flex justify-between items-center">
-          <div className="h-12 flex items-center">
-            <img src="/images/logo.png" alt="Giovanni Mannarella Logo" className="h-full object-contain" />
+          <a href="https://mannarella.com" className="h-12 flex items-center hover:opacity-80 transition-opacity">
+<img src="/images/logo.png" alt="Giovanni Mannarella Logo" className="h-full object-contain" />
+</a>
           </div>
           <div className="hidden md:flex gap-8">
             <a href="#servizi" className="text-foreground hover:text-primary transition-colors">Servizi</a>
