@@ -24,6 +24,7 @@ function Router() {
       <Route path={"/servizi/qualifiche-regolamentate"} component={QualificheRegolamentate} />
       <Route path={"/servizi/finanza-agevolata"} component={FinanzaAgevolata} />
       <Route path={"/archivio-news"} component={ArchivioNews} />
+      <Route path={"/opportunita"} component={ArchivioOpportunita} />
       <Route path={"/privacy-policy"} component={PrivacyPolicy} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
