@@ -511,7 +511,15 @@ export default function Home() {
           </div>
         </div>
       </section>
-
+      <div className="mt-8">
+      <a
+          href="/opportunita"
+            className="inline-flex items-center gap-2 text-primary hover:text-primary/80 font-semibold transition-colors"
+        >
+          Vedi tutte le opportunità di finanziamento per la tua impresa <ArrowRight className="w-4 h-4" />
+      </a>
+      </div>
+      
       {/* News Section */}
       <section id="news" className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
