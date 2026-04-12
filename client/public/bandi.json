@@ -56,7 +56,7 @@
     "link": "https://www.fondoprofessioni.it/avvisi/one-to-one-e-per-piccoli-gruppi-2026/"
   },
   {
-    "apertura": "dal 18 mag 2026",
+    "apertura": "Aperto",
     "fondo": "Fondoprofessioni",
     "titolo": "Avviso 04/26 (One to One ) - III sportello",
     "scadenza": "04 giu 2026",
@@ -72,10 +72,10 @@
     "link": "https://www.fondoprofessioni.it/avvisi/piani-formativi-monoaziendali-2026/"
   },
   {
-    "apertura": "dal 12 ott 2026",
+    "apertura": "12 ott 2026",
     "fondo": "Fondoprofessioni",
     "titolo": "Avviso 04/26 (One to One ) - IV sportello",
-    "scadenza": "29/10/2026",
+    "scadenza": "29 ott 2026",
     "stato": "In apertura",
     "link": "https://www.fondoprofessioni.it/avvisi/one-to-one-e-per-piccoli-gruppi-2026/"
   },
@@ -83,7 +83,7 @@
     "apertura": "Aperto",
     "fondo": "Regione Emilia-Romagna (FSE+)",
     "titolo": "Sistema regionale IeFP 2026/2027 – Percorsi di qualifica (EQF 3 e 4) per l'occupazione giovanile",
-    "scadenza": "Giugno 2026",
+    "scadenza": "30 Giu 2026",
     "stato": "Aperto",
     "link": "https://formazionelavoro.regione.emilia-romagna.it/leggi-atti-bandi/bandi-regionali"
   },
@@ -91,23 +91,15 @@
     "apertura": "Aperto",
     "fondo": "Regione Emilia-Romagna (FESR)",
     "titolo": "Fondo Starter – Supporto alla nascita di nuove imprese (anche femminili)",
-    "scadenza": "29/05/2026",
+    "scadenza": "29 mag 2026",
     "stato": "Aperto",
     "link": "https://www.regione.emilia-romagna.it/notizie/2026/aprile/finanza-agevolata"
   },
-  {
-    "apertura": "Aperto",
-    "fondo": "Fondimpresa (Veneto)",
-    "titolo": "Avviso 1/2026 – Politiche Attive (IA e Transizione Digitale)",
-    "scadenza": "31/12/2026 (fino esaurimento risorse)",
-    "stato": "Aperto",
-    "link": "https://www.fondimpresa.it/i-canali-di-finanziamento/conto-di-sistema/avviso-1-2026-politiche-attive"
-  },
-  {
+   {
     "apertura": "Aperto",
     "fondo": "Regione Veneto (FESR)",
     "titolo": "Bando Aggregazioni di Imprese – Progetti di Ricerca e Sviluppo",
-    "scadenza": "In corso 2026",
+    "scadenza": "fino esaurimento risorse",
     "stato": "Aperto",
     "link": "https://bandi.regione.veneto.it/Public/Elenco"
   },
@@ -115,7 +107,7 @@
     "apertura": "Aperto",
     "fondo": "Regione Calabria (FSE+)",
     "titolo": "Autoimpiego per contrastare il lavoro sommerso – Sostegno nuove imprese giovani e disoccupati",
-    "scadenza": "In corso 2026",
+    "scadenza": "fino esaurimento risorse",
     "stato": "Aperto",
     "link": "https://calabriaeuropa.regione.calabria.it/bando/autoimpiego-per-contrastare-il-lavoro-sommerso/"
   },
@@ -123,31 +115,15 @@
     "apertura": "Aperto",
     "fondo": "Regione Calabria (FESR)",
     "titolo": "Bando IN.TUR. – Incentivi all'occupazione nella filiera turistica",
-    "scadenza": "In corso 2026",
+    "scadenza": "fino esaurimento risorse",
     "stato": "Aperto",
     "link": "https://calabriaeuropa.regione.calabria.it/bando/in-tur-incentivi-alloccupazione-alle-imprese-che-operano-nella-filiera-turistica/"
   },
   {
     "apertura": "Aperto",
-    "fondo": "Regione Siciliana (POC)",
-    "titolo": "Avviso POC n. 1/2026 – Catalogo Regionale Offerta Formativa (Corsi professionalizzanti)",
-    "scadenza": "03/06/2026 (partenza corsi)",
-    "stato": "Aperto",
-    "link": "https://www.sicilia-fse.it/avvisi-e-bandi/altro/avviso-1-2026"
-  },
-  {
-    "apertura": "Aperto",
-    "fondo": "Regione Siciliana (FESR)",
-    "titolo": "Sicilia Che Piace 2026 – Promozione export e sistema produttivo (Soggetti Privati)",
-    "scadenza": "30/06/2026 (conclusione progetti)",
-    "stato": "Aperto",
-    "link": "https://www.regione.sicilia.it/la-regione-informa/avviso-sicilia-piace-2026-soggetti-privati"
-  },
-  {
-    "apertura": "Aperto",
     "fondo": "Regione Toscana (FSE+)",
     "titolo": "Formazione Continua Innovazione e Transizione – Progetti formativi aziendali",
-    "scadenza": "In corso 2026",
+    "scadenza": "fino esaurimento risorse",
     "stato": "Aperto",
     "link": "https://www.regione.toscana.it/-/avviso-pubblico-per-il-finanziamento-di-progetti-di-formazione-continua-rivolta-a-lavoratrici-e-lavoratori-per-attivit%C3%A0-di-innovazione-tecnologica-transizione-digitale-ed-ecologica-a-valere-sul-pr-fse-toscana-2021-2027"
   },
@@ -155,7 +131,7 @@
     "apertura": "Aperto",
     "fondo": "Regione Toscana (FESR)",
     "titolo": "Bando Filiera Smart – Sostegno a progetti integrati di investimento",
-    "scadenza": "30/04/2026",
+    "scadenza": "30 apr 2026",
     "stato": "Aperto",
     "link": "https://www.sviluppo.toscana.it/filiera_smart"
   },
@@ -163,7 +139,7 @@
     "apertura": "Aperto",
     "fondo": "Regione Toscana (FESR)",
     "titolo": "Bando Innovazione Moda – Trasformazione tecnologica e sostenibilità PMI",
-    "scadenza": "30/04/2026",
+    "scadenza": "30 apr 2026",
     "stato": "Aperto",
     "link": "https://www.sviluppo.toscana.it/innovazione_moda"
   },
@@ -171,7 +147,7 @@
     "apertura": "Aperto",
     "fondo": "Regione Toscana (FESR)",
     "titolo": "Bando Vetrina Toscana HACCP – Digitalizzazione sistemi di certificazione",
-    "scadenza": "30/04/2026",
+    "scadenza": "30 apr 2026",
     "stato": "Aperto",
     "link": "https://www.sviluppo.toscana.it/vetrinaehaccp"
   }
