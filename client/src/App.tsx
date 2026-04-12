@@ -11,6 +11,7 @@ import Europrogettazione from "./pages/Europrogettazione";
 import QualificheRegolamentate from "./pages/QualificheRegolamentate";
 import FinanzaAgevolata from "./pages/FinanzaAgevolata";
 import ArchivioNews from "./pages/ArchivioNews";
+import ArchivioOpportunita from "./pages/ArchivioOpportunita";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 
 function Router() {
