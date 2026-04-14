@@ -1,4 +1,84 @@
 [
+     {
+    "apertura": "Aperto",
+    "fondo": "FonDirigenti",
+    "titolo": "Avviso 01/2026 - Valore manageriale: il ruolo abilitante delle competenze come moltiplicatore di competitività",
+    "scadenza": "23 apr 2026",
+    "stato": "Aperto",
+    "link": "https://www.fondirigenti.it/avviso-1-2026"
+  },
+    {
+    "apertura": "Aperto",
+    "fondo": "Fondoprofessioni",
+    "titolo": "Avviso 04/26 (One to One ) - II sportello",
+    "scadenza": "23 apr 2026",
+    "stato": "Aperto",
+    "link": "https://www.fondoprofessioni.it/avvisi/one-to-one-e-per-piccoli-gruppi-2026/"
+  },
+    {
+    "apertura": "Aperto",
+    "fondo": "Regione Toscana (FESR)",
+    "titolo": "Bando Filiera Smart – Sostegno a progetti integrati di investimento",
+    "scadenza": "30 apr 2026",
+    "stato": "Aperto",
+    "link": "https://www.sviluppo.toscana.it/filiera_smart"
+  },
+  {
+    "apertura": "Aperto",
+    "fondo": "Regione Toscana (FESR)",
+    "titolo": "Bando Innovazione Moda – Trasformazione tecnologica e sostenibilità PMI",
+    "scadenza": "30 apr 2026",
+    "stato": "Aperto",
+    "link": "https://www.sviluppo.toscana.it/innovazione_moda"
+  },
+  {
+    "apertura": "Aperto",
+    "fondo": "Regione Toscana (FESR)",
+    "titolo": "Bando Vetrina Toscana HACCP – Digitalizzazione sistemi di certificazione",
+    "scadenza": "30 apr 2026",
+    "stato": "Aperto",
+    "link": "https://www.sviluppo.toscana.it/vetrinaehaccp"
+  },
+    {
+    "apertura": "Aperto",
+    "fondo": "Fondimpresa",
+    "titolo": "Avviso 04/2025 - Intelligenza Artificiale (IA)",
+    "scadenza": "28 mag 2026",
+    "stato": "Aperto",
+    "link": "https://www.fondimpresa.it/i-canali-di-finanziamento/conto-di-sistema/avviso-4-2025-intelligenza-artificiale-i-a"
+  },
+  {
+    "apertura": "Aperto",
+    "fondo": "Regione Emilia-Romagna (FESR)",
+    "titolo": "Fondo Starter – Supporto alla nascita di nuove imprese (anche femminili)",
+    "scadenza": "29 mag 2026",
+    "stato": "Aperto",
+    "link": "https://www.regione.emilia-romagna.it/notizie/2026/aprile/finanza-agevolata"
+  },
+   {
+    "apertura": "Aperto",
+    "fondo": "Fondoprofessioni",
+    "titolo": "Avviso 04/26 (One to One ) - III sportello",
+    "scadenza": "04 giu 2026",
+    "stato": "Aperto",
+    "link": "https://www.fondoprofessioni.it/avvisi/one-to-one-e-per-piccoli-gruppi-2026/"
+  },
+   {
+    "apertura": "Aperto",
+    "fondo": "Regione Emilia-Romagna (FSE+)",
+    "titolo": "Sistema regionale IeFP 2026/2027 – Percorsi di qualifica (EQF 3 e 4) per l'occupazione giovanile",
+    "scadenza": "30 Giu 2026",
+    "stato": "Aperto",
+    "link": "https://formazionelavoro.regione.emilia-romagna.it/leggi-atti-bandi/bandi-regionali"
+  },
+   {
+    "apertura": "Aperto",
+    "fondo": "Fondir",
+    "titolo": "Avviso Open Voucher 5/2026 - Settori Creditizio-Finanziario, Assicurativo",
+    "scadenza": "17 dic 2026",
+    "stato": "Aperto",
+    "link": "https://www.fondir.it/fondo-trasparente/avvisi/avviso-open-voucher-52026-settori-creditizio-finanziario-assicurativo"
+  },
   {
     "apertura": "Aperto",
     "fondo": "FonARCom",
@@ -15,87 +95,7 @@
     "stato": "Aperto",
     "link": "https://www.fonarcom.it/strumenti/avvisi-tematici/avviso-04-2025-diginnova-agile/"
   },
-  {
-    "apertura": "Aperto",
-    "fondo": "Fondimpresa",
-    "titolo": "Avviso 04/2025 - Intelligenza Artificiale (IA)",
-    "scadenza": "28 mag 2026",
-    "stato": "Aperto",
-    "link": "https://www.fondimpresa.it/i-canali-di-finanziamento/conto-di-sistema/avviso-4-2025-intelligenza-artificiale-i-a"
-  },
-    {
-    "apertura": "Aperto",
-    "fondo": "FonDirigenti",
-    "titolo": "Avviso 01/2026 - Valore manageriale: il ruolo abilitante delle competenze come moltiplicatore di competitività",
-    "scadenza": "23 apr 2026",
-    "stato": "Aperto",
-    "link": "https://www.fondirigenti.it/avviso-1-2026"
-  },
-    {
-    "apertura": "21 apr 2026",
-    "fondo": "Fondimpresa",
-    "titolo": "Avviso 01/2026 - Politiche Attive",
-    "scadenza": "fino esaurimento risorse",
-    "stato": "In apertura",
-    "link": "https://www.fondimpresa.it/i-canali-di-finanziamento/conto-di-sistema/avviso-1-2026-politiche-attive"
-  },
-  {
-    "apertura": "Aperto",
-    "fondo": "Fondir",
-    "titolo": "Avviso Open Voucher 5/2026 - Settori Creditizio-Finanziario, Assicurativo",
-    "scadenza": "17 dic 2026",
-    "stato": "Aperto",
-    "link": "https://www.fondir.it/fondo-trasparente/avvisi/avviso-open-voucher-52026-settori-creditizio-finanziario-assicurativo"
-  },
-  {
-    "apertura": "Aperto",
-    "fondo": "Fondoprofessioni",
-    "titolo": "Avviso 04/26 (One to One ) - II sportello",
-    "scadenza": "23 apr 2026",
-    "stato": "Aperto",
-    "link": "https://www.fondoprofessioni.it/avvisi/one-to-one-e-per-piccoli-gruppi-2026/"
-  },
-  {
-    "apertura": "Aperto",
-    "fondo": "Fondoprofessioni",
-    "titolo": "Avviso 04/26 (One to One ) - III sportello",
-    "scadenza": "04 giu 2026",
-    "stato": "Aperto",
-    "link": "https://www.fondoprofessioni.it/avvisi/one-to-one-e-per-piccoli-gruppi-2026/"
-  },
-  {
-    "apertura": "07 set 2026",
-    "fondo": "Fondoprofessioni",
-    "titolo": "Avviso 01/26 (Monoaziendali ) - II sportello",
-    "scadenza": "24 sett 2026",
-    "stato": "In apertura",
-    "link": "https://www.fondoprofessioni.it/avvisi/piani-formativi-monoaziendali-2026/"
-  },
-  {
-    "apertura": "12 ott 2026",
-    "fondo": "Fondoprofessioni",
-    "titolo": "Avviso 04/26 (One to One ) - IV sportello",
-    "scadenza": "29 ott 2026",
-    "stato": "In apertura",
-    "link": "https://www.fondoprofessioni.it/avvisi/one-to-one-e-per-piccoli-gruppi-2026/"
-  },
-  {
-    "apertura": "Aperto",
-    "fondo": "Regione Emilia-Romagna (FSE+)",
-    "titolo": "Sistema regionale IeFP 2026/2027 – Percorsi di qualifica (EQF 3 e 4) per l'occupazione giovanile",
-    "scadenza": "30 Giu 2026",
-    "stato": "Aperto",
-    "link": "https://formazionelavoro.regione.emilia-romagna.it/leggi-atti-bandi/bandi-regionali"
-  },
-  {
-    "apertura": "Aperto",
-    "fondo": "Regione Emilia-Romagna (FESR)",
-    "titolo": "Fondo Starter – Supporto alla nascita di nuove imprese (anche femminili)",
-    "scadenza": "29 mag 2026",
-    "stato": "Aperto",
-    "link": "https://www.regione.emilia-romagna.it/notizie/2026/aprile/finanza-agevolata"
-  },
-   {
+        {
     "apertura": "Aperto",
     "fondo": "Regione Veneto (FESR)",
     "titolo": "Bando Aggregazioni di Imprese – Progetti di Ricerca e Sviluppo",
@@ -128,27 +128,27 @@
     "link": "https://www.regione.toscana.it/-/avviso-pubblico-per-il-finanziamento-di-progetti-di-formazione-continua-rivolta-a-lavoratrici-e-lavoratori-per-attivit%C3%A0-di-innovazione-tecnologica-transizione-digitale-ed-ecologica-a-valere-sul-pr-fse-toscana-2021-2027"
   },
   {
-    "apertura": "Aperto",
-    "fondo": "Regione Toscana (FESR)",
-    "titolo": "Bando Filiera Smart – Sostegno a progetti integrati di investimento",
-    "scadenza": "30 apr 2026",
-    "stato": "Aperto",
-    "link": "https://www.sviluppo.toscana.it/filiera_smart"
+    "apertura": "21 apr 2026",
+    "fondo": "Fondimpresa",
+    "titolo": "Avviso 01/2026 - Politiche Attive",
+    "scadenza": "fino esaurimento risorse",
+    "stato": "In apertura",
+    "link": "https://www.fondimpresa.it/i-canali-di-finanziamento/conto-di-sistema/avviso-1-2026-politiche-attive"
   },
   {
-    "apertura": "Aperto",
-    "fondo": "Regione Toscana (FESR)",
-    "titolo": "Bando Innovazione Moda – Trasformazione tecnologica e sostenibilità PMI",
-    "scadenza": "30 apr 2026",
-    "stato": "Aperto",
-    "link": "https://www.sviluppo.toscana.it/innovazione_moda"
+    "apertura": "07 set 2026",
+    "fondo": "Fondoprofessioni",
+    "titolo": "Avviso 01/26 (Monoaziendali ) - II sportello",
+    "scadenza": "24 sett 2026",
+    "stato": "In apertura",
+    "link": "https://www.fondoprofessioni.it/avvisi/piani-formativi-monoaziendali-2026/"
   },
   {
-    "apertura": "Aperto",
-    "fondo": "Regione Toscana (FESR)",
-    "titolo": "Bando Vetrina Toscana HACCP – Digitalizzazione sistemi di certificazione",
-    "scadenza": "30 apr 2026",
-    "stato": "Aperto",
-    "link": "https://www.sviluppo.toscana.it/vetrinaehaccp"
+    "apertura": "12 ott 2026",
+    "fondo": "Fondoprofessioni",
+    "titolo": "Avviso 04/26 (One to One ) - IV sportello",
+    "scadenza": "29 ott 2026",
+    "stato": "In apertura",
+    "link": "https://www.fondoprofessioni.it/avvisi/one-to-one-e-per-piccoli-gruppi-2026/"
   }
 ]
