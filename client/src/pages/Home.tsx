@@ -394,6 +394,9 @@ export default function Home() {
               </div>
               <div className="sk-ww-linkedin-profile-post" data-embed-id="25724126"></div>
             </div>
+          </div>
+        </div>
+      </section>
 
       {/* Servizi Section */}
       <section id="servizi" className="py-16 md:py-24 bg-background">
