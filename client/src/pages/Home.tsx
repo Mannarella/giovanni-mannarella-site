@@ -192,17 +192,15 @@ export default function Home() {
     },
   ];
 
-  // Gestione LinkedIn posts
-  const [linkedinPosts, setLinkedinPosts] = useState<{ testo: string; data: string; url: string }[]>([]);
+  // Gestione LinkedIn posts (Sociablekit)
   useEffect(() => {
-    fetch("/linkedin-posts.json")
-      .then((res) => res.json())
-      .then((data) =>
-        setLinkedinPosts(
-          [...data].sort((a: any, b: any) => b.data.localeCompare(a.data)).slice(0, 3)
-        )
-      )
-      .catch(() => setLinkedinPosts([]));
+    const script = document.createElement("script");
+    script.src = "https://widgets.sociablekit.com/linkedin-profile-posts/widget.js";
+    script.defer = true;
+    document.body.appendChild(script);
+    return () => {
+      script.remove();
+    };
   }, []);
 
   // Gestione News
@@ -389,34 +387,13 @@ export default function Home() {
             </div>
 
             {/* LinkedIn posts */}
-            {linkedinPosts.length > 0 && (
-              <div>
-                <div className="flex items-center gap-2 mb-4">
-                  <Linkedin className="w-5 h-5 text-[#0A66C2]" />
-                  <span className="font-semibold text-foreground text-sm">Ultimi post su LinkedIn</span>
-                </div>
-                <div className="space-y-3">
-                  {linkedinPosts.map((post, idx) => (
-                    <a
-                      key={idx}
-                      href={post.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block p-4 rounded-lg border border-border bg-background hover:border-[#0A66C2]/40 hover:shadow-sm transition-all"
-                    >
-                      <p className="text-xs text-foreground/40 mb-2">{post.data}</p>
-                      <p className="text-sm text-foreground/80 leading-relaxed line-clamp-3">{post.testo}</p>
-                      <span className="inline-flex items-center gap-1 mt-2 text-xs text-[#0A66C2] font-semibold">
-                        Leggi su LinkedIn <ArrowRight className="w-3 h-3" />
-                      </span>
-                    </a>
-                  ))}
-                </div>
+            <div>
+              <div className="flex items-center gap-2 mb-4">
+                <Linkedin className="w-5 h-5 text-[#0A66C2]" />
+                <span className="font-semibold text-foreground text-sm">Ultimi post su LinkedIn</span>
               </div>
-            )}
-          </div>
-        </div>
-      </section>
+              <div className="sk-ww-linkedin-profile-post" data-embed-id="25724126"></div>
+            </div>
 
       {/* Servizi Section */}
       <section id="servizi" className="py-16 md:py-24 bg-background">
