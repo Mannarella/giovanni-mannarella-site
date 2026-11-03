@@ -1,9 +1,7 @@
-import { useAuth } from "@/_core/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Mail, Linkedin, ArrowRight, BookOpen, Briefcase, Users, Zap, MessageCircle, X } from "lucide-react";
 import { useState, useEffect } from "react";
-import { trpc } from "@/lib/trpc";
 import ShareButton from "@/components/ShareButton";
 import NewsModal, { NewsItem } from "@/components/NewsModal";
 
@@ -98,7 +96,6 @@ function filterBandi(data: any[], limit: number): any[] {
 // ---------------------------------------------------------------------------
 
 export default function Home() {
-  let { user, loading, error, isAuthenticated, logout } = useAuth();
 
   const [email, setEmail] = useState("");
   const [nome, setNome] = useState("");
@@ -240,21 +237,16 @@ export default function Home() {
   }, []);
 
   // Gestione News
-  const { data: newsData, isLoading: newsLoading, isError: newsError } = trpc.news.latest.useQuery(undefined, {
-    retry: false,
-  });
   const [staticNews, setStaticNews] = useState<any[] | null>(null);
   const [bandi, setBandi] = useState<any[] | null>(null);
   const [bandiLoading, setBandiLoading] = useState(true);
 
   useEffect(() => {
-    if (!newsLoading && (newsError || !newsData || newsData.length === 0)) {
-      fetch("/news.json")
-        .then((res) => res.json())
-        .then((data) => setStaticNews(data))
-        .catch(() => setStaticNews([]));
-    }
-  }, [newsData, newsLoading, newsError]);
+    fetch("/news.json")
+      .then((res) => res.json())
+      .then((data) => setStaticNews(data))
+      .catch(() => setStaticNews([]));
+  }, []);
 
   useEffect(() => {
     fetch("/bandi.json")
@@ -270,7 +262,7 @@ export default function Home() {
       });
   }, []);
 
-  const rawNews = newsData && newsData.length > 0 ? newsData : staticNews;
+  const rawNews = staticNews;
   const displayNews = rawNews
     ? [...rawNews].sort((a: any, b: any) => {
         if (!a.date && !b.date) return 0;
@@ -541,7 +533,7 @@ export default function Home() {
           <h2 className="text-4xl font-bold mb-3 text-foreground">Ultime News</h2>
           <p className="text-lg text-foreground/70 mb-10 max-w-2xl">Rimani aggiornato sugli ultimi sviluppi nel panorama della formazione e dello sviluppo aziendale.</p>
           <div className="space-y-4">
-            {newsLoading && !staticNews ? (
+            {!staticNews ? (
               <p className="text-foreground/70">Caricamento news...</p>
             ) : displayNews && displayNews.length > 0 ? (
               displayNews.map((news: any, idx: number) => (
