@@ -1,77 +1,45 @@
 [
-     {
-    "apertura": "Aperto",
-    "fondo": "FonDirigenti",
-    "titolo": "Avviso 01/2026 - Valore manageriale: il ruolo abilitante delle competenze come moltiplicatore di competitività",
-    "scadenza": "23 apr 2026",
-    "stato": "Aperto",
-    "link": "https://www.fondirigenti.it/avviso-1-2026"
-  },
-    {
-    "apertura": "Aperto",
-    "fondo": "Fondoprofessioni",
-    "titolo": "Avviso 04/26 (One to One ) - II sportello",
-    "scadenza": "23 apr 2026",
-    "stato": "Aperto",
-    "link": "https://www.fondoprofessioni.it/avvisi/one-to-one-e-per-piccoli-gruppi-2026/"
-  },
-    {
-    "apertura": "Aperto",
-    "fondo": "Regione Toscana (FESR)",
-    "titolo": "Bando Filiera Smart – Sostegno a progetti integrati di investimento",
-    "scadenza": "30 apr 2026",
-    "stato": "Aperto",
-    "link": "https://www.sviluppo.toscana.it/filiera_smart"
-  },
   {
-    "apertura": "Aperto",
-    "fondo": "Regione Toscana (FESR)",
-    "titolo": "Bando Innovazione Moda – Trasformazione tecnologica e sostenibilità PMI",
-    "scadenza": "30 apr 2026",
-    "stato": "Aperto",
-    "link": "https://www.sviluppo.toscana.it/innovazione_moda"
-  },
-  {
-    "apertura": "Aperto",
-    "fondo": "Regione Toscana (FESR)",
-    "titolo": "Bando Vetrina Toscana HACCP – Digitalizzazione sistemi di certificazione",
-    "scadenza": "30 apr 2026",
-    "stato": "Aperto",
-    "link": "https://www.sviluppo.toscana.it/vetrinaehaccp"
-  },
-    {
     "apertura": "Aperto",
     "fondo": "Fondimpresa",
-    "titolo": "Avviso 04/2025 - Intelligenza Artificiale (IA)",
-    "scadenza": "28 mag 2026",
+    "titolo": "Avviso 1/2025 - Competenze di base e trasversali (IV Finestra)",
+    "scadenza": "10 nov 2026",
     "stato": "Aperto",
-    "link": "https://www.fondimpresa.it/i-canali-di-finanziamento/conto-di-sistema/avviso-4-2025-intelligenza-artificiale-i-a"
+    "link": "https://www.fondimpresa.it/i-canali-di-finanziamento/conto-di-sistema/avviso-1-2025-competenze-di-base-e-trasversali"
   },
   {
     "apertura": "Aperto",
-    "fondo": "Regione Emilia-Romagna (FESR)",
-    "titolo": "Fondo Starter – Supporto alla nascita di nuove imprese (anche femminili)",
-    "scadenza": "29 mag 2026",
+    "fondo": "Fon.Ter",
+    "titolo": "Avviso n. 6/2026 - Salute e Sicurezza (I sessione)",
+    "scadenza": "11 nov 2026",
     "stato": "Aperto",
-    "link": "https://www.regione.emilia-romagna.it/notizie/2026/aprile/finanza-agevolata"
+    "link": "https://www.fonter.it/2026/10/avviso-n-6-2026-salute-e-sicurezza-apertura-piattaforma-ia-sessione/"
   },
-   {
+  {
     "apertura": "Aperto",
     "fondo": "Fondoprofessioni",
-    "titolo": "Avviso 04/26 (One to One ) - III sportello",
-    "scadenza": "04 giu 2026",
+    "titolo": "Avviso 04/26 (One to One) - IV sportello",
+    "scadenza": "13 nov 2026",
     "stato": "Aperto",
     "link": "https://www.fondoprofessioni.it/avvisi/one-to-one-e-per-piccoli-gruppi-2026/"
   },
-   {
+  {
     "apertura": "Aperto",
-    "fondo": "Regione Emilia-Romagna (FSE+)",
-    "titolo": "Sistema regionale IeFP 2026/2027 – Percorsi di qualifica (EQF 3 e 4) per l'occupazione giovanile",
-    "scadenza": "30 Giu 2026",
+    "fondo": "Fon.Ter",
+    "titolo": "Avviso n. 2/2026 - Kit Generalista (II sessione)",
+    "scadenza": "19 nov 2026",
     "stato": "Aperto",
-    "link": "https://formazionelavoro.regione.emilia-romagna.it/leggi-atti-bandi/bandi-regionali"
+    "link": "https://www.fonter.it/2026/10/avviso-n-2-2026-kit-generalista-apertura-piattaforma-iia-sessione/"
   },
-   {
+  {
+    "apertura": "Aperto",
+    "fondo": "Fondoprofessioni",
+    "titolo": "Avviso 05/26 (Titolari di Rete) - II sportello",
+    "scadenza": "20 nov 2026",
+    "stato": "Aperto",
+    "link": "https://www.fondoprofessioni.it/avvisi/piani-formativi-pluriaziendali-promossi-dai-titolari-di-rete-2026/"
+  },
+  {
     "apertura": "Aperto",
     "fondo": "Fondir",
     "titolo": "Avviso Open Voucher 5/2026 - Settori Creditizio-Finanziario, Assicurativo",
@@ -81,74 +49,106 @@
   },
   {
     "apertura": "Aperto",
-    "fondo": "FonARCom",
-    "titolo": "Avviso 05/2025 – Forma e Ricolloca",
-    "scadenza": "fino esaurimento risorse",
+    "fondo": "Fondir",
+    "titolo": "Avviso 3/2026 - Richieste Iniziative in Bacheca (Creditizio-Finanziario, Assicurativo)",
+    "scadenza": "17 dic 2026",
     "stato": "Aperto",
-    "link": "https://www.fonarcom.it/strumenti/avvisi-tematici/avviso-05-2025-forma-e-ricolloca/"
+    "link": "https://www.fondir.it/index.php/fondo-trasparente/avvisi/avviso-32026-e-avviso-42026-richieste-iniziative-bacheca"
   },
-   {
+  {
+    "apertura": "Aperto",
+    "fondo": "Regione Toscana (FESR)",
+    "titolo": "Contributi per l'internazionalizzazione delle imprese: il bando 2026",
+    "scadenza": "18 dic 2026",
+    "stato": "Aperto",
+    "link": "https://www.regione.toscana.it/-/contributi-per-l-internazionalizzazione-delle-imprese-il-bando-2026"
+  },
+  {
+    "apertura": "Aperto",
+    "fondo": "Fondimpresa",
+    "titolo": "Avviso 4/2024 - Formazione in Paesi Terzi",
+    "scadenza": "31 dic 2026",
+    "stato": "Aperto",
+    "link": "https://www.fondimpresa.it/i-canali-di-finanziamento/conto-di-sistema/avviso-4-2024-formazione-in-paesi-terzi"
+  },
+  {
     "apertura": "Aperto",
     "fondo": "FonARCom",
-    "titolo": "Avviso 04/2025 - Diginnova Agile",
-    "scadenza": "fino esaurimento risorse",
+    "titolo": "Avviso 02/2026 - Generalista UCS (II Finestra)",
+    "scadenza": "15 gen 2027",
     "stato": "Aperto",
-    "link": "https://www.fonarcom.it/strumenti/avvisi-tematici/avviso-04-2025-diginnova-agile/"
+    "link": "https://www.fonarcom.it/strumenti/avviso-generale/avviso-02-2026-generalista-ucs/"
   },
-        {
+  {
     "apertura": "Aperto",
-    "fondo": "Regione Veneto (FESR)",
-    "titolo": "Bando Aggregazioni di Imprese – Progetti di Ricerca e Sviluppo",
+    "fondo": "FonARCom",
+    "titolo": "Avviso 03/2026 - Neoassunti",
+    "scadenza": "28 mag 2027",
+    "stato": "Aperto",
+    "link": "https://www.fonarcom.it/strumenti/avvisi-voucher/avviso-03-2026-neoassunti/"
+  },
+  {
+    "apertura": "Aperto",
+    "fondo": "FonARCom",
+    "titolo": "Avviso 04/2026 - Voucher Azienda",
+    "scadenza": "28 mag 2027",
+    "stato": "Aperto",
+    "link": "https://www.fonarcom.it/strumenti/avvisi-voucher/avviso-04-2026-voucher-azienda/"
+  },
+  {
+    "apertura": "Aperto",
+    "fondo": "FonARCom",
+    "titolo": "Avviso 05/2026 - Studi Professionali",
+    "scadenza": "28 mag 2027",
+    "stato": "Aperto",
+    "link": "https://www.fonarcom.it/strumenti/avvisi-voucher/avviso-per-studi-professionali/avviso-05-2026-studi-professionali/"
+  },
+  {
+    "apertura": "Aperto",
+    "fondo": "FonARCom",
+    "titolo": "Avviso 06/2026 - Voucher Dirigenti",
+    "scadenza": "28 mag 2027",
+    "stato": "Aperto",
+    "link": "https://www.fonarcom.it/strumenti/avviso-per-dirigenti/avviso-06-2026-voucher-dirigenti/"
+  },
+  {
+    "apertura": "Aperto",
+    "fondo": "Regione Toscana (FSE+)",
+    "titolo": "Sicurezza e salute nei luoghi di lavoro, il bando 2026 per il finanziamento della formazione aggiuntiva",
+    "scadenza": "30 giu 2027",
+    "stato": "Aperto",
+    "link": "https://www.regione.toscana.it/-/sicurezza-e-salute-nei-luoghi-di-lavoro-il-bando-2026-per-il-finanziamento-della-formazione-aggiuntiva"
+  },
+  {
+    "apertura": "Aperto",
+    "fondo": "Regione Toscana (FSE+)",
+    "titolo": "Conciliazione vita-lavoro, contributi per piani di welfare aziendale: il bando 2026-2027",
+    "scadenza": "30 ott 2027",
+    "stato": "Aperto",
+    "link": "https://www.regione.toscana.it/-/conciliazione-vita-lavoro-contributi-per-piani-di-welfare-aziendale-il-bando-2026-2027"
+  },
+  {
+    "apertura": "Aperto",
+    "fondo": "Fondoprofessioni",
+    "titolo": "Avviso 02/26 - Training voucher Fondoprofessioni",
     "scadenza": "fino esaurimento risorse",
     "stato": "Aperto",
-    "link": "https://bandi.regione.veneto.it/Public/Elenco"
+    "link": "https://www.fondoprofessioni.it/avvisi/training-voucher-fondoprofessioni-2026/"
   },
   {
     "apertura": "Aperto",
     "fondo": "Regione Calabria (FSE+)",
-    "titolo": "Autoimpiego per contrastare il lavoro sommerso – Sostegno nuove imprese giovani e disoccupati",
-    "scadenza": "fino esaurimento risorse",
-    "stato": "Aperto",
-    "link": "https://calabriaeuropa.regione.calabria.it/bando/autoimpiego-per-contrastare-il-lavoro-sommerso/"
-  },
-  {
-    "apertura": "Aperto",
-    "fondo": "Regione Calabria (FESR)",
-    "titolo": "Bando IN.TUR. – Incentivi all'occupazione nella filiera turistica",
+    "titolo": "IN.TUR – Incentivi all'occupazione alle imprese che operano nella filiera turistica",
     "scadenza": "fino esaurimento risorse",
     "stato": "Aperto",
     "link": "https://calabriaeuropa.regione.calabria.it/bando/in-tur-incentivi-alloccupazione-alle-imprese-che-operano-nella-filiera-turistica/"
   },
   {
-    "apertura": "Aperto",
-    "fondo": "Regione Toscana (FSE+)",
-    "titolo": "Formazione Continua Innovazione e Transizione – Progetti formativi aziendali",
-    "scadenza": "fino esaurimento risorse",
-    "stato": "Aperto",
-    "link": "https://www.regione.toscana.it/-/avviso-pubblico-per-il-finanziamento-di-progetti-di-formazione-continua-rivolta-a-lavoratrici-e-lavoratori-per-attivit%C3%A0-di-innovazione-tecnologica-transizione-digitale-ed-ecologica-a-valere-sul-pr-fse-toscana-2021-2027"
-  },
-  {
-    "apertura": "21 apr 2026",
-    "fondo": "Fondimpresa",
-    "titolo": "Avviso 01/2026 - Politiche Attive",
-    "scadenza": "fino esaurimento risorse",
+    "apertura": "15 dic 2026",
+    "fondo": "FonARCom",
+    "titolo": "Avviso 07/2026 - Diginnova Agile",
+    "scadenza": "24 mar 2027",
     "stato": "In apertura",
-    "link": "https://www.fondimpresa.it/i-canali-di-finanziamento/conto-di-sistema/avviso-1-2026-politiche-attive"
-  },
-  {
-    "apertura": "07 set 2026",
-    "fondo": "Fondoprofessioni",
-    "titolo": "Avviso 01/26 (Monoaziendali ) - II sportello",
-    "scadenza": "24 sett 2026",
-    "stato": "In apertura",
-    "link": "https://www.fondoprofessioni.it/avvisi/piani-formativi-monoaziendali-2026/"
-  },
-  {
-    "apertura": "12 ott 2026",
-    "fondo": "Fondoprofessioni",
-    "titolo": "Avviso 04/26 (One to One ) - IV sportello",
-    "scadenza": "29 ott 2026",
-    "stato": "In apertura",
-    "link": "https://www.fondoprofessioni.it/avvisi/one-to-one-e-per-piccoli-gruppi-2026/"
+    "link": "https://www.fonarcom.it/strumenti/avvisi-tematici/avviso-07-2026-diginnova-agile/"
   }
 ]
