@@ -1,19 +1,43 @@
 [
   {
     "apertura": "Aperto",
+    "fondo": "Fon.Ter",
+    "titolo": "Avviso n. 6/2026 - Salute e Sicurezza (I sessione)",
+    "scadenza": "04 nov 2026",
+    "stato": "Aperto",
+    "link": "https://www.fonter.it/2026/10/avviso-n-6-2026-salute-e-sicurezza-apertura-piattaforma-ia-sessione/"
+  },
+  {
+    "apertura": "Aperto",
+    "fondo": "Regione Veneto (FSE+)",
+    "titolo": "Formazione per la decarbonizzazione. Trasformare la sostenibilità energetica in un vantaggio competitivo (DGR 1096/2026)",
+    "scadenza": "05 nov 2026",
+    "stato": "Aperto",
+    "link": "https://bandi.regione.veneto.it/Public/Dettaglio?idAtto=13356"
+  },
+  {
+    "apertura": "Aperto",
+    "fondo": "Regione Emilia-Romagna (FESR)",
+    "titolo": "Progetti di trasferimento tecnologico (Azione 1.1.1)",
+    "scadenza": "06 nov 2026",
+    "stato": "Aperto",
+    "link": "https://fesr.regione.emilia-romagna.it/opportunita/opportunita-di-finanziamento/2026/progetti-di-trasferimento-tecnologico"
+  },
+  {
+    "apertura": "Aperto",
+    "fondo": "Fon.Ter",
+    "titolo": "Avviso n. 3/2025 - Automotive (sessione di ottobre)",
+    "scadenza": "09 nov 2026",
+    "stato": "Aperto",
+    "link": "https://www.fonter.it/2026/10/avviso-n-3-2025-automotive-apertura-piattaforma-sessione-ottobre/"
+  },
+  {
+    "apertura": "Aperto",
     "fondo": "Fondimpresa",
     "titolo": "Avviso 1/2025 - Competenze di base e trasversali (IV Finestra)",
     "scadenza": "10 nov 2026",
     "stato": "Aperto",
     "link": "https://www.fondimpresa.it/i-canali-di-finanziamento/conto-di-sistema/avviso-1-2025-competenze-di-base-e-trasversali"
-  },
-  {
-    "apertura": "Aperto",
-    "fondo": "Fon.Ter",
-    "titolo": "Avviso n. 6/2026 - Salute e Sicurezza (I sessione)",
-    "scadenza": "11 nov 2026",
-    "stato": "Aperto",
-    "link": "https://www.fonter.it/2026/10/avviso-n-6-2026-salute-e-sicurezza-apertura-piattaforma-ia-sessione/"
   },
   {
     "apertura": "Aperto",
@@ -25,11 +49,19 @@
   },
   {
     "apertura": "Aperto",
-    "fondo": "Fon.Ter",
-    "titolo": "Avviso n. 2/2026 - Kit Generalista (II sessione)",
-    "scadenza": "19 nov 2026",
+    "fondo": "Fondir",
+    "titolo": "Avviso Straordinario 6/2026 - Supporto al processo di innovazione per la transizione digitale, sostenibile ed inclusiva",
+    "scadenza": "16 nov 2026",
     "stato": "Aperto",
-    "link": "https://www.fonter.it/2026/10/avviso-n-2-2026-kit-generalista-apertura-piattaforma-iia-sessione/"
+    "link": "https://www.fondir.it/fondo-trasparente/avvisi/avviso-straordinario-62026-supporto-al-processo-di-innovazione-la"
+  },
+  {
+    "apertura": "Aperto",
+    "fondo": "Regione Emilia-Romagna (FESR)",
+    "titolo": "Supporto all'utilizzo di fonti rinnovabili nelle imprese (Azione 2.2.2)",
+    "scadenza": "16 nov 2026",
+    "stato": "Aperto",
+    "link": "https://fesr.regione.emilia-romagna.it/opportunita/opportunita-di-finanziamento/2026/supporto-allutilizzo-di-fonti-rinnovabili-nelle-imprese"
   },
   {
     "apertura": "Aperto",
@@ -41,27 +73,35 @@
   },
   {
     "apertura": "Aperto",
-    "fondo": "Fondir",
-    "titolo": "Avviso Open Voucher 5/2026 - Settori Creditizio-Finanziario, Assicurativo",
-    "scadenza": "17 dic 2026",
+    "fondo": "Regione Toscana (FSE+)",
+    "titolo": "Finanziamenti per la promozione e la diffusione dell'apprendistato duale: il bando 2026",
+    "scadenza": "30 nov 2026",
     "stato": "Aperto",
-    "link": "https://www.fondir.it/fondo-trasparente/avvisi/avviso-open-voucher-52026-settori-creditizio-finanziario-assicurativo"
+    "link": "https://www.regione.toscana.it/-/finanziamenti-per-la-promozione-e-la-diffusione-dell-apprendistato-duale-il-bando-2026"
   },
   {
     "apertura": "Aperto",
-    "fondo": "Fondir",
-    "titolo": "Avviso 3/2026 - Richieste Iniziative in Bacheca (Creditizio-Finanziario, Assicurativo)",
-    "scadenza": "17 dic 2026",
+    "fondo": "Regione Emilia-Romagna (FESR)",
+    "titolo": "Fondo Energia (Fondo Multiscopo - Priorità 2)",
+    "scadenza": "30 nov 2026",
     "stato": "Aperto",
-    "link": "https://www.fondir.it/index.php/fondo-trasparente/avvisi/avviso-32026-e-avviso-42026-richieste-iniziative-bacheca"
+    "link": "https://fesr.regione.emilia-romagna.it/opportunita/opportunita-di-finanziamento/2023/fondo-energia"
   },
   {
     "apertura": "Aperto",
-    "fondo": "Regione Toscana (FESR)",
-    "titolo": "Contributi per l'internazionalizzazione delle imprese: il bando 2026",
-    "scadenza": "18 dic 2026",
+    "fondo": "Regione Emilia-Romagna (FESR)",
+    "titolo": "Fondo Starter (Fondo Multiscopo - Priorità 1)",
+    "scadenza": "30 nov 2026",
     "stato": "Aperto",
-    "link": "https://www.regione.toscana.it/-/contributi-per-l-internazionalizzazione-delle-imprese-il-bando-2026"
+    "link": "https://fesr.regione.emilia-romagna.it/opportunita/opportunita-di-finanziamento/2023/fondo-starter"
+  },
+  {
+    "apertura": "Aperto",
+    "fondo": "Regione Calabria (FESR)",
+    "titolo": "FEERI - Fondo Efficienza Energetica e Rinnovabili per le Imprese",
+    "scadenza": "30 dic 2026",
+    "stato": "Aperto",
+    "link": "https://calabriaeuropa.regione.calabria.it/bando/feeri-fondo-efficienza-energetica-e-rinnovabili-per-le-imprese/"
   },
   {
     "apertura": "Aperto",
@@ -73,11 +113,59 @@
   },
   {
     "apertura": "Aperto",
+    "fondo": "Regione Veneto (FESR)",
+    "titolo": "Sostegno alla competitività del sistema commerciale e valorizzazione dei distretti del commercio (Azione 1.3.7)",
+    "scadenza": "12 gen 2027",
+    "stato": "Aperto",
+    "link": "https://bandi.regione.veneto.it/Public/Dettaglio?idAtto=13135"
+  },
+  {
+    "apertura": "Aperto",
     "fondo": "FonARCom",
     "titolo": "Avviso 02/2026 - Generalista UCS (II Finestra)",
     "scadenza": "15 gen 2027",
     "stato": "Aperto",
     "link": "https://www.fonarcom.it/strumenti/avviso-generale/avviso-02-2026-generalista-ucs/"
+  },
+  {
+    "apertura": "Aperto",
+    "fondo": "Regione Veneto (FESR)",
+    "titolo": "Interventi a sostegno delle imprese culturali, creative e dell'audiovisivo - Sub A - Consolidamento di imprese esistenti (seconda edizione)",
+    "scadenza": "19 gen 2027",
+    "stato": "Aperto",
+    "link": "https://venetocoesione.regione.veneto.it/w/interventi-a-sostegno-delle-imprese-culturali-creative-e-dell-audiovisivo-sub-a-consolidamento-di-imprese-esistenti-seconda-edizione"
+  },
+  {
+    "apertura": "Aperto",
+    "fondo": "Fondir",
+    "titolo": "Avviso 1/2026 - Comparto Creditizio-Finanziario, Assicurativo",
+    "scadenza": "20 gen 2027",
+    "stato": "Aperto",
+    "link": "https://www.fondir.it/fondo-trasparente/avvisi/avviso-12026-comparto-creditizio-finanziario-assicurativo"
+  },
+  {
+    "apertura": "Aperto",
+    "fondo": "Fondir",
+    "titolo": "Avviso 3/2026 - Richieste Iniziative in Bacheca (Creditizio-Finanziario, Assicurativo)",
+    "scadenza": "20 gen 2027",
+    "stato": "Aperto",
+    "link": "https://www.fondir.it/index.php/fondo-trasparente/avvisi/avviso-32026-e-avviso-42026-richieste-iniziative-bacheca"
+  },
+  {
+    "apertura": "Aperto",
+    "fondo": "Fondir",
+    "titolo": "Avviso Open Voucher 5/2026 - Settori Creditizio-Finanziario, Assicurativo",
+    "scadenza": "20 gen 2027",
+    "stato": "Aperto",
+    "link": "https://www.fondir.it/fondo-trasparente/avvisi/avviso-open-voucher-52026-settori-creditizio-finanziario-assicurativo"
+  },
+  {
+    "apertura": "Aperto",
+    "fondo": "For.Te.",
+    "titolo": "Avviso 2/25 - Politiche Attive",
+    "scadenza": "26 feb 2027",
+    "stato": "Aperto",
+    "link": "https://www.fondoforte.it/avviso-2-25/"
   },
   {
     "apertura": "Aperto",
@@ -121,11 +209,11 @@
   },
   {
     "apertura": "Aperto",
-    "fondo": "Regione Toscana (FSE+)",
-    "titolo": "Conciliazione vita-lavoro, contributi per piani di welfare aziendale: il bando 2026-2027",
-    "scadenza": "30 ott 2027",
+    "fondo": "For.Te.",
+    "titolo": "Avviso 1/26 - Catalogo Nazionale di Formazione Continua (C.N.F.C.)",
+    "scadenza": "fino esaurimento risorse",
     "stato": "Aperto",
-    "link": "https://www.regione.toscana.it/-/conciliazione-vita-lavoro-contributi-per-piani-di-welfare-aziendale-il-bando-2026-2027"
+    "link": "https://www.fondoforte.it/catalogo-c-n-f-c-invito-1-26-e-avviso-1-26/"
   },
   {
     "apertura": "Aperto",
@@ -142,6 +230,62 @@
     "scadenza": "fino esaurimento risorse",
     "stato": "Aperto",
     "link": "https://calabriaeuropa.regione.calabria.it/bando/in-tur-incentivi-alloccupazione-alle-imprese-che-operano-nella-filiera-turistica/"
+  },
+  {
+    "apertura": "Aperto",
+    "fondo": "Regione Calabria (FESR)",
+    "titolo": "Avviso Pubblico per il Sostegno all'Accoglienza Turistica di Qualità in Calabria (Linea 2 - strutture extralberghiere)",
+    "scadenza": "fino esaurimento risorse",
+    "stato": "Aperto",
+    "link": "https://calabriaeuropa.regione.calabria.it/bando/avviso-pubblico-per-il-sostegno-allaccoglienza-turistica-di-qualita-in-calabria/"
+  },
+  {
+    "apertura": "Aperto",
+    "fondo": "Regione Toscana (FESR)",
+    "titolo": "Bando 1.3.2 - Sostegno alle PMI (BEI) - ed. 2026",
+    "scadenza": "fino esaurimento risorse",
+    "stato": "Aperto",
+    "link": "https://www.sviluppo.toscana.it/bando/bando-1-3-2-sostegno-alle-pmi-bei-ed-2026/"
+  },
+  {
+    "apertura": "04 nov 2026",
+    "fondo": "Fon.Ter",
+    "titolo": "Avviso n. 2/2026 - Kit Generalista (II sessione)",
+    "scadenza": "12 nov 2026",
+    "stato": "In apertura",
+    "link": "https://www.fonter.it/2026/10/avviso-n-2-2026-kit-generalista-apertura-piattaforma-iia-sessione/"
+  },
+  {
+    "apertura": "05 nov 2026",
+    "fondo": "Regione Toscana (FSE+)",
+    "titolo": "Conciliazione vita-lavoro, contributi per piani di welfare aziendale: il bando 2026-2027",
+    "scadenza": "30 ott 2027",
+    "stato": "In apertura",
+    "link": "https://www.regione.toscana.it/-/conciliazione-vita-lavoro-contributi-per-piani-di-welfare-aziendale-il-bando-2026-2027"
+  },
+  {
+    "apertura": "18 nov 2026",
+    "fondo": "Regione Toscana (FESR)",
+    "titolo": "Contributi per l'internazionalizzazione delle imprese: il bando 2026",
+    "scadenza": "18 dic 2026",
+    "stato": "In apertura",
+    "link": "https://www.regione.toscana.it/-/contributi-per-l-internazionalizzazione-delle-imprese-il-bando-2026"
+  },
+  {
+    "apertura": "01 dic 2026",
+    "fondo": "Fondimpresa",
+    "titolo": "Avviso 4/2026 - Competenze Avanzate e Sicurezza Obbligatoria (presentazione dei Piani formativi)",
+    "scadenza": "22 dic 2026",
+    "stato": "In apertura",
+    "link": "https://www.fondimpresa.it/i-canali-di-finanziamento/conto-di-sistema/avviso-4-2026-competenze-avanzate-e-sicurezza"
+  },
+  {
+    "apertura": "02 dic 2026",
+    "fondo": "Regione Emilia-Romagna (FESR)",
+    "titolo": "EuReCa 2021-2027 - contributi in conto interessi per gli investimenti delle PMI",
+    "scadenza": "31 mar 2027",
+    "stato": "In apertura",
+    "link": "https://fesr.regione.emilia-romagna.it/novita/notizie/2026/nuove-risorse-attivita-produttive"
   },
   {
     "apertura": "15 dic 2026",
