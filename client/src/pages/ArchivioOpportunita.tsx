@@ -71,6 +71,14 @@ function extractTipologia(bando: any): string {
   const titolo = bando.titolo.toLowerCase();
   const combined = fondo + " " + titolo;
 
+  // Tutti gli strumenti dei fondi interprofessionali (Fondimpresa, Fondirigenti,
+  // FonARCom, Fon.Ter, For.Te., Fondoprofessioni, Fondir, ...) rientrano nella
+  // tipologia "Fondo Interprofessionale", indipendentemente da parole come
+  // "formazione" o "voucher" nel titolo. Si guarda solo il campo "fondo".
+  if (/^(fon|for\.te)/.test(fondo.trim())) {
+    return "Fondo Interprofessionale";
+  }
+
   if (combined.includes("formazione") || combined.includes("fse")) {
     return "Formazione";
   }
