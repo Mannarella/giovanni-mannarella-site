@@ -35,9 +35,27 @@ function parseAperturaDate(apertura: string): Date | null {
 }
 
 /**
- * Filtra i bandi da mostrare nella tabella:
- * - Stato "Aperto"   → sempre incluso
- * - Stato "In apertura" con data apertura entro i prossimi 3 mesi → incluso
+ * Restituisce la data di scadenza ("23 apr 2026" oppure "23/04/2026"),
+ * oppure null se la scadenza non è datata (es. "fino esaurimento risorse").
+ */
+function parseScadenzaDate(scadenza: string): Date | null {
+  if (!scadenza) return null;
+  const clean = scadenza.toLowerCase().trim();
+  const fromText = parseAperturaDate(clean);
+  if (fromText) return fromText;
+  const m = clean.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+  if (m) return new Date(parseInt(m[3], 10), parseInt(m[2], 10) - 1, parseInt(m[1], 10));
+  return null;
+}
+
+/**
+ * Filtra e ordina i bandi da mostrare nella tabella:
+ * - esclude sempre i bandi con scadenza già passata;
+ * - Stato "Aperto" → incluso;
+ * - Stato "In apertura" con data apertura entro i prossimi 3 mesi → incluso;
+ *   se la data di apertura è già arrivata viene mostrato come "Aperto";
+ * - ordine: aperti con scadenza datata (dalla più vicina), aperti senza
+ *   scadenza, poi in apertura (dalla data di apertura più vicina).
  * Restituisce max `limit` elementi.
  */
 function filterBandi(data: any[], limit: number): any[] {
@@ -46,17 +64,35 @@ function filterBandi(data: any[], limit: number): any[] {
   const tre_mesi = new Date(today);
   tre_mesi.setMonth(tre_mesi.getMonth() + 3);
 
-  const filtered = data.filter((b: any) => {
-    if (b.stato === "Aperto") return true;
-    if (b.stato === "In apertura") {
-      const d = parseAperturaDate(b.apertura);
-      // Se non parsabile, escludi; se la data è ≤ oggi+3mesi, includi
-      return d !== null && d <= tre_mesi;
-    }
-    return false;
-  });
+  const prepared: { bando: any; group: number; key: number }[] = [];
 
-  return filtered.slice(0, limit);
+  for (const b of data) {
+    const scadenza = parseScadenzaDate(b.scadenza);
+    if (scadenza && scadenza < today) continue; // scaduto
+
+    if (b.stato === "Aperto") {
+      prepared.push({ bando: b, group: scadenza ? 0 : 1, key: scadenza ? scadenza.getTime() : 0 });
+      continue;
+    }
+
+    if (b.stato === "In apertura") {
+      const apertura = parseAperturaDate(b.apertura);
+      // Se non parsabile o oltre i 3 mesi, escludi
+      if (apertura === null || apertura > tre_mesi) continue;
+      if (apertura <= today) {
+        // Data di apertura raggiunta: mostralo come aperto
+        const aperto = { ...b, stato: "Aperto", apertura: "Aperto" };
+        prepared.push({ bando: aperto, group: scadenza ? 0 : 1, key: scadenza ? scadenza.getTime() : 0 });
+      } else {
+        prepared.push({ bando: b, group: 2, key: apertura.getTime() });
+      }
+    }
+  }
+
+  // Ordinamento stabile: a parità di gruppo e data resta l'ordine del file
+  prepared.sort((a, b) => a.group - b.group || a.key - b.key);
+
+  return prepared.slice(0, limit).map((p) => p.bando);
 }
 
 // ---------------------------------------------------------------------------
