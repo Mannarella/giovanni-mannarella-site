@@ -417,7 +417,7 @@ export default function Home() {
             <div className="space-y-5 text-lg text-foreground/80">
               <p>Sono <b>Giovanni Mannarella</b>, esperto in progettazione formativa, europrogettazione e consulenza aziendale. La mia formazione multidisciplinare combina competenze in economia, diritto, risorse umane e interculturalità.</p>
               <p>Ho conseguito tre lauree quinquennali (in Lingue, Economia e Filologia moderna) ed un master in Sviluppo e Gestione Etica delle Risorse Umane. Dal 2016 sono iscritto negli elenchi della Regione Emilia-Romagna come Esperto dei Processi Valutativi (EPV) e dal 2021 come Responsabile Formalizzazione Competenze (RFC).</p>
-              <p>Dal 2022 sono in possesso dell'attestazione di qualità e qualificazione professionale in qualità di <b>Progettista della Formazione</b> ai sensi della l. 04/2013.</p>
+              <p>Dal 2022 sono in possesso dell'attestazione di qualità e qualificazione professionale in qualità di <b>Progettista della Formazione</b> ai sensi della l. 04/2013 in conformità alla prassi UNI/PdR 116:2021.</p>
               <p>Mi occupo di formazione da 15 anni e collaboro con associazioni, enti formativi ed aziende a carattere nazionale e territoriale.</p>
               <p>La mia missione è supportare organizzazioni e professionisti nel navigare il complesso panorama della formazione finanziata, dell'europrogettazione e dello sviluppo strategico, trasformando opportunità in risultati concreti.</p>
 
