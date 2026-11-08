@@ -549,12 +549,12 @@ export default function Collaborazioni() {
                 {submitError && (
                   <p className="text-center text-red-600 text-sm">
                     Si è verificato un errore. Riprovate o scrivete a{" "}
-                    <a href="mailto:progettazione@mannarella.com" className="underline">progettazione@mannarella.com</a>.
+                    <a href="mailto:info@mannarella.com" className="underline">info@mannarella.com</a>.
                   </p>
                 )}
               </form>
               <div className="flex gap-6 justify-center">
-                <a href="mailto:progettazione@mannarella.com" className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors"><Mail className="w-5 h-5" /><span>progettazione@mannarella.com</span></a>
+                <a href="mailto:info@mannarella.com" className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors"><Mail className="w-5 h-5" /><span>Email</span></a>
                 <a href="https://www.linkedin.com/in/mannarella" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors"><Linkedin className="w-5 h-5" /><span>LinkedIn</span></a>
               </div>
               <div className="text-center mt-12">
