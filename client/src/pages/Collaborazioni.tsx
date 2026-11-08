@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ArrowLeft, ArrowRight, ChevronDown, Linkedin, Mail } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 /**
  * Pagina non indicizzata e fuori dal menu: /collaborazioni
@@ -229,7 +229,7 @@ const estratti: Estratto[] = [
   },
 ];
 
-/** Evidenzia le omissioni […] con il colore primario. */
+/** Evidenzia le omissioni […] con il colore dei ritagli. */
 function Testo({ text }: { text: string }) {
   const parti = text.split("[…]");
   return (
@@ -237,19 +237,19 @@ function Testo({ text }: { text: string }) {
       {parti.map((p, i) => (
         <span key={i}>
           {p}
-          {i < parti.length - 1 && <span className="text-primary font-medium">[…]</span>}
+          {i < parti.length - 1 && <span className="rg-om">[…]</span>}
         </span>
       ))}
     </>
   );
 }
 
-function Paragrafi({ items }: { items: Paragraph[] }) {
+function Paragrafi({ items, capolettera = false }: { items: Paragraph[]; capolettera?: boolean }) {
   return (
     <>
       {items.map((p, i) => (
-        <p key={i} className="text-foreground/80 leading-relaxed">
-          {p.lead && <b className="text-foreground">{p.lead} </b>}
+        <p key={i} className={capolettera && i === 0 && !p.lead && !p.text.startsWith("[") ? "rg-dc" : undefined}>
+          {p.lead && <b className="rg-lead">{p.lead} </b>}
           <Testo text={p.text} />
         </p>
       ))}
@@ -259,21 +259,21 @@ function Paragrafi({ items }: { items: Paragraph[] }) {
 
 function Tabella({ t }: { t: Table }) {
   return (
-    <div className="overflow-x-auto -mx-1 px-1">
-      <table className="w-full min-w-[560px] text-sm border-collapse">
-        {t.caption && <caption className="text-left text-foreground/60 pb-2">{t.caption}</caption>}
+    <div className="rg-table">
+      <table>
+        {t.caption && <caption>{t.caption}</caption>}
         <thead>
-          <tr className="border-y-2 border-foreground/80">
+          <tr>
             {t.head.map((h) => (
-              <th key={h} className="text-left font-semibold text-foreground py-2 pr-4 align-bottom">{h}</th>
+              <th key={h}>{h}</th>
             ))}
           </tr>
         </thead>
         <tbody>
           {t.rows.map((r, i) => (
-            <tr key={i} className="border-b border-border">
+            <tr key={i}>
               {r.map((c, j) => (
-                <td key={j} className={`py-2 pr-4 align-top text-foreground/80 ${j === 0 ? "font-medium text-foreground" : ""}`}>
+                <td key={j} className={j === 0 ? "rg-first" : undefined}>
                   <Testo text={c} />
                 </td>
               ))}
@@ -285,31 +285,120 @@ function Tabella({ t }: { t: Table }) {
   );
 }
 
-function EstrattoCard({ e }: { e: Estratto }) {
+/* ---------- Bordo strappato ----------
+ * Il contorno superiore e inferiore è generato con un rumore a più ottave
+ * (ondulazioni ampie, medie e schegge minute), quindi non periodico e diverso
+ * per ogni ritaglio; un filtro di spostamento frattale lo sfrangia.
+ * Un secondo strato più chiaro e più largo simula le fibre della carta.
+ */
+function rng(seed: number) {
+  let s = seed;
+  return () => {
+    s = (s * 16807) % 2147483647;
+    return (s - 1) / 2147483646;
+  };
+}
+
+function noise1D(r: () => number) {
+  const ottave = [
+    [160, 7],
+    [55, 3.5],
+    [18, 1.8],
+    [6, 0.9],
+  ].map(([len, amp]) => {
+    const pts: number[] = [];
+    for (let i = 0; i < 5000 / len + 3; i++) pts.push(r() * 2 - 1);
+    return { len, amp, pts };
+  });
+  return (x: number) =>
+    ottave.reduce((acc, o) => {
+      const t = x / o.len;
+      const i = Math.floor(t);
+      const f = t - i;
+      const u = f * f * (3 - 2 * f);
+      return acc + o.amp * (o.pts[i] * (1 - u) + o.pts[i + 1] * u);
+    }, 0);
+}
+
+function bordo(w: number, y0: number, dir: number, r: () => number, rientro: number) {
+  const n = noise1D(r);
+  const pts: string[] = [];
+  for (let x = 0; x <= w; x += 2) {
+    let y = y0 + dir * (n(x) - rientro);
+    if (r() < 0.035) y += dir * r() * 3.5;
+    pts.push(`${x},${y.toFixed(1)}`);
+  }
+  return pts;
+}
+
+function mascheraStrappo(w: number, h: number, seed: number, rientro: number, scala: number, freq: number) {
+  const sopra = bordo(w, 12, 1, rng(seed), rientro);
+  const sotto = bordo(w, h - 12, -1, rng(seed * 3 + 1), rientro).reverse();
+  const d = `M${sopra.join(" L")} L${w},${h / 2} L${sotto.join(" L")} L0,${h / 2} Z`;
+  const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='${w}' height='${h}' viewBox='0 0 ${w} ${h}'><filter id='f' x='-5%' y='-5%' width='110%' height='110%'><feTurbulence type='fractalNoise' baseFrequency='${freq}' numOctaves='3' seed='${seed}'/><feDisplacementMap in='SourceGraphic' scale='${scala}' xChannelSelector='R' yChannelSelector='G'/></filter><path d='${d}' fill='white' filter='url(#f)'/></svg>`;
+  return `url("data:image/svg+xml,${encodeURIComponent(svg)}")`;
+}
+
+function Ritaglio({ e, seed, n }: { e: Estratto; seed: number; n: number }) {
   const [aperto, setAperto] = useState(false);
+  const ref = useRef<HTMLElement>(null);
+  const carta = useRef<HTMLDivElement>(null);
+  const fibre = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const strappa = () => {
+      const w = Math.round(el.offsetWidth);
+      const h = Math.round(el.offsetHeight);
+      if (!w || !h) return;
+      const mc = mascheraStrappo(w, h, seed, 5, 2.5, 0.9);
+      const mf = mascheraStrappo(w, h, seed, 0, 9, 0.6);
+      for (const [node, m] of [
+        [carta.current, mc],
+        [fibre.current, mf],
+      ] as const) {
+        if (!node) continue;
+        node.style.maskImage = m;
+        node.style.setProperty("-webkit-mask-image", m);
+      }
+    };
+    strappa();
+    const ro = new ResizeObserver(strappa);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [seed]);
+
   return (
-    <Card className="p-6 md:p-8 bg-card border-border">
-      <div className="text-xs font-semibold tracking-widest uppercase text-primary">{e.parte}</div>
-      <h3 className="text-2xl md:text-3xl font-bold text-foreground mt-2 leading-snug">{e.titolo}</h3>
-      <p className="text-foreground/70 italic mt-3 leading-relaxed">{e.occhiello}</p>
-      <p className="text-sm text-foreground/50 mt-3 pb-3 border-b border-border">{e.fonte}</p>
-      {aperto && (
-        <div className="space-y-4 mt-5">
-          <Paragrafi items={e.paragrafi} />
-          {e.tabella && <Tabella t={e.tabella} />}
-          {e.paragrafiDopo && <Paragrafi items={e.paragrafiDopo} />}
+    <article ref={ref} className="ritaglio">
+      <div ref={fibre} className="rg-fibre" aria-hidden="true" />
+      <div ref={carta} className="rg-carta" aria-hidden="true" />
+      <div className="rg-body">
+        <div className="rg-mast">
+          <b>Cronache di progettazione</b>
+          <span>Estratti di progettazione · {n}</span>
         </div>
-      )}
-      <button
-        type="button"
-        onClick={() => setAperto(!aperto)}
-        aria-expanded={aperto}
-        className="mt-4 inline-flex items-center gap-2 text-primary font-semibold text-sm hover:text-primary/80 transition-colors"
-      >
-        {aperto ? "Chiudi l'estratto" : "Leggi l'estratto"}
-        <ChevronDown className={`w-4 h-4 transition-transform ${aperto ? "rotate-180" : ""}`} />
-      </button>
-    </Card>
+        <div className="rg-kick">{e.parte}</div>
+        <h3 className="rg-title">{e.titolo}</h3>
+        <p className="rg-stand">{e.occhiello}</p>
+        <div className="rg-src">{e.fonte}</div>
+        <div className={aperto ? "rg-text" : "rg-text rg-chiuso"}>
+          <div className="rg-cols">
+            <Paragrafi items={e.paragrafi} capolettera />
+          </div>
+          {aperto && e.tabella && <Tabella t={e.tabella} />}
+          {aperto && e.paragrafiDopo && (
+            <div className="rg-cols">
+              <Paragrafi items={e.paragrafiDopo} />
+            </div>
+          )}
+        </div>
+        <button type="button" onClick={() => setAperto(!aperto)} aria-expanded={aperto} className="rg-more">
+          {aperto ? "Chiudi l'estratto" : "Continua a leggere"}
+          <ChevronDown className={`w-4 h-4 transition-transform ${aperto ? "rotate-180" : ""}`} />
+        </button>
+      </div>
+    </article>
   );
 }
 
@@ -437,9 +526,9 @@ export default function Collaborazioni() {
               <h2 className="text-4xl font-bold mb-3 text-foreground">Cronache di progettazione</h2>
               <p className="text-lg text-foreground/70 mb-2">Estratti da formulari originali approvati, 2025–2026.</p>
               <p className="text-sm text-foreground/50 mb-10">Testo riportato parola per parola. Omissioni segnalate con <span className="text-primary font-medium">[…]</span>, sostituzioni anonimizzanti tra [ ].</p>
-              <div className="space-y-6">
-                {estratti.map((e) => (
-                  <EstrattoCard key={e.titolo} e={e} />
+              <div className="ritagli">
+                {estratti.map((e, i) => (
+                  <Ritaglio key={e.titolo} e={e} n={i + 1} seed={[7, 23, 41, 59][i] ?? i * 17 + 3} />
                 ))}
               </div>
             </div>
