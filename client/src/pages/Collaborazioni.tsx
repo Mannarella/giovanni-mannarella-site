@@ -593,7 +593,7 @@ export default function Collaborazioni() {
           <div className="container mx-auto px-4">
             <div className="max-w-2xl mx-auto">
               <h2 className="text-4xl font-bold mb-3 text-foreground">Conosciamoci</h2>
-              <p className="text-lg text-foreground/70 mb-10">Se cercate un progettista con cui costruire, anche a distanza, una collaborazione stabile sulla formazione finanziata, lasciatemi un recapito. Curriculum e book completo sono disponibili su richiesta.</p>
+              <p className="text-lg text-foreground/70 mb-10">Se cerchi un progettista con cui costruire, anche a distanza, una collaborazione stabile sulla formazione finanziata, lasciami un recapito. Il curriculum è disponibile su richiesta.</p>
               <form onSubmit={handleSubmit} className="space-y-6 mb-10">
                 <div>
                   <label className="block text-sm font-semibold text-foreground mb-2">Nome e cognome *</label>
@@ -634,10 +634,10 @@ export default function Collaborazioni() {
                 >
                   {loading ? "Invio in corso..." : "Fissiamo un incontro"} {!loading && <ArrowRight className="ml-2 w-4 h-4" />}
                 </Button>
-                {submitted && <p className="text-center text-primary font-semibold">Grazie! Vi ricontatterò al più presto.</p>}
+                {submitted && <p className="text-center text-primary font-semibold">Grazie! Ti ricontatterò al più presto.</p>}
                 {submitError && (
                   <p className="text-center text-red-600 text-sm">
-                    Si è verificato un errore. Riprovate o scrivete a{" "}
+                    Si è verificato un errore. Riprova o scrivi a{" "}
                     <a href="mailto:info@mannarella.com" className="underline">info@mannarella.com</a>.
                   </p>
                 )}
