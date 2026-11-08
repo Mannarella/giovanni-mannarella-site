@@ -13,6 +13,7 @@ import FinanzaAgevolata from "./pages/FinanzaAgevolata";
 import ArchivioNews from "./pages/ArchivioNews";
 import ArchivioOpportunita from "./pages/ArchivioOpportunita";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
+import Collaborazioni from "./pages/Collaborazioni";
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -26,6 +27,8 @@ function Router() {
       <Route path={"/archivio-news"} component={ArchivioNews} />
       <Route path={"/opportunita"} component={ArchivioOpportunita} />
       <Route path={"/privacy-policy"} component={PrivacyPolicy} />
+      {/* Pagina non presente nel menu e non indicizzata */}
+      <Route path={"/collaborazioni"} component={Collaborazioni} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />

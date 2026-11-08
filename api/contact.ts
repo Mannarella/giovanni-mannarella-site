@@ -55,6 +55,18 @@ export default async function handler(req, res) {
       </table>
       <p style="font-family:sans-serif;font-size:12px;color:#999;margin-top:20px;">Inviato dal form servizi di mannarella.com</p>
     `;
+  } else if (type === "collaborazione") {
+    subject = `Collaborazione in progettazione: ${azienda || nome}`;
+    html = `
+      <h2 style="color:#333;font-family:sans-serif;">Nuova richiesta dalla pagina Collaborazioni</h2>
+      <table style="font-family:sans-serif;font-size:15px;line-height:1.6;border-collapse:collapse;">
+        <tr><td style="padding:4px 12px 4px 0;font-weight:bold;color:#555;">Nome:</td><td>${nome}</td></tr>
+        <tr><td style="padding:4px 12px 4px 0;font-weight:bold;color:#555;">Ente / Società:</td><td>${azienda || "—"}</td></tr>
+        <tr><td style="padding:4px 12px 4px 0;font-weight:bold;color:#555;">Email:</td><td><a href="mailto:${email}">${email}</a></td></tr>
+        <tr><td style="padding:4px 12px 4px 0;font-weight:bold;color:#555;">Telefono:</td><td>${telefono || "—"}</td></tr>
+      </table>
+      <p style="font-family:sans-serif;font-size:12px;color:#999;margin-top:20px;">Inviato dalla pagina /collaborazioni di mannarella.com</p>
+    `;
   } else {
     subject = `Nuovo contatto da ${nome}`;
     html = `

@@ -241,6 +241,14 @@ export default function Home() {
   const [bandi, setBandi] = useState<any[] | null>(null);
   const [bandiLoading, setBandiLoading] = useState(true);
 
+  // Ritorno da pagine interne con ancora (es. /#chi-sono da /collaborazioni)
+  useEffect(() => {
+    const id = window.location.hash.slice(1);
+    if (!id) return;
+    const t = setTimeout(() => document.getElementById(id)?.scrollIntoView(), 100);
+    return () => clearTimeout(t);
+  }, []);
+
   useEffect(() => {
     fetch("/news.json")
       .then((res) => res.json())
@@ -412,6 +420,33 @@ export default function Home() {
               <p>Dal 2022 sono in possesso dell'attestazione di qualità e qualificazione professionale in qualità di <b>Progettista della Formazione</b> ai sensi della l. 04/2013.</p>
               <p>Mi occupo di formazione da 15 anni e collaboro con associazioni, enti formativi ed aziende a carattere nazionale e territoriale.</p>
               <p>La mia missione è supportare organizzazioni e professionisti nel navigare il complesso panorama della formazione finanziata, dell'europrogettazione e dello sviluppo strategico, trasformando opportunità in risultati concreti.</p>
+
+              {/* Numeri e accesso alla pagina /collaborazioni (fuori dal menu) */}
+              <div className="grid grid-cols-3 gap-4 pt-4 border-t border-border">
+                <div>
+                  <div className="text-3xl md:text-4xl font-bold text-primary" style={{ fontFamily: "'Playfair Display', serif" }}>61</div>
+                  <div className="text-sm text-foreground/60 leading-snug mt-1">progetti finanziati o autorizzati dal 2021</div>
+                </div>
+                <div>
+                  <div className="text-3xl md:text-4xl font-bold text-primary" style={{ fontFamily: "'Playfair Display', serif" }}>2,9 mln €</div>
+                  <div className="text-sm text-foreground/60 leading-snug mt-1">valore complessivo dei progetti</div>
+                </div>
+                <div>
+                  <div className="text-3xl md:text-4xl font-bold text-primary" style={{ fontFamily: "'Playfair Display', serif" }}>10</div>
+                  <div className="text-sm text-foreground/60 leading-snug mt-1">canali di finanziamento</div>
+                </div>
+              </div>
+              <div className="flex flex-wrap items-center gap-x-6 gap-y-3 pt-2">
+                <a href="/collaborazioni">
+                  <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
+                    Come lavoro <ArrowRight className="ml-2 w-4 h-4" />
+                  </Button>
+                </a>
+                <span className="text-sm text-foreground/60">
+                  Curriculum su richiesta ·{" "}
+                  <a href="https://www.linkedin.com/in/mannarella" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">LinkedIn</a>
+                </span>
+              </div>
             </div>
 
             {/* LinkedIn posts */}
