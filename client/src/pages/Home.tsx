@@ -436,16 +436,12 @@ export default function Home() {
                   <div className="text-sm text-foreground/60 leading-snug mt-1">canali di finanziamento</div>
                 </div>
               </div>
-              <div className="flex flex-wrap items-center gap-x-6 gap-y-3 pt-2">
+              <div className="pt-2">
                 <a href="/collaborazioni">
                   <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
                     Come lavoro <ArrowRight className="ml-2 w-4 h-4" />
                   </Button>
                 </a>
-                <span className="text-sm text-foreground/60">
-                  Curriculum su richiesta ·{" "}
-                  <a href="https://www.linkedin.com/in/mannarella" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">LinkedIn</a>
-                </span>
               </div>
             </div>
 
