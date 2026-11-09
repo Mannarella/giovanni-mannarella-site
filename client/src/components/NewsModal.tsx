@@ -11,6 +11,21 @@ export interface NewsItem {
   link?: string;
 }
 
+/**
+ * Identificativo leggibile della news, ricavato dal titolo, usato nei link
+ * diretti: /archivio-news?news=<slug>
+ */
+export function newsSlug(news: NewsItem): string {
+  return news.title
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .slice(0, 80)
+    .replace(/-+$/g, "");
+}
+
 interface Props {
   news: NewsItem | null;
   onClose: () => void;
