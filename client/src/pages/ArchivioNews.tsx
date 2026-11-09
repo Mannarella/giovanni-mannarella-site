@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import NewsModal, { NewsItem } from "@/components/NewsModal";
+import NewsModal, { NewsItem, newsSlug } from "@/components/NewsModal";
 
 function sortByDate(news: NewsItem[]): NewsItem[] {
   return [...news].sort((a, b) => {
@@ -28,8 +28,15 @@ export default function ArchivioNews() {
     fetch("/news.json")
       .then((res) => res.json())
       .then((data) => {
-        setNews(sortByDate(data));
+        const sorted = sortByDate(data);
+        setNews(sorted);
         setLoading(false);
+        // Link diretto a una news: /archivio-news?news=<slug>
+        const slug = new URLSearchParams(window.location.search).get("news");
+        if (slug) {
+          const found = sorted.find((n) => newsSlug(n) === slug);
+          if (found) setSelectedNews(found);
+        }
       })
       .catch(() => {
         setNews([]);
@@ -37,9 +44,19 @@ export default function ArchivioNews() {
       });
   }, []);
 
+  // Mantiene l'indirizzo allineato alla news aperta, così il link si può copiare e condividere
+  const openNews = (item: NewsItem) => {
+    setSelectedNews(item);
+    window.history.replaceState(null, "", `/archivio-news?news=${newsSlug(item)}`);
+  };
+  const closeNews = () => {
+    setSelectedNews(null);
+    window.history.replaceState(null, "", "/archivio-news");
+  };
+
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <NewsModal news={selectedNews} onClose={() => setSelectedNews(null)} />
+      <NewsModal news={selectedNews} onClose={closeNews} />
 
       {/* Navigation */}
       <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
@@ -67,10 +84,10 @@ export default function ArchivioNews() {
                 <div
                   key={idx}
                   className="border-l-4 border-primary pl-6 py-4 hover:bg-muted/50 transition-colors rounded-r-lg cursor-pointer"
-                  onClick={() => setSelectedNews(item)}
+                  onClick={() => openNews(item)}
                   role="button"
                   tabIndex={0}
-                  onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") setSelectedNews(item); }}
+                  onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") openNews(item); }}
                 >
                   <div className="flex items-center gap-3 mb-1 flex-wrap">
                     <p className="text-sm font-semibold text-primary">{item.entity}</p>
