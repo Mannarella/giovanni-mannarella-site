@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ArrowLeft, ExternalLink } from "lucide-react";
 import { useState, useEffect } from "react";
+import { useAntiBot } from "@/lib/antibot";
 
 /**
  * Pagina Servizio: Fondi Interprofessionali
@@ -9,6 +10,7 @@ import { useState, useEffect } from "react";
  */
 
 export default function FondiInterprofessionali() {
+  const antiBot = useAntiBot();
   const [formData, setFormData] = useState({
     nome: "",
     email: "",
@@ -38,6 +40,7 @@ export default function FondiInterprofessionali() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
+          ...antiBot.data(),
           type: "servizio",
           nome: formData.nome,
           email: formData.email,
@@ -121,6 +124,8 @@ export default function FondiInterprofessionali() {
                 </p>
 
                 <form onSubmit={handleSubmit} className="space-y-6">
+
+                  {antiBot.field}
                   <div>
                     <label className="block text-sm font-semibold text-foreground mb-2">Nome Completo *</label>
                     <input
