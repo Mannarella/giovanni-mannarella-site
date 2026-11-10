@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useAntiBot } from "@/lib/antibot";
 import { ArrowLeft, ArrowRight, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -160,6 +161,7 @@ function extractScadenzaCategory(scadenza: string): string {
 // ---------------------------------------------------------------------------
 
 export default function ArchivioOpportunita() {
+  const antiBot = useAntiBot();
   const [bandi, setBandi] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [contactModal, setContactModal] = useState<any | null>(null);
@@ -243,6 +245,7 @@ export default function ArchivioOpportunita() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
+          ...antiBot.data(),
           type: "bando",
           nome: popupNome,
           cognome: popupCognome,
@@ -309,6 +312,7 @@ export default function ArchivioOpportunita() {
               </button>
             </div>
             <form onSubmit={handlePopupSubmit} className="px-6 py-6 space-y-4">
+              {antiBot.field}
               <div>
                 <label className="block text-sm font-semibold text-foreground mb-2">
                   Nome *

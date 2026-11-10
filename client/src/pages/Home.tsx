@@ -4,6 +4,7 @@ import { Mail, Linkedin, ArrowRight, BookOpen, Briefcase, Users, Zap, MessageCir
 import { useState, useEffect } from "react";
 import ShareButton from "@/components/ShareButton";
 import NewsModal, { NewsItem } from "@/components/NewsModal";
+import { useAntiBot } from "@/lib/antibot";
 
 // ---------------------------------------------------------------------------
 // Helpers per il parsing delle date di apertura bandi (formato italiano)
@@ -96,6 +97,8 @@ function filterBandi(data: any[], limit: number): any[] {
 // ---------------------------------------------------------------------------
 
 export default function Home() {
+  const antiBotPopup = useAntiBot();
+  const antiBotContact = useAntiBot();
 
   const [email, setEmail] = useState("");
   const [nome, setNome] = useState("");
@@ -143,6 +146,7 @@ export default function Home() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
+          ...antiBotPopup.data(),
           type: "bando",
           nome: popupNome,
           cognome: popupCognome,
@@ -181,7 +185,7 @@ export default function Home() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ type: "contact", nome, azienda, email, telefono }),
+        body: JSON.stringify({ ...antiBotContact.data(), type: "contact", nome, azienda, email, telefono }),
       });
       if (!res.ok) throw new Error();
       setSubmitted(true);
@@ -318,6 +322,7 @@ export default function Home() {
                 </div>
               ) : (
                 <form onSubmit={handlePopupSubmit} className="space-y-4">
+                  {antiBotPopup.field}
                   <div className="grid grid-cols-2 gap-4">
                     <div>
                       <label className="block text-sm font-semibold text-foreground mb-1.5">Nome *</label>
@@ -613,6 +618,7 @@ export default function Home() {
             <h2 className="text-4xl font-bold mb-3 text-foreground">Contattami</h2>
             <p className="text-lg text-foreground/70 mb-10">Hai una domanda o desideri discutere di un progetto? Sono disponibile per una consulenza personalizzata.</p>
             <form onSubmit={handleContactSubmit} className="space-y-6 mb-10">
+              {antiBotContact.field}
               <div>
                 <label className="block text-sm font-semibold text-foreground mb-2">Nome Completo *</label>
                 <input type="text" value={nome} onChange={(e) => setNome(e.target.value)} placeholder="Il tuo nome" className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50" required />

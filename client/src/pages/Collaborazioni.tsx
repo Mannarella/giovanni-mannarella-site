@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ArrowLeft, ArrowRight, ChevronDown, Linkedin, Mail } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import { useAntiBot } from "@/lib/antibot";
 
 /**
  * Pagina non indicizzata e fuori dal menu: /collaborazioni
@@ -403,6 +404,7 @@ function Ritaglio({ e, seed, n }: { e: Estratto; seed: number; n: number }) {
 }
 
 export default function Collaborazioni() {
+  const antiBot = useAntiBot();
   const [nome, setNome] = useState("");
   const [azienda, setAzienda] = useState("");
   const [email, setEmail] = useState("");
@@ -435,7 +437,7 @@ export default function Collaborazioni() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ type: "collaborazione", nome, azienda, email, telefono }),
+        body: JSON.stringify({ ...antiBot.data(), type: "collaborazione", nome, azienda, email, telefono }),
       });
       if (!res.ok) throw new Error();
       setSubmitted(true);
@@ -595,6 +597,7 @@ export default function Collaborazioni() {
               <h2 className="text-4xl font-bold mb-3 text-foreground">Conosciamoci</h2>
               <p className="text-lg text-foreground/70 mb-10">Se cerchi un progettista con cui costruire, anche a distanza, una collaborazione stabile sulla formazione finanziata, lasciami un recapito. Il curriculum è disponibile su richiesta.</p>
               <form onSubmit={handleSubmit} className="space-y-6 mb-10">
+                {antiBot.field}
                 <div>
                   <label className="block text-sm font-semibold text-foreground mb-2">Nome e cognome *</label>
                   <input type="text" value={nome} onChange={(e) => setNome(e.target.value)} className={inputClass} required />

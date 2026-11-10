@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ArrowLeft, ExternalLink } from "lucide-react";
 import { useState } from "react";
+import { useAntiBot } from "@/lib/antibot";
 
 /**
  * Pagina Servizio: Finanza Agevolata
@@ -9,6 +10,7 @@ import { useState } from "react";
  */
 
 export default function FinanzaAgevolata() {
+  const antiBot = useAntiBot();
   const [formData, setFormData] = useState({
     nome: "",
     email: "",
@@ -36,6 +38,7 @@ export default function FinanzaAgevolata() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
+          ...antiBot.data(),
           type: "servizio",
           nome: formData.nome,
           email: formData.email,
@@ -103,6 +106,8 @@ export default function FinanzaAgevolata() {
               </p>
 
               <form onSubmit={handleSubmit} className="space-y-6">
+
+                {antiBot.field}
                 <div>
                   <label className="block text-sm font-semibold text-foreground mb-2">Nome Completo *</label>
                   <input type="text" value={formData.nome} onChange={(e) => setFormData({ ...formData, nome: e.target.value })} placeholder="Il tuo nome" className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground placeholder-foreground/50 focus:outline-none focus:ring-2 focus:ring-primary/50" required />
