@@ -26,6 +26,12 @@ export function newsSlug(news: NewsItem): string {
     .replace(/-+$/g, "");
 }
 
+// Una riga breve senza punteggiatura finale è un titoletto di paragrafo
+export function isSubtitle(line: string): boolean {
+  const t = line.trim();
+  return t.length > 0 && t.length <= 80 && !/[.:;!?]$/.test(t);
+}
+
 interface Props {
   news: NewsItem | null;
   onClose: () => void;
@@ -87,7 +93,7 @@ export default function NewsModal({ news, onClose }: Props) {
     const bodyText = news.content || news.description;
     const contentHtml = bodyText
       .split("\n")
-      .map((p) => p.trim() ? `<p>${p}</p>` : "<br/>")
+      .map((p) => p.trim() ? (isSubtitle(p) ? `<h2>${p}</h2>` : `<p>${p}</p>`) : "<br/>")
       .join("");
 
     printWindow.document.write(`<!DOCTYPE html>
@@ -100,6 +106,7 @@ export default function NewsModal({ news, onClose }: Props) {
     h1 { font-size: 22px; margin-bottom: 6px; }
     .meta { color: #666; font-size: 13px; margin-bottom: 32px; border-bottom: 1px solid #ddd; padding-bottom: 16px; }
     p { margin: 0 0 14px; }
+    h2 { font-size: 16px; font-weight: bold; margin: 22px 0 8px; }
     @media print { body { margin: 20mm 20mm; } }
   </style>
 </head>
@@ -150,9 +157,13 @@ export default function NewsModal({ news, onClose }: Props) {
 
           {/* Contenuto notizia */}
           <div className="space-y-4 text-foreground/80 leading-relaxed">
-            {paragraphs.map((p, i) => (
-              <p key={i}>{p}</p>
-            ))}
+            {paragraphs.map((p, i) =>
+              isSubtitle(p) ? (
+                <h3 key={i} className="text-base font-bold text-foreground pt-2 leading-snug">{p}</h3>
+              ) : (
+                <p key={i}>{p}</p>
+              )
+            )}
           </div>
 
           {/* Link esterno opzionale */}
