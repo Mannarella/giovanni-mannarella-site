@@ -1,30 +1,6 @@
 [
   {
     "apertura": "Aperto",
-    "fondo": "Fondir",
-    "titolo": "Avviso Straordinario 6/2026 - Supporto al processo di innovazione per la transizione digitale, sostenibile ed inclusiva",
-    "scadenza": "16 nov 2026",
-    "stato": "Aperto",
-    "link": "https://www.fondir.it/fondo-trasparente/avvisi/avviso-straordinario-62026-supporto-al-processo-di-innovazione-la"
-  },
-  {
-    "apertura": "Aperto",
-    "fondo": "Regione Emilia-Romagna (FESR)",
-    "titolo": "Supporto all'utilizzo di fonti rinnovabili nelle imprese (Azione 2.2.2)",
-    "scadenza": "16 nov 2026",
-    "stato": "Aperto",
-    "link": "https://fesr.regione.emilia-romagna.it/opportunita/opportunita-di-finanziamento/2026/supporto-allutilizzo-di-fonti-rinnovabili-nelle-imprese"
-  },
-  {
-    "apertura": "Aperto",
-    "fondo": "Fondoprofessioni",
-    "titolo": "Avviso 05/26 (Titolari di Rete) - II sportello",
-    "scadenza": "20 nov 2026",
-    "stato": "Aperto",
-    "link": "https://www.fondoprofessioni.it/avvisi/piani-formativi-pluriaziendali-promossi-dai-titolari-di-rete-2026/"
-  },
-  {
-    "apertura": "Aperto",
     "fondo": "Regione Toscana (FSE+)",
     "titolo": "Finanziamenti per la promozione e la diffusione dell'apprendistato duale: il bando 2026",
     "scadenza": "30 nov 2026",
@@ -49,11 +25,27 @@
   },
   {
     "apertura": "Aperto",
+    "fondo": "Regione Emilia-Romagna (FSE+)",
+    "titolo": "Percorsi extra diritto-dovere, in modalità duale - Apprendistato di I livello o alternanza rafforzata - per qualifica IeFP (EQF III liv.)",
+    "scadenza": "15 dic 2026",
+    "stato": "Aperto",
+    "link": "https://formazionelavoro.regione.emilia-romagna.it/leggi-atti-bandi/bandi-regionali/bandi-per-annualita/2026/percorsi-extra-diritto-dovere-in-modalita-duale-apprendistato-di-i-livello-o-alternanza-rafforzata-per-qualifica-iefp-eqf-iii-liv"
+  },
+  {
+    "apertura": "Aperto",
     "fondo": "FonARCom",
     "titolo": "Avviso 02/2025 - Dirigenti",
     "scadenza": "18 dic 2026",
     "stato": "Aperto",
     "link": "https://www.fonarcom.it/strumenti/avviso-per-dirigenti/avviso-02-2025-dirigenti/"
+  },
+  {
+    "apertura": "Aperto",
+    "fondo": "Regione Toscana (FESR)",
+    "titolo": "Contributi per l'internazionalizzazione delle imprese: il bando 2026",
+    "scadenza": "18 dic 2026",
+    "stato": "Aperto",
+    "link": "https://www.regione.toscana.it/-/contributi-per-l-internazionalizzazione-delle-imprese-il-bando-2026"
   },
   {
     "apertura": "Aperto",
@@ -102,6 +94,14 @@
     "scadenza": "15 gen 2027",
     "stato": "Aperto",
     "link": "https://www.fonarcom.it/strumenti/avviso-generale/avviso-02-2026-generalista-ucs/"
+  },
+  {
+    "apertura": "Aperto",
+    "fondo": "Regione Toscana (FSE+)",
+    "titolo": "Finanziamento di percorsi formativi per Operatrice e Operatore Forestale",
+    "scadenza": "15 gen 2027",
+    "stato": "Aperto",
+    "link": "https://www.regione.toscana.it/-/finanziamento-di-percorsi-formativi-per-operatrice-e-operatore-forestale"
   },
   {
     "apertura": "Aperto",
@@ -190,6 +190,22 @@
     "scadenza": "30 ott 2027",
     "stato": "Aperto",
     "link": "https://www.regione.toscana.it/-/conciliazione-vita-lavoro-contributi-per-piani-di-welfare-aziendale-il-bando-2026-2027"
+  },
+  {
+    "apertura": "Aperto",
+    "fondo": "Regione Toscana (FSE+)",
+    "titolo": "Avviso pubblico 2025 per la formazione del Catalogo dell'offerta formativa \"just in time\"",
+    "scadenza": "31 dic 2027",
+    "stato": "Aperto",
+    "link": "https://www.regione.toscana.it/-/avviso-pubblico-2025-per-la-formazione-del-catalogo-dell-offerta-formativa-just-in-time-"
+  },
+  {
+    "apertura": "Aperto",
+    "fondo": "FonARCom",
+    "titolo": "Avviso 08/2026 - SDI QUADRO",
+    "scadenza": "22 nov 2029",
+    "stato": "Aperto",
+    "link": "https://www.fonarcom.it/strumenti/avviso-per-sistemi-di-imprese/avviso-08-2026-sdi-quadro/"
   },
   {
     "apertura": "Aperto",
@@ -296,12 +312,12 @@
     "link": "https://www.regione.toscana.it/-/contributi-a-copertura-di-spese-di-emissione-obbligazioni-titoli-di-debito-e-commissioni-di-garanzia"
   },
   {
-    "apertura": "18 nov 2026",
-    "fondo": "Regione Toscana (FESR)",
-    "titolo": "Contributi per l'internazionalizzazione delle imprese: il bando 2026",
-    "scadenza": "18 dic 2026",
-    "stato": "In apertura",
-    "link": "https://www.regione.toscana.it/-/contributi-per-l-internazionalizzazione-delle-imprese-il-bando-2026"
+    "apertura": "Aperto",
+    "fondo": "Regione Calabria (FSE+)",
+    "titolo": "Oikos Calabria",
+    "scadenza": "fino esaurimento risorse",
+    "stato": "Aperto",
+    "link": "https://calabriaeuropa.regione.calabria.it/bando/oikos-calabria/"
   },
   {
     "apertura": "24 nov 2026",
@@ -310,14 +326,6 @@
     "scadenza": "11 dic 2026",
     "stato": "In apertura",
     "link": "https://www.fonter.it/2026/11/avviso-n-1-2026-aperto-apertura-piattaforma-iia-sessione/"
-  },
-  {
-    "apertura": "23 nov 2026",
-    "fondo": "FonARCom",
-    "titolo": "Avviso 08/2026 - SDI QUADRO",
-    "scadenza": "22 nov 2029",
-    "stato": "In apertura",
-    "link": "https://www.fonarcom.it/strumenti/avviso-per-sistemi-di-imprese/avviso-08-2026-sdi-quadro/"
   },
   {
     "apertura": "01 dic 2026",
@@ -330,10 +338,10 @@
   {
     "apertura": "02 dic 2026",
     "fondo": "Regione Emilia-Romagna (FESR)",
-    "titolo": "EuReCa 2021-2027 - contributi in conto interessi per gli investimenti delle PMI",
+    "titolo": "Eureca 2021-2027 - Sostegno alla competitività, innovazione e sostenibilità ambientale delle imprese",
     "scadenza": "31 mar 2027",
     "stato": "In apertura",
-    "link": "https://fesr.regione.emilia-romagna.it/novita/notizie/2026/nuove-risorse-attivita-produttive"
+    "link": "https://imprese.regione.emilia-romagna.it/leggi-atti-bandi/tutti-i-bandi/finanza/sostegno-agli-investimenti-innovativi-e-sostenibili-delle-imprese"
   },
   {
     "apertura": "15 dic 2026",
@@ -342,5 +350,13 @@
     "scadenza": "24 mar 2027",
     "stato": "In apertura",
     "link": "https://www.fonarcom.it/strumenti/avvisi-tematici/avviso-07-2026-diginnova-agile/"
+  },
+  {
+    "apertura": "27 gen 2027",
+    "fondo": "Regione Emilia-Romagna (FESR)",
+    "titolo": "Sostegno degli investimenti nel settore del turismo - Anno 2026",
+    "scadenza": "16 feb 2027",
+    "stato": "In apertura",
+    "link": "https://fesr.regione.emilia-romagna.it/opportunita/opportunita-di-finanziamento/2026/sostegno-degli-investimenti-nel-settore-del-turismo-anno-2026"
   }
 ]
