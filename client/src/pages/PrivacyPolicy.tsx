@@ -141,6 +141,13 @@ export default function PrivacyPolicy() {
                 fini di sicurezza e funzionamento dell'infrastruttura. Questi dati non sono
                 utilizzati per identificare gli utenti.
               </p>
+              <p className="mt-3">
+                La homepage incorpora un riquadro con gli ultimi post pubblicati sul profilo
+                LinkedIn del titolare, fornito dal servizio <strong>Curator.io</strong>. Alla
+                visualizzazione della pagina il browser scarica script e immagini dai server di
+                Curator.io e di LinkedIn, che possono ricevere dati tecnici di navigazione (ad
+                esempio l'indirizzo IP) e trattarli secondo le rispettive informative privacy.
+              </p>
             </section>
 
             {/* 7 */}
