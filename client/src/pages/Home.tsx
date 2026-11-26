@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import ShareButton from "@/components/ShareButton";
 import NewsModal, { NewsItem } from "@/components/NewsModal";
 import { useAntiBot } from "@/lib/antibot";
+import { LinkedInFeed } from "@/components/LinkedInFeed";
 
 // ---------------------------------------------------------------------------
 // Helpers per il parsing delle date di apertura bandi (formato italiano)
@@ -229,17 +230,6 @@ export default function Home() {
     },
   ];
 
-  // Gestione LinkedIn posts (Sociablekit)
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "https://widgets.sociablekit.com/linkedin-profile-posts/widget.js";
-    script.defer = true;
-    document.body.appendChild(script);
-    return () => {
-      script.remove();
-    };
-  }, []);
-
   // Gestione News
   const [staticNews, setStaticNews] = useState<any[] | null>(null);
   const [bandi, setBandi] = useState<any[] | null>(null);
@@ -456,7 +446,7 @@ export default function Home() {
                 <Linkedin className="w-5 h-5 text-[#0A66C2]" />
                 <span className="font-semibold text-foreground text-sm">Ultimi post su LinkedIn</span>
               </div>
-              <div className="sk-ww-linkedin-profile-post" data-embed-id="25724126"></div>
+              <LinkedInFeed />
             </div>
           </div>
         </div>
